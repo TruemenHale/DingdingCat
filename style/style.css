@@ -4,6 +4,13 @@
   font-size: 14px;
   font-family: "Microsoft Yahei";
 }
+* a {
+  text-decoration: none;
+}
+.info-list * {
+  font-size: 16px;
+  text-align: center;
+}
 @font-face {
   font-family: "iconfont";
   src: url('../icon/iconfont.eot');
@@ -27,4 +34,14 @@
 }
 .icon-taocanxiangqing:before {
   content: "\e614";
+}
+@media screen and (max-width: 330px) {
+  .info-list * {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 290px) {
+  .info-list * {
+    font-size: 11px;
+  }
 }
