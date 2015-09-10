@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1c5a5e5-44b0-41d3-9596-65f063e238f4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bill.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/style/bill.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/bill.css" afterPath="$PROJECT_DIR$/style/bill.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bill.html" afterPath="$PROJECT_DIR$/bill.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/bill.less" afterPath="$PROJECT_DIR$/style/bill.less" />
     </list>
     <ignored path="DingdingCat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +43,8 @@
       <file leaf-file-name="bill.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bill.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.566265" vertical-offset="25" max-vertical-offset="1026">
-              <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+            <state vertical-scroll-proportion="-5.4216866" vertical-offset="25" max-vertical-offset="1026">
+              <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -56,8 +55,8 @@
       <file leaf-file-name="bill.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/style/bill.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42566192" vertical-offset="0" max-vertical-offset="982">
-              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.15478615" vertical-offset="0" max-vertical-offset="982">
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -616,8 +615,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bill.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.566265" vertical-offset="25" max-vertical-offset="1026">
-          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+        <state vertical-scroll-proportion="-5.4216866" vertical-offset="25" max-vertical-offset="1026">
+          <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -626,8 +625,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/style/bill.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42566192" vertical-offset="0" max-vertical-offset="982">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.15478615" vertical-offset="0" max-vertical-offset="982">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding />
         </state>
       </provider>
