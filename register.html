@@ -26,6 +26,10 @@
 					<label>手机号：</label>
 					<input type="text" class="phoneNum" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" />
 				</div>
+				<div class="ui-field-contain">
+					<label>邀请码：</label>
+					<input class="invite" type="text" placeholder="如果没有，可以留空" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text')" />
+				</div>
 				<div class="ConfirmCodeBox">
 					<input class="ConfirmCode" type="text" data-role="none" />
 					<div class="ApplyBtn">获取验证码</div>

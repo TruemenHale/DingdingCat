@@ -125,11 +125,22 @@ class AccountController extends BaseController {
         $res = $db->where("phone = '$phone'")->find();
 
         if ($res) {
-            $save = [
-                'code'   => $code,
-                'm_time' => time()
-            ];
-            $db->where("phone = '$phone'")->save($save);
+            $now  = time();
+            $diff = $now - $res ['m_time'];
+            if ($diff < 60) {
+                $return = [
+                    'status' => '-4',
+                    'info'   => '两次获取间间隔一分钟'
+                ];
+                $this->ajaxReturn($return);
+            } else {
+                $save = [
+                    'code'   => $code,
+                    'm_time' => time()
+                ];
+                $db->where("phone = '$phone'")->save($save);
+            }
+
         } else {
             $save = [
                 'phone'  => $phone,

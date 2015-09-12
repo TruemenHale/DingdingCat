@@ -3,16 +3,17 @@
  */
 $(function(){
 	$('.ApplyBtn').on('tap',function(){
-		$.post('./index.php',parseInt($('.phoneNum').val()),function(data){
+		$.post('./api/index.php?s=/Home/Account/codeSend','phone='+$('.phoneNum').val(),function(data){
 
 		});
 	});
 	$('.registerBtn').on('tap',function(){
 		var _data = {};
-		_data.usrName = $('.usrName').val();
-		_data.Phone = parseInt($('.phoneNum').val());
-		_data.token = $('.ConfirmCode').val();
-		$.post('./index.php',_data,function(data){
+		_data.name = $('.usrName').val();
+		_data.phone = parseInt($('.phoneNum').val());
+		_data.code = $('.ConfirmCode').val();
+		_data.invite = $('.invite').val();
+		$.post('./api/index.php?s=/Home/Account/register',_data,function(data){
 			if(data == true){
 				alert('注册成功！');
 			}
