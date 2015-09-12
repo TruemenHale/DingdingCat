@@ -102,6 +102,7 @@ class AccountController extends BaseController {
             if ($diff > 600) {
                 return false;
             } else {
+                M('code')->where("phone = '$phone'")->delete();
                 return true;
             }
         } else {
