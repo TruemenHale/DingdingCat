@@ -14,7 +14,7 @@ $(function(){
 		_data.code = $('.ConfirmCode').val();
 		_data.invite = $('.invite').val();
 		$.post('./api/index.php?s=/Home/Account/register',_data,function(data){
-			if(data == true){
+			if(data>=0){
 				alert('注册成功！');
 			}
 			else{

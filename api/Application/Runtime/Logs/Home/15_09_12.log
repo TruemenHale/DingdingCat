@@ -92,3 +92,19 @@ INFO: [ app_begin ] --START--
 INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000489s ]
 INFO: [ app_begin ] --END-- [ RunTime:0.000536s ]
 
+[ 2015-09-12T21:55:13+08:00 ] ::1 /dingdingCat/api/index.php?s=/Home/Account/codeSend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004737s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004849s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004893s ]
+
+[ 2015-09-12T21:55:18+08:00 ] ::1 /dingdingCat/api/index.php?s=/Home/Account/codeSend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000262s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000340s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000377s ]
+
