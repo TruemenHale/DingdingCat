@@ -59,14 +59,13 @@ class AccountController extends BaseController {
             $this->ajaxReturn($return);
         }
 
-        $header = $this->inviteFind($invite);
+        $header = $invite;
 
         $save   = [
             'name'        => $name,
             'phone'       => $phone,
             'header'      => $header,
             'regTime'     => date("Y-m-d H-i-s",time()),
-            'invite_code' => $this->inviteCode()
         ];
 
         M('user')->add($save);
@@ -152,36 +151,6 @@ class AccountController extends BaseController {
         }
 
         return $code;
-    }
-
-    /**\
-     * @param $inviteCode
-     * @return bool
-     * 查找介绍人是否存在
-     */
-    private function inviteFind ($inviteCode) {
-        $res = M('user')->where("invite_code = '$inviteCode'")->find();
-        if ($res) {
-            return $res ['phone'];
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * @return string
-     * 生成推荐码
-     */
-    private function inviteCode () {
-        $str    = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ";
-        $string = "";
-
-        for ($i = 0;$i < 10;$i++) {
-            $num     = mt_rand(0,61);
-            $string .= $str [$num];
-        }
-
-        return $string;
     }
 
     private function registerCheck ($phone) {
