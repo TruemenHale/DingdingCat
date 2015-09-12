@@ -9,6 +9,7 @@
   height: 35px;
   margin-top: 18px;
   margin-bottom: 58px;
+  position: relative;
 }
 .ConfirmCodeBox .ConfirmCode {
   width: 48%;
@@ -17,6 +18,19 @@
   border-radius: 3px;
   box-shadow: 0 0 5px #666 inset;
   height: 31px;
+}
+.ConfirmCodeBox .mask {
+  display: block;
+  width: 43%;
+  height: 100%;
+  float: right;
+  line-height: 35px;
+  display: none;
+  background: orangered;
+  color: #ccc;
+  text-shadow: none;
+  text-align: center;
+  border-radius: 3px;
 }
 .ConfirmCodeBox .ApplyBtn {
   display: block;

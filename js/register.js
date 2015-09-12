@@ -1,8 +1,26 @@
 /**
  * Created by truemenhale on 15/8/23.
  */
+function changeBtn(a){
+	sume = 40;
+	$('.mask').css('display','block');
+	$('.ApplyBtn').css({'position':'absolute','z-index':-100});
+	var timer = setInterval(function(){
+		if(sume == 1){
+			sume+=40;
+			a.html(sume);
+			$('.mask').css('display','none');
+			$('.ApplyBtn').css({'position':'relative','z-index':1});
+			clearInterval(timer);
+		}
+		sume--;
+		a.html(sume);
+	},1000)
+}
 $(function(){
 	$('.ApplyBtn').on('tap',function(){
+		var a = $('.timer');
+		changeBtn(a);
 		$.post('./api/index.php?s=/Home/Account/codeSend','phone='+$('.phoneNum').val(),function(data){
 
 		});
@@ -14,7 +32,7 @@ $(function(){
 		_data.code = $('.ConfirmCode').val();
 		_data.invite = $('.invite').val();
 		$.post('./api/index.php?s=/Home/Account/register',_data,function(data){
-			if(data>=0){
+			if(data.status == 0){
 				alert('注册成功！');
 			}
 			else{
