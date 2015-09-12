@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1c5a5e5-44b0-41d3-9596-65f063e238f4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/bill.css" afterPath="$PROJECT_DIR$/style/bill.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bill.html" afterPath="$PROJECT_DIR$/bill.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/bill.less" afterPath="$PROJECT_DIR$/style/bill.less" />
-    </list>
+    <list default="true" id="b1c5a5e5-44b0-41d3-9596-65f063e238f4" name="Default" comment="" />
     <ignored path="DingdingCat.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
