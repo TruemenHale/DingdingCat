@@ -10,6 +10,7 @@
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<link rel="stylesheet" href="style/bill.css"/>
+		<script src="js/bill.js"></script>
 	</head>
 	<body>
 		<div data-role="page" id="MyBill">
@@ -34,11 +35,11 @@
 			<div role="main" class="ui-content" id="mainpage">
 				<div class="ui-field-contain">
 					<label>申请金额：</label>
-					<input class="ApplyNum" type="text"/>
+					<input class="ApplyNum" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" type="text"/>
 				</div>
 				<div class="ui-field-contain">
 					<label>发票收件地址：</label>
-					<input class="getAddress" type="text"/>
+					<input class="getAddress"  type="text"/>
 				</div>
 				<div class="ui-field-contain">
 					<input class="getAddress" type="button" value="提交"/>
