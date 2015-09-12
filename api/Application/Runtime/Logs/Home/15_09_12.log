@@ -1,0 +1,54 @@
+[ 2015-09-12T11:52:18+08:00 ] ::1 /dingdingmao/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002269s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001149s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000033s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000093s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.050061s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.050144s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000805s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000852s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001201s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001312s ]
+
+[ 2015-09-12T17:46:57+08:00 ] ::1 /dingdingmao/index.php?s=/Home/Account/codeSend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005264s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.006485s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006547s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\Web\apache\htdocs\dingdingmao\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+
+[ 2015-09-12T17:47:34+08:00 ] ::1 /dingdingmao/index.php?s=/Home/Account/codeSend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000550s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000365s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000412s ]
+NOTIC: [2] Invalid argument supplied for foreach() D:\Web\apache\htdocs\dingdingmao\ThinkPHP\Library\Think\Model.class.php 第 267 行.
+
+[ 2015-09-12T17:50:27+08:00 ] ::1 /dingdingmao/index.php?s=/Home/Account/codeSend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000764s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000440s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000498s ]
+
+[ 2015-09-12T17:50:36+08:00 ] ::1 /dingdingmao/index.php?s=/Home/Account/codeSend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000404s ]
+
