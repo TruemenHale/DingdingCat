@@ -10,6 +10,10 @@ function getCookie(name)
 		return null;
 }
 $(function(){
+	var _url = self.location.href;
+	if(_url.indexOf("?")>0){
+		var open_id = _url.substr(_url.indexOf("?")+1,_url.length-_url.indexOf("?"));
+	}
 	if(getCookie("flag") == 500){
 		time = parseInt(getCookie('time'));
 		_this = $('.ApplyBtn');
@@ -68,6 +72,7 @@ $(function(){
 		_data.phone = parseInt($('.phoneNum').val());
 		_data.code = $('.ConfirmCode').val();
 		_data.invite = $('.invite').val();
+		_data.open_id = open_id;
 		$.post('./api/index.php?s=/Home/Account/register',_data,function(data){
 			if(data.status == 0){
 				alert('注册成功！');
