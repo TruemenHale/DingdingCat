@@ -1,29 +1,33 @@
 /**
  * Created by truemenhale on 15/8/23.
  */
-function changeBtn(a){
-	sume = 40;
-	$('.mask').css('display','block');
-	$('.ApplyBtn').css({'position':'absolute','z-index':-100});
-	var timer = setInterval(function(){
-		if(sume == 1){
-			sume+=40;
-			a.html(sume);
-			$('.mask').css('display','none');
-			$('.ApplyBtn').css({'position':'relative','z-index':1});
-			clearInterval(timer);
-		}
-		sume--;
-		a.html(sume);
-	},1000)
-}
+var flag = true;
 $(function(){
 	$('.ApplyBtn').on('tap',function(){
-		var a = $('.timer');
-		changeBtn(a);
-		$.post('./api/index.php?s=/Home/Account/codeSend','phone='+$('.phoneNum').val(),function(data){
+		var _this = $(this);
+		if(flag == true){
+			$.post('./api/index.php?s=/Home/Account/codeSend','phone='+$('.phoneNum').val(),function(data){
 
-		});
+			});
+			time = 60;
+			flag = false;
+		}
+		if(flag == false){
+			_this.html("等待"+time+"秒后重新发送");
+			_this.css({"color":"#ccc","text-shadow":"none"});
+			var timer = setInterval(function(){
+							time--;
+							if(time == 0){
+								_this.html("获取验证码");
+								_this.css({"color":"#fff","text-shadow":"inset"});
+								flag = true;
+								clearInterval(timer);
+								return;
+							}
+							_this.html("等待"+time+"秒后重新发送");
+						},1000);
+			flag = 500;
+		}
 	});
 	$('.registerBtn').on('tap',function(){
 		var _data = {};
