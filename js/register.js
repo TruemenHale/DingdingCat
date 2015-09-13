@@ -6,6 +6,10 @@ $(function(){
 	$('.ApplyBtn').on('tap',function(){
 		var _this = $(this);
 		if(flag == true){
+			if($('.phoneNum').val().length != 11){
+				alert('请输入正确的手机号！');
+				return;
+			}
 			$.post('./api/index.php?s=/Home/Account/codeSend','phone='+$('.phoneNum').val(),function(data){
 
 			});
