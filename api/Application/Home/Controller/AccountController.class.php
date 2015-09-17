@@ -62,10 +62,11 @@ class AccountController extends BaseController {
         $header = $invite;
 
         $save   = [
-            'name'        => $name,
-            'phone'       => $phone,
-            'header'      => $header,
-            'regTime'     => date("Y-m-d H-i-s",time()),
+            'name'     => $name,
+            'phone'    => $phone,
+            'header'   => $header,
+            'regTime'  => date("Y-m-d H-i-s",time()),
+            'openid'   => $openid
         ];
 
         M('user')->add($save);
@@ -73,6 +74,65 @@ class AccountController extends BaseController {
         $return = [
             'status' => '0',
             'info'   => 'register success'
+        ];
+        $this->ajaxReturn($return);
+    }
+
+    public function billInfo () {
+        $phone = I('post.phone');
+
+        $Info = M('user')->where("phone = '$phone'")->find();
+
+        if (!$Info) {
+            $return = [
+                'status' => '-6',
+                'info'   => 'Account Not Found'
+            ];
+            $this->ajaxReturn($return);
+        }
+
+        $data = [
+            'total' => $Info ['invoiceTotal'],
+            'used'  => $Info ['invoiceUsed'],
+            'unuse' => $Info ['invoiceUnuse']
+        ];
+
+        $return = [
+            'status' => '0',
+            'info'   => 'success',
+            'data'   => $data
+        ];
+
+        $this->ajaxReturn($return);
+    }
+
+    public function applyBill () {
+        $phone = I('post.phone');
+        $money = I('post.money');
+        $addr  = I('post.addr');
+
+        $res = $this->checkBalance($phone,$money);
+
+        if (!$res) {
+            $return = [
+                'status' => '-7',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        }
+
+        $save = [
+            'userid'    => $res,
+            'applyTime' => date("Y-m-d H-i-s",time()),
+            'money'     => $money,
+            'addr'      => $addr,
+            'status'    => 0
+        ];
+        M('invoice')->add($save);
+
+        $return = [
+            'status' => '0',
+            'info'   => 'success'
         ];
         $this->ajaxReturn($return);
     }
@@ -161,4 +221,23 @@ class AccountController extends BaseController {
             return true;
         }
     }
+
+    /**
+     * @param $phone
+     * @param $money
+     * @return bool
+     * 判断是否可以开出支票
+     */
+    private function checkBalance ($phone,$money) {
+        $res = M('user')->where("phone = '$phone'")->find();
+
+        $diff = $money - $res ['invoiceUnuse'];
+
+        if ($diff < 0) {
+            return false;
+        } else {
+            return $res ['id'];
+        }
+    }
+
 }
