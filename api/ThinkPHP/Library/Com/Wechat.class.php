@@ -48,13 +48,9 @@ class Wechat {
             if(IS_GET){
                 exit($_GET['echostr']);
             } else {
-                $xml = file_get_contents("php://input"); 
-                $xml = new \SimpleXMLElement($xml);
-                $xml || exit;
-
-                foreach ($xml as $key => $value) {
-                    $this->data[$key] = strval($value);
-                }
+                $xml = file_get_contents("php://input");
+                $data = (array)simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+                $this->data = array_change_key_case($data, CASE_LOWER);
             }
         } else {
             throw new \Exception('参数错误！');
