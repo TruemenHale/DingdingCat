@@ -79,9 +79,9 @@ class AccountController extends BaseController {
     }
 
     public function billInfo () {
-        $phone = I('post.phone');
+        $openid = I('post.openid');
 
-        $Info = M('user')->where("phone = '$phone'")->find();
+        $Info = M('user')->where("openid = '$openid'")->find();
 
         if (!$Info) {
             $return = [
@@ -91,10 +91,13 @@ class AccountController extends BaseController {
             $this->ajaxReturn($return);
         }
 
+        session("phone",$Info['phone']);
+
         $data = [
             'total' => $Info ['invoiceTotal'],
             'used'  => $Info ['invoiceUsed'],
-            'unuse' => $Info ['invoiceUnuse']
+            'unuse' => $Info ['invoiceUnuse'],
+            'phone' => $Info ['phone']
         ];
 
         $return = [
@@ -111,6 +114,14 @@ class AccountController extends BaseController {
         $money = I('post.money');
         $addr  = I('post.addr');
 
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        }
+
         $res = $this->checkBalance($phone,$money);
 
         if (!$res) {
@@ -126,7 +137,7 @@ class AccountController extends BaseController {
             'applyTime' => date("Y-m-d H-i-s",time()),
             'money'     => $money,
             'addr'      => $addr,
-            'status'    => 0
+            'status'    => '0'
         ];
         M('invoice')->add($save);
 
@@ -231,7 +242,7 @@ class AccountController extends BaseController {
     private function checkBalance ($phone,$money) {
         $res = M('user')->where("phone = '$phone'")->find();
 
-        $diff = $money - $res ['invoiceUnuse'];
+        $diff = $res ['invoiceUnuse'] - $money;
 
         if ($diff < 0) {
             return false;
