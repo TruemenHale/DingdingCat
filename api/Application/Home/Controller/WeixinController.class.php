@@ -16,7 +16,10 @@ class WeixinController extends Controller {
     private $appSecret = '62d1a73eb4c3c141ac0758970d12906e';
 
     public function enter () {
-        $WeChat = new Wechat('dingdingCat');
-        $WeChat->replyText("test");
+        $token = "dingdingCat";
+
+        $WeChat = new Wechat($token);
+
+        $WeChat->response("text","test");
     }
 }
