@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2014 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006-2015 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -14,18 +14,19 @@ namespace Com;
 class WechatAuth {
     
     /* 消息类型常量 */
-    const MSG_TYPE_TEXT     = 'text';
-    const MSG_TYPE_IMAGE    = 'image';
-    const MSG_TYPE_VOICE    = 'voice';
-    const MSG_TYPE_VIDEO    = 'video';
-    const MSG_TYPE_MUSIC    = 'music';
-    const MSG_TYPE_NEWS     = 'news';
-    const MSG_TYPE_LOCATION = 'location';
-    const MSG_TYPE_LINK     = 'link';
-    const MSG_TYPE_EVENT    = 'event';
+    const MSG_TYPE_TEXT       = 'text';
+    const MSG_TYPE_IMAGE      = 'image';
+    const MSG_TYPE_VOICE      = 'voice';
+    const MSG_TYPE_VIDEO      = 'video';
+    const MSG_TYPE_SHORTVIDEO = 'shortvideo';
+    const MSG_TYPE_LOCATION   = 'location';
+    const MSG_TYPE_LINK       = 'link';
+    const MSG_TYPE_MUSIC      = 'music';
+    const MSG_TYPE_NEWS       = 'news';
+    const MSG_TYPE_EVENT      = 'event';
     
     /* 二维码类型常量 */
-    const QR_SCENE       = 'QR_SCENE';        
+    const QR_SCENE       = 'QR_SCENE';
     const QR_LIMIT_SCENE = 'QR_LIMIT_SCENE';
 
     /**
@@ -50,13 +51,7 @@ class WechatAuth {
      * 微信api根路径
      * @var string
      */
-    private $apiURL    = 'https://api.weixin.qq.com/cgi-bin';
-
-    /**
-     * 微信媒体文件根路径
-     * @var string
-     */
-    private $mediaURL  = 'http://file.api.weixin.qq.com/cgi-bin';
+    private $apiURL = 'https://api.weixin.qq.com/cgi-bin';
 
     /**
      * 微信二维码根路径
@@ -83,7 +78,7 @@ class WechatAuth {
                 $this->accessToken = $token;
             }
         } else {
-            throw new \Exception('参数错误！');
+            throw new \Exception('缺少参数 APP_ID 和 APP_SECRET!');
         }
     }
 
@@ -149,40 +144,64 @@ class WechatAuth {
 
     /**
      * 获取授权用户信息
-     * @param  string $token acess_token
-     * @param  string $lang  指定的语言
-     * @return array         用户信息数据，具体参见微信文档
+     * @param  string $openid 用户的OpenID
+     * @param  string $lang   指定的语言
+     * @return array          用户信息数据，具体参见微信文档
      */
-    public function getUserInfo($token, $lang = 'zh_CN'){
+    public function getUserInfo($openid, $lang = 'zh_CN'){
         $query = array(
-            'access_token' => $token['access_token'],
-            'openid'       => $token['openid'],
+            'access_token' => $this->accessToken,
+            'openid'       => $openid,
             'lang'         => $lang,
         );
 
-        $info = self::http("{$this->apiURL}/user/info", $query);
+        $info = self::http("{$this->oauthApiURL}/userinfo", $query);
         return json_decode($info, true);
     }
 
     /**
-     * 上传媒体资源
+     * 上传零时媒体资源
      * @param  string $filename 媒体资源本地路径
      * @param  string $type     媒体资源类型，具体请参考微信开发手册
      */
     public function mediaUpload($filename, $type){
-        $param = array(
-            'access_token' => $this->accessToken,
-            'type'         => $type
-        );
-
         $filename = realpath($filename);
         if(!$filename) throw new \Exception('资源路径错误！');
         
-        $file = array('media' => "@{$filename}");
-        $url  = "{$this->mediaURL}/media/upload";
-        $data = self::http($url, $param, $file, 'POST');
+        $data  = array(
+            'type'  => $type,
+            'media' => "@{$filename}"
+        );
 
-        return json_decode($data, true);
+        return $this->api('media/upload', $data, 'POST', '', false);
+    }
+
+    /**
+     * 上传永久媒体资源
+     * @param string $filename    媒体资源本地路径
+     * @param string $type        媒体资源类型，具体请参考微信开发手册
+     * @param string $description 资源描述，仅资源类型为 video 时有效
+     */
+    public function materialAddMaterial($filename, $type, $description = ''){
+        $filename = realpath($filename);
+        if(!$filename) throw new \Exception('资源路径错误！');
+        
+        $data = array(
+            'type'  => $type,
+            'media' => "@{$filename}",
+        );
+
+        if($type == 'video'){
+            if(is_array($description)){
+                //保护中文，微信api不支持中文转义的json结构
+                array_walk_recursive($description, function(&$value){
+                    $value = urlencode($value);
+                });
+                $description = urldecode(json_encode($description));
+            }
+            $data['description'] = $description;
+        }
+        return $this->api('material/add_material', $data, 'POST', '', false);
     }
 
     /**
@@ -197,7 +216,7 @@ class WechatAuth {
             'media_id'     => $media_id
         );
 
-        $url = "{$this->mediaURL}/media/get?";
+        $url = "{$this->apiURL}/media/get?";
         return $url . http_build_query($param);
     }
 
@@ -461,7 +480,7 @@ class WechatAuth {
      * @param  string $param  GET请求参数
      * @return array          api返回结果
      */
-    protected function api($name, $data = '', $method = 'POST', $param = ''){
+    protected function api($name, $data = '', $method = 'POST', $param = '', $json = true){
         $params = array('access_token' => $this->accessToken);
 
         if(!empty($param) && is_array($param)){
@@ -469,7 +488,7 @@ class WechatAuth {
         }
 
         $url  = "{$this->apiURL}/{$name}";
-        if(!empty($data)){
+        if($json && !empty($data)){
             //保护中文，微信api不支持中文转义的json结构
             array_walk_recursive($data, function(&$value){
                 $value = urlencode($value);
@@ -609,18 +628,6 @@ class WechatAuth {
 
         $data['articles']     = $articles;
         return $data;
-    }
-
-    public function sendTemplate($openid,$template,$content){
-        $data = [
-            "touser" => $openid,
-            "template_id" => $template,
-            "topcolor" => "#FF0000"
-        ];
-
-        $data['data'] = $content;
-
-        return $this->api('message/template/send',$data);
     }
 
 }
