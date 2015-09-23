@@ -20,6 +20,6 @@ class WeixinController extends Controller {
 
         $WeChat = new Wechat($token);
 
-        $WeChat->response("text","test");
+        $WeChat->response("test","text");
     }
 }
