@@ -66,6 +66,12 @@ class Wechat {
     private static $encodingAESKey = '62d1a73eb4c3c141ac0758970d12906e';
 
     /**
+     * @var string
+     * 消息加密key
+     */
+    private static $crypt = '';
+
+    /**
      * 是否使用安全模式
      * @var boolean
      */
@@ -78,20 +84,10 @@ class Wechat {
      * @param string $appid 微信APPID (安全模式和兼容模式有效)
      * @param string $key   消息加密KEY (EncodingAESKey)
      */
-    public function __construct($token, $appid = '', $key = ''){
+    public function __construct($token){
         //设置安全模式
         if(isset($_GET['encrypt_type']) && $_GET['encrypt_type'] == 'aes'){
             self::$msgSafeMode = true;
-        }
-
-        //参数验证
-        if(self::$msgSafeMode){
-            if(empty($key) || empty($appid)){
-                throw new \Exception('缺少参数EncodingAESKey或APP_ID！');
-            }
-
-            self::$appId          = $appid;
-            self::$encodingAESKey = $key;
         }
 
         //TOKEN验证
