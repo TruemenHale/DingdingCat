@@ -255,6 +255,7 @@
         ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
     wx.ready(function(){
+        $.mobile.loading('hide');
         wx.getLocation({
             type: 'gcj02',
             success: function (res) {
@@ -275,7 +276,6 @@
                         success : function (response) {
                             var location = response.location;
                             $(".getAdress").val(location);
-                            $.mobile.loading('hide');
                         }
                     })
                 }
