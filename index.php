@@ -35,7 +35,6 @@
 <body>
 
 <!--代送页面-->
-
 <div data-role="page" id="daisong">
     <div data-role="header"  data-position="fixed">
         <h1>代送</h1>
@@ -43,25 +42,26 @@
     <div role="main" class="ui-content">
         <div class="ui-field-contain">
             <label>取件地址：</label>
-            <input class="getAdress" type="text"/>
+            <input class="getAdress" name="pickupAddr" type="text"/>
             <div class="clearAddress">清除GPS定位地址</div>
         </div>
         <div class="ui-field-contain">
             <label>送达地址：</label>
-            <input class="endAdress" type="text"/>
+            <input class="endAdress" name="sendAddr" type="text"/>
         </div>
         <div class="ui-field-contain">
             <label>取件时间：</label>
-            <select class="getTime" name="" id="">
-                <option>马上代送</option>
-                <option>预约其他时间</option>
+            <select class="getTime" name="pickupTime" id="">
+                <option value="0">马上代送</option>
+                <option value="1">半小时以后</option>
+                <option value="2">预约其他时间</option>
             </select>
         </div>
         <div class="ui-field-contain">
             <label>物品重量：</label>
             <div class="numBox">
                 <a class="minus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="minus" data-iconpos="notext"></a>
-                <input type="text" data-role="none" class="KgNum" value="0.5">
+                <input type="text" name="weight" data-role="none" class="KgNum" value="0.5">
                 <a class="plus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="plus" data-iconpos="notext"></a>
                 <span style="margin-left:3px">Kg</span>
             </div>
@@ -100,34 +100,35 @@
     <div role="main" class="ui-content">
         <div class="ui-field-contain">
             <label>收件人姓名：</label>
-            <input class="geterName" type="text" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" />
+            <input class="geterName" type="text" name="recipientName" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" />
         </div>
         <div class="ui-field-contain">
             <label>收件人电话：</label>
-            <input class="geterPhone" type="text" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" />
+            <input class="geterPhone" type="text" name="recipientTel" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" />
         </div>
         <div class="ui-field-contain">
             <label>货物描述：</label>
-            <input class="goodNote" type="text"/>
+            <input class="goodsNote" name="goodsDesc" type="text"/>
         </div>
         <div class="ui-field-contain">
             <label>其他备注：</label>
-            <input class="note" type="text"/>
+            <input class="note" name="remark" type="text"/>
         </div>
         <div class="ui-field-contain">
             <label>运输工具：</label>
-            <select class="transport" name="" id="">
-                <option>摩托车</option>
-                <option>小轿车</option>
-                <option>面包车</option>
-                <option>地铁</option>
+            <select class="transport" name="transportType" id="">
+                <option value="0">不限</option>
+                <option value="1">摩托车</option>
+                <option value="2">面包车</option>
+                <option value="3">小轿车</option>
+                <option value="4">地铁</option>
             </select>
         </div>
         <div class="ui-field-contain">
             <label>付款方式：</label>
-            <select class="payWays" name="" id="">
-                <option>微信支付</option>
-                <option>现金</option>
+            <select class="payWays" name="payType" id="">
+                <option value="0">微信支付</option>
+                <option value="1">现金</option>
             </select>
         </div>
         <div class="ui-field-contain">
@@ -136,7 +137,6 @@
         <input type="button" id="apply" value="提交订单"/>
     </div>
 </div>
-
 <!--代购页面-->
 
 <div data-role="page" id="daigou">
@@ -253,6 +253,34 @@
             'getLocation',
             'hideAllNonBaseMenuItem'
         ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+
+    wx.getLocation({
+        type: 'gcj02',
+        success: function (res) {
+            var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+            var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+            if (res == null) {
+                alert('地理位置获取失败');
+                $.mobile.loading('hide');
+            } else {
+                $.ajax({
+                    type : 'POST',
+                    url  : './api/index.php?s=/Home/Order/locationTrans',
+                    data : 'lat='+latitude+'&lng='+longitude,
+                    dataType : 'json',
+                    error: function (request) {
+                        alert('获取失败')
+                    } ,
+                    success : function (response) {
+                        var location = response.location;
+                        $(".getAdress").val(location);
+                        $.mobile.loading('hide');
+                    }
+                })
+            }
+
+        }
     });
 </script>
 </body>

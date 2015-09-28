@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft Yahei", sans-serif;
+}
+html {
+  background: #ffffff;
+}
+@font-face {
+  font-family: 'STXingkai446981';
+  src: url('STXingkai.eot');
+  src: url('STXingkai.eot?#iefix') format('embedded-opentype'), url('STXingkai.woff') format('woff'), url('STXingkai.ttf') format('truetype'), url('STXingkai.svg#STXingkai') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.content {
+  width: auto;
+  margin: 0 auto;
+}
+
+.content .header {
+  width: 100%;
+  position: relative;
+  height: 165px;
+  overflow: hidden;
+  background: url("images/slogan.jpg") no-repeat;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  -ms-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+}
+.content .header .mask {
+  position: absolute;
+  opacity: 0.3;
+  background: #333;
+  width: 100%;
+  height: 100%;
+}
+.content .header #logo {
+  position: absolute;
+  top: 83px;
+}
+.content .main {
+  width: 90%;
+  margin: 20px auto;
+  color: #666;
+  margin-bottom: 35px;
+}
+.content .main label {
+  display: inline-block;
+  font-size: 18px;
+  line-height: -10px;
+  width: 100%;
+  text-align: center;
+}
+.content .main #pay {
+  display: block;
+  width: 65%;
+  margin: 65px auto;
+  margin-bottom: 20px;
+  height: 50px;
+  background: #e55c11;
+  border: none;
+  font-size: 15px;
+  color: #ffffff;
+  border-radius: 5px;
+}
+.content .main .moneyNum {
+  height: 30px;
+  width: 105px;
+  padding-left: 15px;
+  border: 2px solid #e55c11;
+  border-radius: 3px;
+  border-top-left-radius: 0 ;
+  border-bottom-left-radius: 0 ;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  border-left: none;
+}
+.content .main .NumHolder {
+  position: relative;
+  display: block;
+  margin: 10px auto;
+  width: 193px;
+}
+.content .main .NumHolder * {
+  float: left;
+  margin-left: -3px;
+}
+.content .main .NumHolder .cell {
+  display: block;
+  border: 2px solid #e55c11;
+  border-right: none;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 3px;
+  border-top-right-radius: 0 ;
+  border-bottom-right-radius: 0 ;
+  text-align: center;
+}
+.content .main .NumHolder div {
+  border: 2px solid #ccc;
+  height: 30px;
+  width: 28px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+.content .dir {
+  font-size: 14px;
+  padding: 20px 8px;
+  line-height: 18px;
+  color: #ffffff;
+  background: red;
+}
+.content .dir h3 {
+  text-align: center;
+}
+.content .footer {
+  width: 100%;
+  padding: 13px 0;
+  background: #0083a9;
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+  text-shadow: none;
+  position: relative;
+}

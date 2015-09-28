@@ -1,6 +1,33 @@
 /**
  * Created by truemenhale on 15/8/20.
  */
+
+var phone = "";
+var _url = self.location.href;
+if(_url.indexOf("?")>0){
+	var openid = _url.substr(_url.indexOf("?")+1,_url.length-_url.indexOf("?"));
+}
+
+setTimeout(function(){
+	$.ajax({
+		type : 'POST',
+		url  : './api/index.php?s=/Home/Account/openidToUser',
+		data : 'openid='+openid,
+		dataType : 'json',
+		error: function (request) {
+			alert('获取失败')
+		} ,
+		success : function (response) {
+			var status = response.status;
+			var data = response.phone;
+			if (status != 0) {
+				alert('账户不存在！！！');
+			} else {
+				phone = data;
+			}
+		}
+	})
+},100);
 $(document).on("pagebeforeshow","#daisong",function(){
 	$('#daisong').find('.daisong').addClass('ui-link ui-btn ui-btn-active');
 });
@@ -12,10 +39,6 @@ $(document).on("pagebeforeshow","#xiangqing",function(){
 });
 $(function(){
 	$.mobile.loading('show');
-	$.get("./index.php","GPS",function(data){
-		$(".getAdress").val(data);
-		$.mobile.loading('hide');
-	});
 	$('.clearAddress').on('tap',function(){
 		$(".getAdress").val('');
 	});
@@ -38,16 +61,17 @@ $(function(){
 		$.mobile.loading('show');
 		_data = null;
 		var _data = {};
-		_data.getAdress = $(".getAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-		_data.endAdress = $(".endAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-		_data.getTime = $(".getTime option:selected").text();
-		_data.kgNum = parseFloat(KgNum.val());
-		_data.Name = $('.geterName').val();
-		_data.Phone = $('.geterPhone').val();
-		_data.goodNote = $('.goodNote').val();
-		_data.Note = $('.note').val();
-		_data.getTime = $(".transport option:selected").text();
-		_data.payWay = $(".payWays option:selected").text();
+		_data.pickupAddr = $(".getAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+		_data.sendAddr = $(".endAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+		_data.pickupTime = $(".getTime option:selected").text();
+		_data.weight = parseFloat(KgNum.val());
+		_data.recipientName = $('.geterName').val();
+		_data.recipientTel = $('.geterPhone').val();
+		_data.goodsDesc = $('.goodNote').val();
+		_data.trandsportType = $('.note').val();
+		_data.remark = $(".transport option:selected").text();
+		_data.payType = $(".payWays option:selected").text();
+		_data.userId  =
 		JSON.stringify(_data);
 		console.log(_data);
 			$.post('./index.php',_data,function(data){

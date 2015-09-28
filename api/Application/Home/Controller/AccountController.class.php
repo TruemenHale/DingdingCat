@@ -148,6 +148,30 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    public function openidToUser () {
+        $openid = I('post.openid');
+
+        $Info = M('user')->where("openid = '$openid'")->find();
+
+        if (!$Info) {
+            $return = [
+                'status' => '-6',
+                'info'   => 'Account Not Found'
+            ];
+            $this->ajaxReturn($return);
+        }
+
+        session("phone",$Info['phone']);
+        session("userId",$Info['id']);
+
+        $return = [
+            'status' => '0',
+            'phone'  => $Info['phone']
+        ];
+
+        $this->ajaxReturn($return);
+    }
+
     /**
      * @param $tel
      * @return bool
