@@ -74,19 +74,12 @@ $(function(){
 		_data.phone = phone;
 		JSON.stringify(_data);
 		console.log(_data);
-		$.ajax({
-			type : 'POST',
-			url  : './api/index.php?s=/Home/Order/shipAccept',
-			data : _data,
-			dataType : 'json',
-			error: function (request) {
-				alert('获取失败')
-			} ,
-			success : function (response) {
-				var status = response.status;
-				var orderNo = response.orderNo;
-				var payType = response.payType;
-				var money = response.money;
+		$.post('./api/index.php?s=/Home/Order/shipAccept',_data,function(data){
+			if(data){
+				var status = data.status;
+				var orderNo = data.orderNo;
+				var payType = data.payType;
+				var money = data.money;
 				if (status != 0) {
 					alert('下单失败，可能是服务器出故障了');
 				} else {
@@ -94,11 +87,13 @@ $(function(){
 					document.getElementById('wxpay').style.display= "";
 					document.getElementById('wxpayMoney').setAttribute('value',"0.02");
 					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
-					$.mobile.loading('hide');
-					$(this).button('option','disabled',false);
-
 				}
 			}
-		})
+			else{
+				alert("下单失败！");
+			}
+			$.mobile.loading('hide');
+			$(this).button('option','disabled',false);
+		});
 	})
 });
