@@ -29,8 +29,8 @@ $money = $_SESSION['money'];
 $money = sprintf("%.2f", $money);
 //②、统一下单
 $input = new WxPayUnifiedOrder();
-$input->SetBody("重庆儿童求助基金会慈善捐款");
-$input->SetAttach("重庆儿童求助基金会慈善捐款");
+$input->SetBody("叮叮猫");
+$input->SetAttach("叮叮猫");
 $input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
 $input->SetTotal_fee($money*100);//*100
 $input->SetTime_start(date("YmdHis"));
@@ -58,7 +58,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>桃园林立</title>
+    <title>叮叮猫</title>
     <script type="text/javascript">
 	//调用微信JS api 支付
 	function jsApiCall()
