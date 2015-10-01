@@ -22,6 +22,8 @@ if(!isset($_SESSION['money'])) {
 	$_SESSION['money'] = $money;
 }
 
+$orderNo = $_GET['orderNo'];
+
 //①、获取用户openid
 $tools = new JsApiPay();
 $openId = $tools->GetOpenid();
@@ -31,7 +33,7 @@ $money = sprintf("%.2f", $money);
 $input = new WxPayUnifiedOrder();
 $input->SetBody("叮叮猫");
 $input->SetAttach("叮叮猫");
-$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
+$input->SetOut_trade_no($orderNo);
 $input->SetTotal_fee($money*100);//*100
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
@@ -101,7 +103,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 			<div class="col-sm-12"><h3 style="font-weight: 900">您即将为</h3></div>
 		</div>
 		<div class="row text-center">
-			<div class="col-sm-12"><h3 style="font-weight: 900"><?php  ?>订单付款</h3</div>
+			<div class="col-sm-12"><h3 style="font-weight: 900"><?php echo $orderNo ?>订单付款</h3</div>
 		</div>
 		<div class="row text-center">
 			<div class="col-sm-12"><h1><span style="color: #5cb85c"><?php echo $money ?></span>元</h1></div>

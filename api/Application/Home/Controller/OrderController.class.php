@@ -10,14 +10,6 @@ namespace Home\Controller;
 use Think\Controller;
 
 class OrderController extends BaseController {
-    public function shipForMe () {
-
-    }
-
-    public function buyForMe () {
-
-    }
-
     public function shipAccept () {
         $info = I('post.');
         $phone = $info ['phone'];
@@ -80,7 +72,7 @@ class OrderController extends BaseController {
 
         $url ="http://api.map.baidu.com/geocoder/v2/?ak=AqFXx3FQKGme9bkLhrW60i02&output=json&location=".$trans['lat'].",".$trans['lng'];
         $json = file_get_contents($url);
-        $output = json_decode($json);
+        $output = json_decode($json,true);
         $location = $output['result']['formatted_address'];
         $return = [
             'status' => '0',
@@ -99,6 +91,35 @@ class OrderController extends BaseController {
         ]);
     }
 
+    public function getMoney () {
+        $pickupAddr = I('post.pickupAddr');
+        $sendAddr   = I('post.sendAddr');
+        $weight     = I('post.weight');
+
+        $money = 19.00;
+
+        $location1 = $this->locationToLal($pickupAddr);
+        $location2 = $this->locationToLal($sendAddr);
+
+        $distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);
+
+        if ($distance > 5000) {
+            $a = floor($distance / 5000);
+            $money += ($a * 10);
+        }
+
+        if ($weight > 5) {
+            $b = ceil($weight - 5) ;
+            $money += ($b * 5);
+        }
+
+        $return = [
+            'status' => '0',
+            'money'  => floor($money),
+            'd'=>$distance,
+        ];
+        $this->ajaxReturn($return);
+    }
     /**
      * @param $lng
      * @param $lat
@@ -118,16 +139,32 @@ class OrderController extends BaseController {
 
     private function getDistance($lat1, $lng1, $lat2, $lng2)
     {
-        $EARTH_RADIUS = 6378.137;
-        $a = rad2deg($lat1)- rad2deg($lat2);
-        $b = rad2deg($lng1) - rad2deg($lng2);
-        $s = 2 * asin(sqrt(pow(sin($a/2),2) + cos(rad2deg($lat1))*cos(rad2deg($lat2))*pow(sin($b/2),2)));
-        $s = $s *$EARTH_RADIUS;
-        $s = round($s * 10000) / 10;
-        return $s;
+        $earthRadius = 6367000; //approximate radius of earth in meters
+        $lat1 = ($lat1 * pi() ) / 180;
+        $lng1 = ($lng1 * pi() ) / 180;
+
+        $lat2 = ($lat2 * pi() ) / 180;
+        $lng2 = ($lng2 * pi() ) / 180;
+
+        $calcLongitude = $lng2 - $lng1;
+        $calcLatitude = $lat2 - $lat1;
+        $stepOne = pow(sin($calcLatitude / 2), 2) + cos($lat1) * cos($lat2) * pow(sin($calcLongitude / 2), 2);  $stepTwo = 2 * asin(min(1, sqrt($stepOne)));
+        $calculatedDistance = $earthRadius * $stepTwo;
+
+        return round($calculatedDistance);
     }
 
-    private function getLal ($location) {
+    private function locationToLal ($location) {
+        $url = "http://api.map.baidu.com/geocoder/v2/?ak=AqFXx3FQKGme9bkLhrW60i02&output=json&address=".$location;
 
+        $json = file_get_contents($url);
+        $output = json_decode($json,true);
+
+        $arr = array(
+            'lat' => $output['result']['location']['lat'],
+            'lng' => $output['result']['location']['lng']
+        );
+
+        return $arr;
     }
 }

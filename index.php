@@ -133,6 +133,7 @@
         </div>
         <div class="ui-field-contain">
             <p>订单金额：<span class="money">12</span>元</p>
+            <input type="button" value="获取价格">
         </div>
         <input type="button" id="apply" value="提交订单"/>
         <div id="wxpay" style="display:none ;">
