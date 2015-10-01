@@ -221,8 +221,35 @@ class Wechat {
      *                ...     ...
      * @param  array  $news9  图文内容 [标题，描述，URL，缩略图]
      */
-    public function replyNews($news, $news1, $news2, $news3){
+    /*public function replyNews($news, $news1, $news2, $news3){
         return $this->response(func_get_args(), self::MSG_TYPE_NEWS);
+    }*/
+    public function replyNews($articles) {
+        $msg ['ArticleCount'] = count ( $articles );
+        $msg ['Articles'] = $articles;
+
+        return $this->_replyData ( $msg, 'news' );
+    }
+    private function _replyData($data, $msgType) {
+        $data ['ToUserName'] = $this->data ['FromUserName'];
+        $data ['FromUserName'] = $this->data ['ToUserName'];
+        $data ['CreateTime'] = NOW_TIME;
+        $data ['MsgType'] = $msgType;
+
+        if($_REQUEST ['doNotInit']){
+            dump($data);
+            exit;
+        }
+
+        if(self::$msgSafeMode){
+            $data = self::generate($data);
+        }
+
+        /* 转换数据为XML */
+        $xml = new \SimpleXMLElement('<xml></xml>');
+        self::data2xml($xml, $data);
+        exit($xml->asXML());
+
     }
 
     /**

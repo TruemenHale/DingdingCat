@@ -16,12 +16,14 @@ class WeixinController extends Controller {
     private $openid  = null;
     private $event   = null;
     private $eventKey= null;
+    private $wechat  = null;
 
     public function enter () {
         $token = "dingdingCat";
 
         $wechat = new Wechat($token);
 
+        $this->wechat = $wechat;
         $data = $wechat->request();
 
         if ($data && is_array($data)) {
@@ -85,7 +87,7 @@ class WeixinController extends Controller {
             $url   = "http://deadsoul.net/dingdingCat/index.php?".$this->openid;
         }
         $new = [$title,$desc,$url];
-        $this-response($new,Wechat::MSG_TYPE_NEWS);
+        $this->wechat->response($new,Wechat::MSG_TYPE_NEWS);
     }
 
     private function scan ($key) {
