@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $orderNo = $_GET['orderNo'];
 
     $mysqli = new mysqli();
