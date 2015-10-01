@@ -166,7 +166,10 @@ class AccountController extends BaseController {
 
         $return = [
             'status' => '0',
-            'phone'  => $Info['phone']
+            'phone'  => $Info['phone'],
+            'name'   => $Info['name'],
+            'nickname'=>$Info['nickName'],
+            'score'  => $Info['score'],
         ];
 
         $this->ajaxReturn($return);

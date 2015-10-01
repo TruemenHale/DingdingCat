@@ -26,7 +26,7 @@ setTimeout(function(){
 				phone = data;
 			}
 		}
-	})
+	});
 	$.ajax({
 		type : 'POST',
 		url  : './api/index.php?s=/Home/Order/orderInfo',

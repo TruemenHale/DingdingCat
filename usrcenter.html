@@ -10,6 +10,7 @@
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<link rel="stylesheet" href="style/usrcenter.css"/>
+		<script src="js/usrcenter.js"></script>
 	</head>
 	<body>
 	<div data-role="page" id="usrcenter">
@@ -19,13 +20,13 @@
 		<div role="main" class="ui-content">
 				<ul data-inset="true" data-role="listview" style="font-size: 14px;font-family: 'Microsoft Yahei'">
 					<li>
-						昵称：<span>兴妈</span>
+						昵称：<span id="nickname">兴妈</span>
 					</li>
 					<li>
-						姓名：<span>张兴哲</span>
+						姓名：<span id="name">张兴哲</span>
 					</li>
 					<li>
-						电话：<span>13888888888</span>
+						电话：<span id="phone">13888888888</span>
 					</li>
 					<li>
 						常用地址:
@@ -34,7 +35,7 @@
 							<li>重庆市大学城重庆大学图书馆门口</li>
 						</ul>
 					</li>
-					<li>我的积分：100</li>
+					<li>我的积分：<span id="score"></span>分</li>
 					<li>
 						<a href="#">全部订单</a>
 					</li>
