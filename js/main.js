@@ -74,14 +74,13 @@ $(function(){
 		_data.phone = phone;
 		JSON.stringify(_data);
 		console.log(_data);
-		$.ajax({
-			type : 'POST',
-			url  : './api/index.php?s=/Home/Order/shipAccept',
-			data : _data,
+		$.post({
+			url : "./api/index.php?s=/Home/Order/shipAccept",
+			data: _data,
 			dataType : 'json',
-			error: function (request) {
-				alert('获取失败')
-			} ,
+			error : function (request) {
+
+			},
 			success : function (response) {
 				var status = response.status;
 				var orderNo = response.orderNo;
@@ -96,7 +95,6 @@ $(function(){
 					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
 					$.mobile.loading('hide');
 					$(this).button('option','disabled',false);
-
 				}
 			}
 		})
