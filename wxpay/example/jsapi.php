@@ -4,8 +4,8 @@ ini_set('date.timezone','Asia/Shanghai');
 require_once "../lib/WxPay.Api.php";
 require_once "WxPay.JsApiPay.php";
 
-//ini_set("display_errors", "On");
-//error_reporting(E_ALL | E_STRICT);
+ini_set("display_errors", "On");
+error_reporting(E_ALL | E_STRICT);
 session_start();
 /*if(isset($_POST['money'])){
 	$money = strip_tags(trim($_POST['money']));
