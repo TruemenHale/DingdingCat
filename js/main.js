@@ -69,8 +69,8 @@ $(function(){
 		_data.recipientTel = $('.geterPhone').val();
 		_data.goodsDesc = $('.goodsNote').val();
 		_data.remark = $('.note').val();
-		_data.trandsportType = $(".transport option:selected").text();
-		_data.payType = $(".payWays option:selected").text();
+		_data.trandsportType = $(".transport option:selected").val();
+		_data.payType = $(".payWays option:selected").val();
 		_data.phone = phone;
 		JSON.stringify(_data);
 		console.log(_data);
@@ -86,17 +86,16 @@ $(function(){
 				var status = response.status;
 				var orderNo = response.orderNo;
 				var payType = response.payType;
+				var money = response.money;
 				if (status != 0) {
 					alert('下单失败，可能是服务器出故障了');
 				} else {
+					alert('下单成功，请确认支付支付');
+					document.getElementById('wxpay').style.display= "";
+					document.getElementById('wxpayMoney').setAttribute('value',"0.02");
+					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
 					$.mobile.loading('hide');
 					$(this).button('option','disabled',false);
-					if (_data.payType == 0) {
-						alert('下单成功，确认后跳转支付');
-						window.location.href='./wxpay/example/jsapi.php?orderNo='+orderNo;
-					} else {
-						alert('下单成功!');
-					}
 
 				}
 			}
