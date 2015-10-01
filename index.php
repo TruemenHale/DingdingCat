@@ -139,7 +139,7 @@
             <form action="./wxpay/example/jsapi.php" method="post">
                 <input type="hidden" name="money" id="wxpayMoney">
                 <input type="hidden" name="orderNo" id="wxpayOrder">
-                <input type="button" id="wxpayBtn" value="前去支付">
+                <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
 
