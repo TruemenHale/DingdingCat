@@ -3,8 +3,5 @@
     $orderNo = $_GET['orderNo'];
     $money = $_GET['money'];
 
-    while ($res->fetch()) {
-        echo $money;
-        $_SESSION['money'] = $money;
-    }
+    echo $orderNo;
 ?>
