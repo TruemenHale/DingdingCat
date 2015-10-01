@@ -67,9 +67,9 @@ $(function(){
 		_data.weight = parseFloat(KgNum.val());
 		_data.recipientName = $('.geterName').val();
 		_data.recipientTel = $('.geterPhone').val();
-		_data.goodsDesc = $('.goodNote').val();
-		_data.trandsportType = $('.note').val();
-		_data.remark = $(".transport option:selected").text();
+		_data.goodsDesc = $('.goodsNote').val();
+		_data.remark = $('.note').val();
+		_data.trandsportType = $(".transport option:selected").text();
 		_data.payType = $(".payWays option:selected").text();
 		_data.phone = phone;
 		JSON.stringify(_data);
@@ -85,14 +85,15 @@ $(function(){
 			success : function (response) {
 				var status = response.status;
 				var orderNo = response.orderNo;
+				var payType = response.payType;
 				if (status != 0) {
 					alert('下单失败，可能是服务器出故障了');
 				} else {
 					$.mobile.loading('hide');
 					$(this).button('option','disabled',false);
-					if (_data.payType = 0) {
+					if (_data.payType == 0) {
 						alert('下单成功，确认后跳转支付');
-						window.location.href='./wxpay/example/jsapi.php?';
+						window.location.href='./wxpay/example/jsapi.php?orderNo='+orderNo;
 					} else {
 						alert('下单成功!');
 					}

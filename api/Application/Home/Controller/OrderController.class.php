@@ -65,7 +65,8 @@ class OrderController extends BaseController {
         $return = [
             'status' => '0',
             'info'   => 'success',
-            'orderNo'=> $orderNo
+            'orderNo'=> $orderNo,
+            'payType'=> $info['payType']
         ];
 
         $this->ajaxReturn($return);
