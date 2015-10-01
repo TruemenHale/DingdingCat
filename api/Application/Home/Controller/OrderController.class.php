@@ -90,6 +90,15 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    public function orderToMoney () {
+        $orderNo = I('post.orderNo');
+        $res = M('orders')->where("orderNo = '$orderNo'")->find();
+
+        $this->ajaxReturn([
+            'money' => $res['money']
+        ]);
+    }
+
     /**
      * @param $lng
      * @param $lat
