@@ -60,7 +60,7 @@ class OrderController extends BaseController {
             'sendId'    => $sendId,
             'money'     => 0.01
         ];
-        M('order')->add($order);
+        M('orders')->add($order);
 
         $return = [
             'status' => '0',
