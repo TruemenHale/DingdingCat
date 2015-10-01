@@ -15,6 +15,6 @@
     curl_close($ch);
     $res = json_decode($output, TRUE);
     $money = $res['money'];
-    echo $orderNo."\n";
-    echo $money
+    echo "订单:".$orderNo."\n";
+    echo "价格:".$money
 ?>
