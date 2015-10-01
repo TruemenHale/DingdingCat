@@ -35,6 +35,8 @@ class OrderController extends BaseController {
         } else {
             $save ['weight'] = 4;
         }
+        $save ['money']    = $this->moneyCal($info['pickupAddr'],$info['sendAddr'],$info ['weight']);
+        $save ['distance'] = number_format($this->distance($info['pickupAddr'],$info['sendAddr']) / 1000,1);
 
         M('send')->add($save);
         $sendId = M('send')->getLastInsID();
@@ -44,7 +46,7 @@ class OrderController extends BaseController {
         $order = [
             'orderNo'   => $orderNo,
             'type'      => 0,
-            'orderTime' => time(),
+            'orderTime' => date('Y-m-d H-i-s',time()),
             'userId'    => session('userId'),
             'payStatus' => 0,
             'status'    => 0,
@@ -91,40 +93,107 @@ class OrderController extends BaseController {
         ]);
     }
 
+    public function orderInfo () {
+        $phone = I('post.phone');
+
+        /*if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $userId = session('userId');
+        }*/
+        $userId = 7;
+        $res = M('orders')->where("userId = '$userId'")->order('orderNo desc')->find();
+        if ($res) {
+            $sendId = $res ['sendId'];
+            if ($res ['type'] == 0) {
+                $info = M('send')->where("id = '$sendId'")->find();
+                $type = "代送";
+
+            }else {
+                $info = M('purchase')->where("id = '$sendId'")->find();
+                $type = "代购";
+            }
+            $status = $res ['status'];
+            switch ($status) {
+                case "0":
+                    $status = "待抢单";
+                    break;
+                case "1":
+                    $status = "已抢单";
+                    break;
+                case "2":
+                    $status = "已取件";
+                    break;
+                case "3":
+                    $status = "已收件";
+                    break;
+                case "4":
+                    $status = "已取消";
+                    break;
+                default:
+                    $status = "未知";
+                    break;
+            }
+            if ($res ['payStatus'] == 0) {
+                $payStatus = "未支付";
+            } else {
+                $payStatus = "已支付";
+            }
+            if ($info ['payType'] == 0) {
+                $payType = "微信支付";
+            } else {
+                $payType = "现金支付";
+            }
+            $return = [
+                'status' => '0',
+                'data'   => [
+                    'type'      => $type,
+                    'orderNo'   => $res ['orderNo'],
+                    'orderTime' => $res ['orderTime'],
+                    'name'      => $info ['recipientName'],
+                    'tel'       => $info ['recipientTel'],
+                    'pickAddr'  => $info ['pickupAddr'],
+                    'sendAddr'  => $info ['sendAddr'],
+                    'distance'  => $info ['distance']."公里",
+                    'runner'    => $res ['runnerId'],
+                    'getTime'   => $res ['getOrderTime'],
+                    'pickTime'  => $res ['visitTime'],
+                    'planTime'  => $res ['planTime'],
+                    'endTime'   => $res ['endTime'],
+                    'status'    => $status,
+                    'pay'       => $payType."/".$payStatus
+                ]
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $this->ajaxReturn(['status' => -1]);
+        }
+
+    }
+
     public function getMoney () {
         $pickupAddr = I('post.pickupAddr');
         $sendAddr   = I('post.sendAddr');
         $weight     = I('post.weight');
 
-        $money = 19.00;
-
-        $location1 = $this->locationToLal($pickupAddr);
-        $location2 = $this->locationToLal($sendAddr);
-
-        $distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);
-
-        if ($distance > 5000) {
-            $a = floor($distance / 5000);
-            $money += ($a * 10);
-        }
-
-        if ($weight > 5) {
-            $b = ceil($weight - 5) ;
-            $money += ($b * 5);
-        }
+        $money = $this->moneyCal($pickupAddr,$sendAddr,$weight);
 
         $return = [
             'status' => '0',
             'money'  => floor($money),
-            'd'=>$distance,
         ];
         $this->ajaxReturn($return);
     }
+
     /**
      * @param $lng
      * @param $lat
      * @return array
-     * ��ͼ��γ��ת��
+     * 地图经纬度转化
      */
     private function lalTrans ($lng,$lat) {
         $x_pi = 3.14159265358979324 * 3000.0 / 180.0;
@@ -154,6 +223,10 @@ class OrderController extends BaseController {
         return round($calculatedDistance);
     }
 
+    /**
+     * @param $location
+     * @return array
+     */
     private function locationToLal ($location) {
         $url = "http://api.map.baidu.com/geocoder/v2/?ak=AqFXx3FQKGme9bkLhrW60i02&output=json&address=".$location;
 
@@ -166,5 +239,43 @@ class OrderController extends BaseController {
         );
 
         return $arr;
+    }
+
+    /**
+     * @param $location1
+     * @param $location2
+     * @param $weight
+     * @return float
+     */
+    private function moneyCal ($location1,$location2,$weight) {
+        $money = 19.00;
+
+        $distance = $this->distance($location1,$location2);
+
+        if ($distance > 5000) {
+            $a = floor($distance / 5000);
+            $money += ($a * 10);
+        }
+
+        if ($weight > 5) {
+            $b = ceil($weight - 5) ;
+            $money += ($b * 5);
+        }
+
+        return $money;
+    }
+
+    /**
+     * @param $location1
+     * @param $location2
+     * @return float
+     */
+    private function distance ($location1,$location2) {
+        $location1 = $this->locationToLal($location1);
+        $location2 = $this->locationToLal($location2);
+
+        $distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);
+
+        return $distance;
     }
 }

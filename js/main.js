@@ -27,6 +27,39 @@ setTimeout(function(){
 			}
 		}
 	})
+	$.ajax({
+		type : 'POST',
+		url  : './api/index.php?s=/Home/Order/orderInfo',
+		data : 'phone='+phone,
+		dataType : 'json',
+		error: function (request) {
+			alert('获取失败')
+		} ,
+		success : function (response) {
+			var status = response.status;
+			var data = response.data;
+			if (status != 0) {
+				console.log("订单不存在");
+			} else {
+				document.getElementById('type').innerText = data.type;
+				document.getElementById('orderNo').innerText = data.orderNo;
+				document.getElementById('orderTime').innerText = data.orderTime;
+				document.getElementById('name').innerText = data.name;
+				document.getElementById('tel').innerText = data.tel;
+				document.getElementById('pickAddr').innerText = data.pickAddr;
+				document.getElementById('sendAddr').innerText = data.sendAddr;
+				document.getElementById('distance').innerText = data.distance;
+				document.getElementById('runner').innerText = data.runner;
+				document.getElementById('getTime').innerText = data.getTime;
+				document.getElementById('pickTime').innerText = data.pickTime;
+				document.getElementById('planTime').innerText = data.planTime;
+				document.getElementById('endTime').innerText = data.endTime;
+				document.getElementById('status').innerText = data.status;
+				document.getElementById('pay').innerText = data.pay;
+
+			}
+		}
+	})
 },100);
 $(document).on("pagebeforeshow","#daisong",function(){
 	$('#daisong').find('.daisong').addClass('ui-link ui-btn ui-btn-active');
@@ -97,3 +130,23 @@ $(function(){
 		});
 	})
 });
+
+function money () {
+	_data = null;
+	var KgNum = $('.KgNum');
+	var _data = {};
+	_data.pickupAddr = $(".getAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+	_data.sendAddr = $(".endAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+	_data.weight = parseFloat(KgNum.val());
+	$.post('./api/index.php?s=/Home/Order/getMoney',_data,function(data){
+		if(data){
+			var status = data.status;
+			var money = data.money;
+			if (status != 0) {
+
+			} else {
+				document.getElementById("moneyDisplay").setAttribute("value",money+"元");
+			}
+		}
+	});
+}

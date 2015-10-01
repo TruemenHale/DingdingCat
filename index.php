@@ -66,7 +66,7 @@
                 <span style="margin-left:3px">Kg</span>
             </div>
         </div>
-        <a href="#daisong2" data-transition="none"><input type="button" class="ui-btn-b" value="下一步"/></a>
+        <a href="#daisong2" data-transition="none"><input type="button" class="ui-btn-b" value="下一步" onclick="money()"/></a>
     </div>
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
@@ -132,8 +132,8 @@
             </select>
         </div>
         <div class="ui-field-contain">
-            <p>订单金额：<span class="money">12</span>元</p>
-            <input type="button" value="获取价格">
+            <label>订单价格：</label>
+            <input class="moneyDisplay" id="moneyDisplay" name="money" type="text" data-inline="true" disabled/>
         </div>
         <input type="button" id="apply" value="提交订单"/>
         <div id="wxpay" style="display:none ;">
@@ -209,21 +209,21 @@
             </thead>
             <tbody>
             <tr>
-                <td>代送</td>
-                <td>CQ123456789</td>
-                <td>2015年7月7日7：00</td>
-                <td>花千骨</td>
-                <td>18912345678</td>
-                <td>长留山绝情殿一号厅</td>
-                <td>蜀山大殿掌门书房书架上</td>
-                <td>100公里</td>
-                <td>1234</td>
-                <td>2015年7月7日6:55</td>
-                <td>2015年7月7日7:15</td>
-                <td>2015年7月7日8:15前</td>
-                <td>2015年7月7日8:10</td>
-                <td>微信支付/未支付</td>
-                <td>派送中</td>
+                <td id="type"></td>
+                <td id="orderNo">CQ123456789</td>
+                <td id="orderTime">2015年7月7日7：00</td>
+                <td id="name">花千骨</td>
+                <td id="tel">18912345678</td>
+                <td id="pickAddr">长留山绝情殿一号厅</td>
+                <td id="sendAddr">蜀山大殿掌门书房书架上</td>
+                <td id="distance">100公里</td>
+                <td id="runner">1234</td>
+                <td id="getTime">2015年7月7日6:55</td>
+                <td id="pickTime">2015年7月7日7:15</td>
+                <td id="planTime">2015年7月7日8:15前</td>
+                <td id="endTime">2015年7月7日8:10</td>
+                <td id="pay">微信支付/未支付</td>
+                <td id="status">派送中</td>
             </tr>
             </tbody>
         </table>
