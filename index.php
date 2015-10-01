@@ -135,9 +135,9 @@
             <p>订单金额：<span class="money">12</span>元</p>
         </div>
         <input type="button" id="apply" value="提交订单"/>
-        <div id="wxpay" style="display: none;">
+        <div id="wxpay" style="display: ;">
             <form action="./wxpay/example/jsapi.php" method="post">
-                <input type="hidden" name="money" id="wxpayMoney">
+                <input type="hidden" name="money" id="wxpayMoney" value="0.02">
                 <input type="hidden" name="orderNo" id="wxpayOrder">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
