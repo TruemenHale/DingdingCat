@@ -101,7 +101,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 			<div class="col-sm-12"><h3 style="font-weight: 900">您即将为</h3></div>
 		</div>
 		<div class="row text-center">
-			<div class="col-sm-12"><h3 style="font-weight: 900">重庆儿童救助基金会捐出</h3</div>
+			<div class="col-sm-12"><h3 style="font-weight: 900"><?php  ?>订单付款</h3</div>
 		</div>
 		<div class="row text-center">
 			<div class="col-sm-12"><h1><span style="color: #5cb85c"><?php echo $money ?></span>元</h1></div>
