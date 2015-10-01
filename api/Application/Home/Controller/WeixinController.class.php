@@ -70,24 +70,31 @@ class WeixinController extends Controller {
 
     private function msgReply ($content) {
         if ($content == "userCenter") {
-            $title = "个人中心";
-            $desc  = "点击进入个人中心";
-            $url   = "http://deadsoul.net/dingdingCat/usrCenter.html?".$this->openid;
+            $news [0] = array (
+                'Title' => '个人中心',
+                'Description' => '点击进入个人中心',
+                'Url' => "http://deadsoul.net/dingdingCat/usrCenter.html?".$this->openid
+            );
         } else if ($content == "Bill") {
-            $title = "发票申请";
-            $desc  = "点击进入申请发票";
-            $url   = "http://deadsoul.net/dingdingCat/bill.html?".$this->openid;
+            $news [0] = array (
+                'Title' => '发票申请',
+                'Description' => '点击进入申请发票',
+                'Url' => "http://deadsoul.net/dingdingCat/bill.html?".$this->openid
+            );
         } else if ($content == "Register") {
-            $title = "注册";
-            $desc  = "点击进入注册成为叮叮猫用户";
-            $url   = "http://deadsoul.net/dingdingCat/register.html?".$this->openid;
+            $news [0] = array (
+                'Title' => '注册',
+                'Description' => '点击进入注册成为叮叮猫用户',
+                'Url' => "http://deadsoul.net/dingdingCat/register.html?".$this->openid
+            );
         } else if ($content == "Order"){
-            $title = "代送下单";
-            $desc  = "点击进入发布代送消息";
-            $url   = "http://deadsoul.net/dingdingCat/index.php?".$this->openid;
+            $news [0] = array (
+                'Title' => '代送下单',
+                'Description' => '点击进入发布代送消息',
+                'Url' => "http://deadsoul.net/dingdingCat/index.php?".$this->openid
+            );
         }
-        $new = [$title,$desc,$url];
-        $this->wechat->response($new,Wechat::MSG_TYPE_NEWS);
+        $this->wechat->replyNews($news);
     }
 
     private function scan ($key) {
