@@ -17,7 +17,7 @@ session_start();
 	header('location: http://wx.tyll.net.cn/ChildrensFund/');
 }*/
 
-$orderNo = $_GET['orderNo'];
+$orderNo ="S144367750497588179";
 
 $mysqli = new mysqli();
 $mysqli->connect('deadsoul.mysql.rds.aliyuncs.com','dingdingcat','dingdingcat','dingdingcat');
