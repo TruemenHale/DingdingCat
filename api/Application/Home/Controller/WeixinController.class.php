@@ -73,7 +73,7 @@ class WeixinController extends Controller {
             $news [0] = array (
                 'Title' => '个人中心',
                 'Description' => '点击进入个人中心',
-                'Url' => "http://deadsoul.net/dingdingCat/usrCenter.html?".$this->openid
+                'Url' => "http://deadsoul.net/dingdingCat/usrcenter.html?".$this->openid
             );
         } else if ($content == "Bill") {
             $news [0] = array (
