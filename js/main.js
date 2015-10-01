@@ -71,18 +71,34 @@ $(function(){
 		_data.trandsportType = $('.note').val();
 		_data.remark = $(".transport option:selected").text();
 		_data.payType = $(".payWays option:selected").text();
-		_data.userId  =
+		_data.phone = phone;
 		JSON.stringify(_data);
 		console.log(_data);
-			$.post('./index.php',_data,function(data){
-			if(data){
-				alert("下单成功！");
+		$.ajax({
+			type : 'POST',
+			url  : './api/index.php?s=/Home/Order/shipAccept',
+			data : _data,
+			dataType : 'json',
+			error: function (request) {
+				alert('获取失败')
+			} ,
+			success : function (response) {
+				var status = response.status;
+				var orderNo = response.orderNo;
+				if (status != 0) {
+					alert('下单失败，可能是服务器出故障了');
+				} else {
+					$.mobile.loading('hide');
+					$(this).button('option','disabled',false);
+					if (_data.payType = 0) {
+						alert('下单成功，确认后跳转支付');
+						window.location.href='./wxpay/example/jsapi.php?';
+					} else {
+						alert('下单成功!');
+					}
+
+				}
 			}
-			else{
-				alert("下单失败！");
-			}
-				$.mobile.loading('hide');
-				$(this).button('option','disabled',false);
-		});
+		})
 	})
 });

@@ -18,6 +18,59 @@ class OrderController extends BaseController {
 
     }
 
+    public function shipAccept () {
+        $info = I('post.');
+        $phone = $info ['phone'];
+        $save = $info;
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $save ['userId'] = session('userId');
+        }
+
+        if ($info ['weight'] < 5) {
+            $save ['weight'] = 0;
+        } else if ($info ['weight'] < 10) {
+            $save ['weight'] = 1;
+        } else if ($info ['weight'] < 15) {
+            $save ['weight'] = 2;
+        } else if ($info ['weight'] < 20) {
+            $save ['weight'] = 3;
+        } else {
+            $save ['weight'] = 4;
+        }
+
+        M('send')->add($save);
+        $sendId = M('send')->getLastInsID();
+        $string = new \Org\Util\String();
+        $randNum = $string->randString(8,1);
+        $orderNo = "S".time().$randNum;
+        $order = [
+            'orderNo'   => $orderNo,
+            'type'      => 0,
+            'orderTime' => time(),
+            'userId'    => session('userId'),
+            'payStatus' => 0,
+            'status'    => 0,
+            'binCode'   => '111',
+            'sendId'    => $sendId,
+            'money'     => 0.01
+        ];
+        M('order')->add($order);
+
+        $return = [
+            'status' => '0',
+            'info'   => 'success',
+            'orderNo'=> $orderNo
+        ];
+
+        $this->ajaxReturn($return);
+    }
+
     public function locationTrans () {
         $lng = I('post.lng');
         $lat = I('post.lat');

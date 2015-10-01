@@ -7,7 +7,7 @@ require_once "WxPay.JsApiPay.php";
 //ini_set("display_errors", "On");
 //error_reporting(E_ALL | E_STRICT);
 session_start();
-if(isset($_POST['money'])){
+/*if(isset($_POST['money'])){
 	$money = strip_tags(trim($_POST['money']));
 	if(!is_numeric($money)) {
 		echo '数据错误';
@@ -15,12 +15,25 @@ if(isset($_POST['money'])){
 	}
 } elseif (!isset($_POST['money']) && !isset($_SESSION['money'])) {
 	header('location: http://wx.tyll.net.cn/ChildrensFund/');
-}
+}*/
 
+$orderNo = $_GET['orderNo'];
 
-if(!isset($_SESSION['money'])) {
+$mysqli = new mysqli();
+$mysqli->connect('deadsoul.mysql.rds.aliyuncs.com','dingdingcat','dingdingcat','dingdingcat');
+
+$res = $mysqli->prepare("SELECT * FROM orders WHERE orderNo = $orderNo");
+$res->execute();
+$res->bind_result($money);
+while ($res->fetch()) {
 	$_SESSION['money'] = $money;
 }
+
+
+
+/*if(!isset($_SESSION['money'])) {
+	$_SESSION['money'] = $money;
+}*/
 
 //①、获取用户openid
 $tools = new JsApiPay();
@@ -31,7 +44,7 @@ $money = sprintf("%.2f", $money);
 $input = new WxPayUnifiedOrder();
 $input->SetBody("重庆儿童求助基金会慈善捐款");
 $input->SetAttach("重庆儿童求助基金会慈善捐款");
-$input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
+$input->SetOut_trade_no($orderNo);
 $input->SetTotal_fee($money*100);//*100
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));

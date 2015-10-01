@@ -96,7 +96,7 @@ class AccountController extends BaseController {
         $data = [
             'total' => $Info ['invoiceTotal'],
             'used'  => $Info ['invoiceUsed'],
-            'unuse' => $Info ['invoiceUnuse'],
+            'unuse' => $Info ['invoiceTotal'] - $Info ['invoiceUsed'],
             'phone' => $Info ['phone']
         ];
 
