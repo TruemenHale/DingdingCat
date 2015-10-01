@@ -4,6 +4,7 @@
     $money   = $_get['money'];
     session('orderNo',$orderNo);
     session('money',$money);
-    header("Location: ./example/jsapi.php");
-    exit;
+    echo "<script language=\"javascript\">";
+    echo "document.location=\"./example/jsapi.php\"";
+    echo "</script>";
 ?>
