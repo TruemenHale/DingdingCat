@@ -18,15 +18,15 @@ session_start();
 }*/
 
 $orderNo ="S144367750497588179";
-
+/*
 $mysqli = new mysqli();
 $mysqli->connect('deadsoul.mysql.rds.aliyuncs.com','dingdingcat','dingdingcat','dingdingcat');
 
 $res = $mysqli->prepare("SELECT * FROM orders WHERE orderNo = $orderNo");
 $res->execute();
-$res->bind_result($money);
+$res->bind_result($money);*/
 while ($res->fetch()) {
-	$_SESSION['money'] = $money;
+	$_SESSION['money'] = 0.01;
 }
 
 
