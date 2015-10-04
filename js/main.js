@@ -75,6 +75,19 @@ $(function(){
 	$('.clearAddress').on('tap',function(){
 		$(".getAdress").val('');
 	});
+	//获取最新订单是否被付款.
+	$.post('url',"pay",function(data){
+		//content是我编的，反正你看给我一个什么我判断他是不是支付了就行.
+		if(data.content == 1){
+			//如果支付了就让支付按钮消失.
+			$('#pay').css('display','none');
+		}else{
+			$('#pay').on('tap',function(){
+				//填跳支付的接口.
+
+			})
+		}
+	});
 	var KgNum = $('.KgNum');
 	$('.minus').on('tap',function(){
 		var a = parseFloat(KgNum.val())-0.5;
@@ -88,6 +101,20 @@ $(function(){
 	$('.plus').on('tap',function(){
 		var a = parseFloat(KgNum.val())+0.5;
 		KgNum.val(a);
+	});
+	$('.dgApply').on('tap',function(){
+		$.mobile.loading('show');
+		$(this).button('option','disabled',true);
+		var _data = {};
+		_data.dgAddress = $('.dgAddress').val();
+		_data.dgDescribe = $('.dgDescribe').val();
+		_data.dgCost = $('.dgCost').val();
+		_data.dgPay = $('.dgPay').val();
+		$.post('url',_data,function(data){
+			$(this).button('option','disabled',false);
+			$.mobile.loading('hide');
+			alert(data.info);
+		});
 	});
 	$('#apply').on('tap',function(){
 		$(this).button('option','disabled',true);

@@ -63,7 +63,7 @@
 				</li>
 				<li>
 					<a data-transition="none" href="#xiangqing" class="xiangqing">
-						<i class="iconfont">&#xe63b;</i><br>订单详情
+						<i class="iconfont">&#xe63b;</i><br>最新订单
 					</a>
 				</li>
 			</ul>
@@ -125,8 +125,26 @@
 	</div>
 	<div role="main" class="ui-content">
 		<div class="ui-field-contain">
-			<input type="text" onfocus="this.select();"  onmouseup="this.select();" value="test"  >
+				<label>送货地址：</label>
+				<input class="dgAddress" type="text"/>
 		</div>
+		<div class="ui-field-contain">
+			<label>商品描述：</label>
+			<textarea style="resize: none;" data-role="none" name="" class="dgDescribe" cols="30" rows="10">
+
+			</textarea>
+		</div>
+		<div class="ui-field-contain">
+			<label>商品最高价格上限：</label>
+			<input class="dgCost moneyInput" type="text" data-role="none"/>
+			<span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
+		</div>
+		<div class="ui-field-contain">
+			<label>跑腿小费：</label>
+			<input class="dgPay moneyInput" type="text" data-role="none"/>
+			<span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
+		</div>
+		<input type="button" value="提交订单" class="dgApply"/>
 	</div>
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
@@ -143,7 +161,7 @@
 				</li>
 				<li>
 					<a data-transition="none" href="#xiangqing" class="xiangqing">
-						<i class="iconfont">&#xe63b;</i><br>订单详情
+						<i class="iconfont">&#xe63b;</i><br>最新订单
 					</a>
 				</li>
 			</ul>
@@ -155,7 +173,7 @@
 
 <div data-role="page" id="xiangqing">
 	<div data-role="header" data-position="fixed">
-		<h1>订单详情</h1>
+		<h1>最新订单</h1>
 	</div>
 	<div role="main" class="ui-content">
 		<table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
@@ -198,6 +216,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<input type="button" value="支付" id="pay"/>
 	</div>
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
@@ -214,7 +233,7 @@
 				</li>
 				<li>
 					<a data-transition="none" href="#xiangqing" class="xiangqing">
-						<i class="iconfont">&#xe63b;</i><br>订单详情
+						<i class="iconfont">&#xe63b;</i><br>最新订单
 					</a>
 				</li>
 			</ul>

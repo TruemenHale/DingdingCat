@@ -17,12 +17,20 @@ html {
   width: auto;
   margin: 0 auto;
 }
-
+.content .title {
+  width: 100%;
+  padding: 10px 0;
+  background: #0083a9;
+  font-family: STXingkai446981;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: none;
+  font-size: 24px;
+}
 .content .header {
   width: 100%;
   position: relative;
   height: 165px;
-  overflow: hidden;
   background: url("images/slogan.jpg") no-repeat;
   background-size: 100% 100%;
   -webkit-background-size: 100% 100%;
@@ -68,36 +76,32 @@ html {
 }
 .content .main .moneyNum {
   height: 30px;
-  width: 105px;
-  padding-left: 15px;
+  width: 120px;
   border: 2px solid #e55c11;
   border-radius: 3px;
-  border-top-left-radius: 0 ;
-  border-bottom-left-radius: 0 ;
   margin: 0;
+  text-align: center;
   font-size: 18px;
   font-weight: 700;
-  border-left: none;
+  border-right: none;
 }
 .content .main .NumHolder {
   position: relative;
   display: block;
   margin: 10px auto;
-  width: 193px;
+  width: 192px;
 }
 .content .main .NumHolder * {
   float: left;
-  margin-left: -3px;
+  margin-left: -2px;
 }
 .content .main .NumHolder .cell {
   display: block;
   border: 2px solid #e55c11;
-  border-right: none;
+  border-left: none;
   height: 30px;
   line-height: 30px;
   border-radius: 3px;
-  border-top-right-radius: 0 ;
-  border-bottom-right-radius: 0 ;
   text-align: center;
 }
 .content .main .NumHolder div {
@@ -110,7 +114,7 @@ html {
 }
 .content .dir {
   font-size: 14px;
-  padding: 20px 8px;
+  padding: 10px 8px;
   line-height: 18px;
   color: #ffffff;
   background: red;
@@ -126,5 +130,4 @@ html {
   color: #fff;
   font-size: 10px;
   text-shadow: none;
-  position: relative;
 }
