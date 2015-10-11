@@ -3,7 +3,15 @@ var _url = self.location.href;
 if(_url.indexOf("?")>0){
     var openid = _url.substr(_url.indexOf("?")+1,_url.length-_url.indexOf("?"));
 }
-
+$(document).on("pagebeforeshow","#Allorder",function(){
+    $('#Allorder').find('.xiangqing').addClass('ui-link ui-btn ui-btn-active');
+});
+$(document).on("pagebeforeshow","#Daisongorder",function(){
+    $('#Daisongorder').find('.daisong').addClass('ui-link ui-btn ui-btn-active');
+});
+$(document).on("pagebeforeshow","#Daigouorder",function(){
+    $('#Daigouorder').find('.daigou').addClass('ui-link ui-btn ui-btn-active');
+});
 setTimeout(function() {
     $.ajax({
         type: 'POST',
