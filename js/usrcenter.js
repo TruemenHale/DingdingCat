@@ -25,56 +25,8 @@ $(function () {
                 document.getElementById('nickname').innerText = response.nickname;
                 document.getElementById('score').innerText = response.score;
                 document.getElementById('phone').innerText = response.phone;
-                orderList(data);
-                commonAddr(data)
-            }
-            $.mobile.loading('hide');
-        }
-    });
-});
-
-function orderList (phone) {
-    $.ajax({
-        type: 'POST',
-        url: './api/index.php?s=/Home/Order/orderList',
-        data: 'phone=' + phone,
-        dataType: 'json',
-        error: function (request) {
-            alert('获取失败')
-        },
-        success: function (response) {
-            var status = response.status;
-            var send   = response.send;
-            var buy    = response.buy;
-
-            if (status != 0) {
-                alert("订单获取失败");
-            } else {
-                $("#all_list").tmpl(response.all).appendTo('#allList');
-                $("#send_list").tmpl(send).appendTo('#sendList');
-                $("#buy_list").tmpl(buy).appendTo('#buyList');
             }
         }
     });
-}
+},100);
 
-function commonAddr (phone) {
-    $.ajax({
-        type: 'POST',
-        url: './api/index.php?s=/Home/Order/commonAddr',
-        data: 'phone=' + phone,
-        dataType: 'json',
-        error: function (request) {
-            alert('获取失败')
-        },
-        success: function (response) {
-            var status = response.status;
-            var list   = response.list;
-            if (status != 0) {
-                alert("订单常用地址失败");
-            } else {
-                $("#addr_list").tmpl(list).appendTo('#addrList');
-            }
-        }
-    });
-}
