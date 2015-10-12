@@ -163,6 +163,8 @@ class AccountController extends BaseController {
 
         session("phone",$Info['phone']);
         session("userId",$Info['id']);
+        session("userName",$Info['name']);
+        session("userNick",$Info['nickName']);
 
         $return = [
             'status' => '0',

@@ -9,6 +9,7 @@ if(_url.indexOf("?")>0){
 }
 
 setTimeout(function(){
+	var tel = "";
 	$.ajax({
 		type : 'POST',
 		url  : './api/index.php?s=/Home/Account/openidToUser',
@@ -24,13 +25,17 @@ setTimeout(function(){
 				alert('账户不存在！！！');
 			} else {
 				phone = data;
+				tel = data;
 			}
 		}
 	});
+},100);
+
+setTimeout(function () {
 	$.ajax({
 		type : 'POST',
 		url  : './api/index.php?s=/Home/Order/orderInfo',
-		data : 'phone='+phone,
+		data : 'phone=' + phone,
 		dataType : 'json',
 		error: function (request) {
 			alert('获取失败')
@@ -41,6 +46,7 @@ setTimeout(function(){
 			if (status != 0) {
 				console.log("订单不存在");
 			} else {
+				console.log(data);
 				document.getElementById('type').innerText = data.type;
 				document.getElementById('orderNo').innerText = data.orderNo;
 				document.getElementById('orderTime').innerText = data.orderTime;
@@ -59,8 +65,21 @@ setTimeout(function(){
 
 			}
 		}
-	})
-},100);
+	});
+	/*$.post('url',"pay",function(data){
+		//content是我编的，反正你看给我一个什么我判断他是不是支付了就行.
+		if(data.content == 1){
+			//如果支付了就让支付按钮消失.
+			$('#pay').css('display','none');
+		}else{
+			$('#pay').on('tap',function(){
+				//填跳支付的接口.
+
+			})
+		}
+	});*/
+},1000);
+
 $(document).on("pagebeforeshow","#daisong",function(){
 	$('#daisong').find('.daisong').addClass('ui-link ui-btn ui-btn-active');
 });
@@ -76,18 +95,6 @@ $(function(){
 		$(".getAdress").val('');
 	});
 	//获取最新订单是否被付款.
-	$.post('url',"pay",function(data){
-		//content是我编的，反正你看给我一个什么我判断他是不是支付了就行.
-		if(data.content == 1){
-			//如果支付了就让支付按钮消失.
-			$('#pay').css('display','none');
-		}else{
-			$('#pay').on('tap',function(){
-				//填跳支付的接口.
-
-			})
-		}
-	});
 	var KgNum = $('.KgNum');
 	$('.minus').on('tap',function(){
 		var a = parseFloat(KgNum.val())-0.5;
@@ -106,14 +113,29 @@ $(function(){
 		$.mobile.loading('show');
 		$(this).button('option','disabled',true);
 		var _data = {};
-		_data.dgAddress = $('.dgAddress').val();
-		_data.dgDescribe = $('.dgDescribe').val();
-		_data.dgCost = $('.dgCost').val();
-		_data.dgPay = $('.dgPay').val();
-		$.post('url',_data,function(data){
-			$(this).button('option','disabled',false);
+		_data.sendAddr = $('.dgAddress').val();
+		_data.goodsDesc = $('.dgDescribe').val();
+		_data.priceLimit = $('.dgCost').val();
+		_data.runnerFee = $('.dgPay').val();
+		_data.phone = phone;
+		$.post('./api/index.php?s=/Home/Order/buyAccept',_data,function(data){
+			if (data) {
+				var status = data.status;
+				var orderNo = data.orderNo;
+				var money = data.money;
+				if (status != 0) {
+					alert('下单失败，可能是服务器出故障了');
+				} else {
+					alert('下单成功，请确认支付支付');
+					document.getElementById('daigouPay').style.display= "";
+					document.getElementById('wxpayMoney').setAttribute('value',"0.02");
+					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
+				}
+
+			} else {
+				alert("下单失败!");
+			}
 			$.mobile.loading('hide');
-			alert(data.info);
 		});
 	});
 	$('#apply').on('tap',function(){
@@ -144,7 +166,7 @@ $(function(){
 					alert('下单失败，可能是服务器出故障了');
 				} else {
 					alert('下单成功，请确认支付支付');
-					document.getElementById('wxpay').style.display= "";
+					document.getElementById('daisongPay').style.display= "";
 					document.getElementById('wxpayMoney').setAttribute('value',"0.02");
 					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
 				}

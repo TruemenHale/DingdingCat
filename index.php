@@ -83,7 +83,7 @@
                 </li>
                 <li>
                     <a data-transition="none" href="#xiangqing" class="xiangqing">
-                        <i class="iconfont">&#xe63b;</i><br>订单详情
+                        <i class="iconfont">&#xe63b;</i><br>最新订单
                     </a>
                 </li>
             </ul>
@@ -136,14 +136,13 @@
             <input class="moneyDisplay" id="moneyDisplay" name="money" type="text" data-inline="true" disabled/>
         </div>
         <input type="button" id="apply" value="提交订单"/>
-        <div id="wxpay" style="display:none ;">
+        <div id="daisongPay" style="display:none ;">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="wxpayMoney" value="0.02">
                 <input type="hidden" name="orderNo" id="wxpayOrder">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
-
     </div>
 </div>
 <!--代购页面-->
@@ -154,8 +153,31 @@
     </div>
     <div role="main" class="ui-content">
         <div class="ui-field-contain">
-            <input type="text" onfocus="this.select();"  onmouseup="this.select();" value="test"  >
+            <label>送货地址：</label>
+            <input class="dgAddress" type="text"/>
         </div>
+        <div class="ui-field-contain">
+            <label>商品描述：</label>
+			<textarea style="resize: none;" data-role="none" name="" class="dgDescribe" cols="25" rows="10"></textarea>
+        </div>
+        <div class="ui-field-contain">
+            <label>商品最高价格上限：</label>
+            <input class="dgCost moneyInput" type="text" data-role="none"/>
+            <span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
+        </div>
+        <div class="ui-field-contain">
+            <label>跑腿小费：</label>
+            <input class="dgPay moneyInput" type="text" data-role="none"/>
+            <span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
+        </div>
+        <div id="daigouPay" style="display:none ;">
+            <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+                <input type="hidden" name="money" id="wxpayMoney" value="0.02">
+                <input type="hidden" name="orderNo" id="wxpayOrder">
+                <input type="submit" id="wxpayBtn" value="前去支付">
+            </form>
+        </div>
+        <input type="button" value="提交订单" id="dgApply" class="dgApply"/>
     </div>
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
@@ -172,7 +194,7 @@
                 </li>
                 <li>
                     <a data-transition="none" href="#xiangqing" class="xiangqing">
-                        <i class="iconfont">&#xe63b;</i><br>订单详情
+                        <i class="iconfont">&#xe63b;</i><br>最新订单
                     </a>
                 </li>
             </ul>
@@ -184,7 +206,7 @@
 
 <div data-role="page" id="xiangqing">
     <div data-role="header" data-position="fixed">
-        <h1>订单详情</h1>
+        <h1>最新订单</h1>
     </div>
     <div role="main" class="ui-content">
         <table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
@@ -243,7 +265,7 @@
                 </li>
                 <li>
                     <a data-transition="none" href="#xiangqing" class="xiangqing">
-                        <i class="iconfont">&#xe63b;</i><br>订单详情
+                        <i class="iconfont">&#xe63b;</i><br>最新订单
                     </a>
                 </li>
             </ul>

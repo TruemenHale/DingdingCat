@@ -66,6 +66,61 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     *
+     */
+    public function buyAccept () {
+        $info = I('post.');
+        $phone = $info ['phone'];
+        $save = $info;
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $save ['userId'] = session('userId');
+        }
+
+        $save ['recipientTel'] = $phone;
+        if (!is_null(session("userName"))){
+            $save ['recipientName'] = session("userName");
+        } else {
+            $save ['recipientName'] = session("userNick");
+        }
+
+        M('purchase')->add($save);
+
+        $sendId = M('purchase')->getLastInsID();
+
+
+        $string = new \Org\Util\String();
+        $randNum = $string->randString(8,1);
+        $orderNo = "B".time().$randNum;
+
+        $order = [
+            'orderNo'   => $orderNo,
+            'type'      => 1,
+            'orderTime' => date('Y-m-d H-i-s',time()),
+            'userId'    => session('userId'),
+            'payStatus' => 0,
+            'status'    => 0,
+            'binCode'   => '111',
+            'sendId'    => $sendId,
+            'money'     => 0.01
+        ];
+        M('orders')->add($order);
+
+        $return = [
+            'status' => '0',
+            'info'   => 'success',
+            'orderNo'=> $orderNo,
+            'money'  => $info ['runnerFee']
+        ];
+        $this->ajaxReturn($return);
+    }
+
     public function locationTrans () {
         $lng = I('post.lng');
         $lat = I('post.lat');
@@ -96,7 +151,7 @@ class OrderController extends BaseController {
     public function orderInfo () {
         $phone = I('post.phone');
 
-        /*if ($phone != session('phone')) {
+        if ($phone != session('phone')) {
             $return = [
                 'status' => '-10',
                 'info'   => 'Error'
@@ -104,15 +159,13 @@ class OrderController extends BaseController {
             $this->ajaxReturn($return);
         } else {
             $userId = session('userId');
-        }*/
-        $userId = 7;
-        $res = M('orders')->where("userId = '$userId'")->order('orderNo desc')->find();
+        }
+        $res = M('orders')->where("userId = '$userId'")->order('orderTime desc')->find();
         if ($res) {
             $sendId = $res ['sendId'];
-            if ($res ['type'] == 0) {
+            if ($res ['type'] == "0") {
                 $info = M('send')->where("id = '$sendId'")->find();
                 $type = "代送";
-
             }else {
                 $info = M('purchase')->where("id = '$sendId'")->find();
                 $type = "代购";
@@ -175,6 +228,21 @@ class OrderController extends BaseController {
 
     }
 
+    public function payJudge () {
+        $phone = I('post.phone');
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $userId = session('userId');
+        }
+        $res = M('orders')->where("userId = '$userId'")->order('orderTime desc')->find();
+
+    }
+
     public function getMoney () {
         $pickupAddr = I('post.pickupAddr');
         $sendAddr   = I('post.sendAddr');
@@ -189,6 +257,144 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    public function orderList () {
+        $phone = I('post.phone');
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $userId = session('userId');
+        }
+        $send = M('orders')
+            ->field("orders.orderNo,orders.orderTime,orders.money,send.pickupAddr,send.sendAddr,orders.status")
+            ->where("orders.userId = '$userId' AND type = 0")
+            ->join("send ON send.id = orders.sendId")
+            ->order('orderTime desc')
+            ->select();
+
+        $buy = M('orders')
+            ->field("orders.orderNo,orders.orderTime,orders.money,purchase.sendAddr,orders.status")
+            ->where("orders.userId = '$userId' AND type = 1")
+            ->join("purchase ON purchase.id = orders.sendId")
+            ->order('orderTime desc')
+            ->select();
+        $i = 0;
+        foreach ($send as $var) {
+            $list [$i] = [
+                'type'      => "送",
+                'orderNo'   => $var ['orderNo'],
+                'orderTime' => $var ['orderTime'],
+                'money'     => $var ['money'],
+                'status'    => $this->statusJudge($var ['status']),
+                'pickupAddr'=> $var ['pickupAddr'],
+                'sendAddr'  => $var ['sendAddr']
+            ];
+            $sendList [$i] = [
+                'orderNo'   => $var ['orderNo'],
+                'orderTime' => $var ['orderTime'],
+                'money'     => $var ['money'],
+                'status'    => $this->statusJudge($var ['status']),
+                'pickupAddr'=> $var ['pickupAddr'],
+                'sendAddr'  => $var ['sendAddr']
+            ];
+            $i++;
+        }
+        $j = 0;
+        foreach ($buy as $var) {
+            $list [$i] = [
+                'type'      => "购",
+                'orderNo'   => $var ['orderNo'],
+                'orderTime' => $var ['orderTime'],
+                'money'     => $var ['money'],
+                'status'    => $this->statusJudge($var ['status']),
+                'pickupAddr'=> "无",
+                'sendAddr'  => $var ['sendAddr']
+            ];
+            $buyList [$j] = [
+                'orderNo'   => $var ['orderNo'],
+                'orderTime' => $var ['orderTime'],
+                'money'     => $var ['money'],
+                'status'    => $this->statusJudge($var ['status']),
+                'pickupAddr'=> "无",
+                'sendAddr'  => $var ['sendAddr']
+            ];
+            $j++;
+            $i++;
+        }
+
+        foreach ($list as $var) {
+            $time[] = $var ['orderTime'];
+        }
+
+        array_multisort($time,SORT_DESC,$list);
+
+        $return = [
+            'status' => '0',
+            'all'  => $list,
+            'send' => $sendList,
+            'buy'  => $buyList
+        ];
+        $this->ajaxReturn($return);
+    }
+
+    public function commonAddr () {
+        $phone = I('post.phone');
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $userId = session('userId');
+        }
+
+        $send = M('orders')
+            ->field("orders.orderTime,send.sendAddr")
+            ->where("orders.userId = '$userId' AND type = 0")
+            ->join("send ON send.id = orders.sendId")
+            ->order('orderTime desc')
+            ->select();
+
+        $buy = M('orders')
+            ->field("orders.orderTime,purchase.sendAddr")
+            ->where("orders.userId = '$userId' AND type = 1")
+            ->join("purchase ON purchase.id = orders.sendId")
+            ->order('orderTime desc')
+            ->select();
+        $i = 0;
+        foreach ($send as $var) {
+            $list [$i] = [
+                'addr' => $var ['sendAddr'],
+                'time' => $var ['orderTime']
+            ];
+            $i++;
+        }
+        foreach ($buy as $var) {
+            $list [$i] = [
+                'addr' => $var ['sendAddr'],
+                'time' => $var ['orderTime']
+            ];
+            $i++;
+        }
+
+        foreach ($list as $var) {
+            $time[$i] = $var ['time'];
+        }
+
+        array_multisort($time,SORT_DESC,$list);
+
+        $list = array_slice($list,0,3);
+
+        $return = [
+            'status' => '0',
+            'list'   => $list
+        ];
+        $this->ajaxReturn($return);
+    }
     /**
      * @param $lng
      * @param $lat
@@ -278,4 +484,30 @@ class OrderController extends BaseController {
 
         return $distance;
     }
+
+    private function statusJudge ($status) {
+        switch ($status) {
+            case "0":
+                $status = "待抢单";
+                break;
+            case "1":
+                $status = "已抢单";
+                break;
+            case "2":
+                $status = "已取件";
+                break;
+            case "3":
+                $status = "已收件";
+                break;
+            case "4":
+                $status = "已取消";
+                break;
+            default:
+                $status = "未知";
+                break;
+        }
+        return $status;
+    }
+
+
 }
