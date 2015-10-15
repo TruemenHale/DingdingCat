@@ -177,6 +177,74 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    public function runnerApply () {
+        $info = I('post.');
+        $res = $this->runnerCheck($info ['phone']);
+        if (!$res) {
+            $return = [
+                'status' => '-3',
+                'info'   => 'Phone Already Exist'
+            ];
+            $this->ajaxReturn($return);
+        }
+
+        $res = $this->codeCheck($info ['phone'],$info ['code']);
+        if (!$res) {
+            $return = [
+                'status' => '-2',
+                'info'   => 'Code Error'
+            ];
+            $this->ajaxReturn($return);
+        }
+
+        $save = [
+            'name' => $info ['name'],
+            'phone'=> $info ['phone'],
+            'transportType' => $info ['transportType'],
+            'idCardNo' => $info ['idCardNo'],
+            'idCardPic1' => $this->imgTrans($info ['idCardPic1'],$info ['phone']),
+            'idCardPic2' => $this->imgTrans($info ['idCardPic2'],$info ['phone'],'back'),
+            'regTime' => date("Y-m-d H-i-s",time())
+        ];
+        M('runner')->add($save);
+
+        $return = [
+            'status' => '0',
+            'info'   => 'register success'
+        ];
+        $this->ajaxReturn($return);
+    }
+
+    public function suggestionApply () {
+        $phone = I('post.phone');
+        $content = I('post.content');
+        $type = I('post.type');
+
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $userId = session('userId');
+        }
+
+        $save = [
+            'content' => $content,
+            'userId'  => $userId,
+            'userType'=> '0',
+            'submitTime' => date('Y-m-d H-i-s',time()),
+            'type'    => $type
+        ];
+        M('suggestion')->add($save);
+        $return = [
+            'status' => '0',
+            'info'   => 'success'
+        ];
+        $this->ajaxReturn($return);
+    }
+
     /**
      * @param $tel
      * @return bool
@@ -262,6 +330,15 @@ class AccountController extends BaseController {
         }
     }
 
+    private function runnerCheck ($phone) {
+        $res = M('runner')->where("phone = '$phone'")->find();
+        if ($res) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     /**
      * @param $phone
      * @param $money
@@ -280,4 +357,15 @@ class AccountController extends BaseController {
         }
     }
 
+    private function imgTrans ($base64,$phone,$type = 'font') {
+        $filePath = "Public/runner/";
+        $fileName = $phone.$type;
+
+        $base64 = preg_replace('/data:.*;base64,/i','',$base64);
+        $base64 = str_replace(" ","+",$base64);
+        $img_code = base64_decode($base64);
+        $file   = $filePath.$fileName.".png";
+        file_put_contents($file,$img_code);
+        return $file;
+    }
 }

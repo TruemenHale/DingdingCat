@@ -89,9 +89,21 @@ class WeixinController extends Controller {
             );
         } else if ($content == "Order"){
             $news [0] = array (
-                'Title' => '代送下单',
-                'Description' => '点击进入发布代送消息',
+                'Title' => '下单',
+                'Description' => '点击进入进行下单',
                 'Url' => "http://deadsoul.net/dingdingCat/index.php?".$this->openid
+            );
+        } else if ($content == "runnerApply") {
+            $news [0] = array (
+                'Title' => '跑腿哥报名',
+                'Description' => '快来报名跑腿哥吧',
+                'Url' => "http://deadsoul.net/dingdingCat/runnerApply.html?".$this->openid
+            );
+        } else if ($content == "Suggestion") {
+            $news [0] = array (
+                'Title' => '投诉建议',
+                'Description' => '点击进入发表建议，让我们变得更好',
+                'Url' => "http://deadsoul.net/dingdingCat/suggestion.html?".$this->openid
             );
         }
         $this->wechat->replyNews($news);

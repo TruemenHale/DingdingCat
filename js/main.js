@@ -1,6 +1,3 @@
-/**
- * Created by truemenhale on 15/8/20.
- */
 
 var phone = "";
 var _url = self.location.href;
