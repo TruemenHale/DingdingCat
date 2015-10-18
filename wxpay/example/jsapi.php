@@ -81,7 +81,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 //					alert(res.err_msg);
 				} else {
 					alert('支付成功~');
-					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo='<?php echo $orderNo?>,function(data){
+					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo=<?php echo $orderNo;?>',function(data){
 						if(data){
 							var status = data.status;
 							if (status != 0) {
@@ -123,7 +123,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 			<div class="col-sm-12"><h3 style="font-weight: 900">您即将为</h3></div>
 		</div>
 		<div class="row text-center">
-			<div class="col-sm-12"><h3 style="font-weight: 900"><?php echo $orderNo ?>订单付款</h3</div>
+			<div class="col-sm-12"><h3 style="font-weight: 900"><?php echo $orderNo ?>订单付款</h3></div>
 		</div>
 		<div class="row text-center">
 			<div class="col-sm-12"><h1><span style="color: #5cb85c"><?php echo $money ?></span>元</h1></div>
@@ -131,6 +131,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 		<div class="row text-center" style="margin-top: 180px;margin-left: 30px;margin-right: 30px">
 			<div class="col-sm-12"><button class="btn btn-lg btn-block btn-warning" onclick="callpay()">立即支付</button></div>
 		</div>
+		<input type="hidden" id="orderNo" value="<?php echo $orderNo;?>">
 	</div>
 </body>
 </html>
