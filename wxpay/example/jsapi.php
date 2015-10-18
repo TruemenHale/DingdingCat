@@ -34,6 +34,7 @@ if (!isset($_SESSION['orderNo'])) {
 $tools = new JsApiPay();
 $openId = $tools->GetOpenid();
 $money = $_SESSION['money'];
+$orderNo = $_SESSION['orderNo'];
 $money = sprintf("%.2f", $money);
 //②、统一下单
 $input = new WxPayUnifiedOrder();
