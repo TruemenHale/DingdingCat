@@ -40,7 +40,7 @@ $money = sprintf("%.2f", $money);
 $input = new WxPayUnifiedOrder();
 $input->SetBody("叮叮猫");
 $input->SetAttach("叮叮猫");
-$input->SetOut_trade_no(time());
+$input->SetOut_trade_no($orderNo);
 $input->SetTotal_fee($money*100);//*100
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
