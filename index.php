@@ -139,6 +139,7 @@
         <div id="daisongPay" style="">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="wxpayMoney" value="0.02">
+                <input type="hidden" name="orderNo" id="wxpayOrder" value="B144448503259921648">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
