@@ -22,7 +22,7 @@ if(!isset($_SESSION['money'])) {
 	$_SESSION['money'] = $money;
 }
 
-$orderNo = $_POST['orderNo'];
+$orderNo = session("orderNo");
 //①、获取用户openid
 $tools = new JsApiPay();
 $openId = $tools->GetOpenid();
