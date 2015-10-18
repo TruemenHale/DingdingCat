@@ -81,6 +81,19 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 //					alert(res.err_msg);
 				} else {
 					alert('支付成功~');
+					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo=<?php echo $orderNo?>',function(data){
+						if(data){
+							var status = data.status;
+							if (status != 0) {
+								alert('支付失败');
+							} else {
+								alert('支付成功');
+							}
+						}
+						else{
+							alert("支付失败！");
+						}
+					});
 					window.location.href='http://wx.tyll.net.cn/ChildrensFund/';
 				}
 			}

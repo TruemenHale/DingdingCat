@@ -62,7 +62,6 @@ class OrderController extends BaseController {
             'orderNo'=> $orderNo,
             'payType'=> $info['payType']
         ];
-        session("orderNo",$orderNo);
         $this->ajaxReturn($return);
     }
 
