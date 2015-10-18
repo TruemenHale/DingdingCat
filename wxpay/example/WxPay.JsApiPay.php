@@ -45,8 +45,6 @@ class JsApiPay
             //触发微信返回code码
             $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].$_SERVER['QUERY_STRING']);
             $url = $this->__CreateOauthUrlForCode($baseUrl);
-            $orderNo = $_POST['orderNo'];
-            session("orderNo",$orderNo);
             Header("Location: $url.'?showwxpaytitle=1'");
             exit();
         } else {

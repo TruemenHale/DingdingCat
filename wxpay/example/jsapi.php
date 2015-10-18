@@ -17,12 +17,23 @@ if(isset($_POST['money'])){
 	header('location: http://wx.tyll.net.cn/ChildrensFund/');
 }
 
-
-if(!isset($_SESSION['money'])) {
+if (!isset($_SESSION['money'])) {
 	$_SESSION['money'] = $money;
 }
 
-$orderNo = session("orderNo");
+if(isset($_POST['orderNo'])){
+	$orderNo = $_POST['orderNo'];
+	if(!is_numeric($orderNo)) {
+		echo '数据错误';
+		return;
+	}
+} elseif (!isset($_POST['orderNo']) && !isset($_SESSION['orderNo'])) {
+	header('location: http://wx.tyll.net.cn/ChildrensFund/');
+}
+
+if (!isset($_SESSION['orderNo'])) {
+	$_SESSION['orderNo'] = $orderNo;
+}
 //①、获取用户openid
 $tools = new JsApiPay();
 $openId = $tools->GetOpenid();
@@ -32,7 +43,7 @@ $money = sprintf("%.2f", $money);
 $input = new WxPayUnifiedOrder();
 $input->SetBody("叮叮猫");
 $input->SetAttach("叮叮猫");
-$input->SetOut_trade_no(time());
+$input->SetOut_trade_no($orderNo);
 $input->SetTotal_fee($money*100);//*100
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
