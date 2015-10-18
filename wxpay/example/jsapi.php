@@ -68,6 +68,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>叮叮猫</title>
+	<script src="jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
 	//调用微信JS api 支付
 	function jsApiCall()
@@ -81,7 +82,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 //					alert(res.err_msg);
 				} else {
 					alert('支付成功~');
-					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo=<?php echo $orderNo;?>',function(data){
+					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo=',function(data){
 						if(data){
 							var status = data.status;
 							if (status != 0) {
