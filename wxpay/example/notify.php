@@ -45,12 +45,12 @@ class PayNotifyCallBack extends WxPayNotify
 			return false;
 		}
 
-		//$orderNo = $data ['out_trade_no'];
-		//$this->payReturn($orderNo);
+		$orderNo = $data ['out_trade_no'];
+		$this->payReturn($orderNo);
 		return true;
 	}
 
-	/*final private function payReturn ($orderNo) {
+	final private function payReturn ($orderNo) {
 		$url = "http://localhost/DingdingCat/api/index.php?s=/Home/Order/paySuccess";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HEADER, false);
@@ -69,7 +69,7 @@ class PayNotifyCallBack extends WxPayNotify
 		} else {
 			return false;
 		}
-	}*/
+	}
 }
 
 Log::DEBUG("begin notify");
