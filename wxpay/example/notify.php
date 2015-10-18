@@ -45,8 +45,8 @@ class PayNotifyCallBack extends WxPayNotify
 			return false;
 		}
 
-		$orderNo = $data ['out_trade_no'];
-		$this->payReturn($orderNo);
+		//$orderNo = $data ['out_trade_no'];
+		//$this->payReturn($orderNo);
 		return true;
 	}
 
