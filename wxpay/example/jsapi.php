@@ -81,20 +81,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 					alert('支付好像出了小问题, 请稍后再试T^T');
 //					alert(res.err_msg);
 				} else {
-					alert('支付成功~');
-					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo=',function(data){
-						if(data){
-							var status = data.status;
-							if (status != 0) {
-								alert('支付失败');
-							} else {
-								alert('支付成功');
-							}
-						}
-						else{
-							alert("支付失败！");
-						}
-					});
+					alert('支付成功!');
 					window.location.href='http://wx.tyll.net.cn/ChildrensFund/';
 				}
 			}
@@ -132,7 +119,6 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 		<div class="row text-center" style="margin-top: 180px;margin-left: 30px;margin-right: 30px">
 			<div class="col-sm-12"><button class="btn btn-lg btn-block btn-warning" onclick="callpay()">立即支付</button></div>
 		</div>
-		<input type="hidden" id="orderNo" value="<?php echo $orderNo;?>">
 	</div>
 </body>
 </html>

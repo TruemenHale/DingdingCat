@@ -44,7 +44,31 @@ class PayNotifyCallBack extends WxPayNotify
 			$msg = "订单查询失败";
 			return false;
 		}
+
+		$orderNo = $data ['out_trade_no'];
+		$this->payReturn($orderNo);
 		return true;
+	}
+
+	final private function payReturn ($orderNo) {
+		$url = "http://localhost/DingdingCat/api/index.php?s=/Home/Order/paySuccess";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+		// post数据
+		curl_setopt($ch, CURLOPT_POST, 1);
+		// post的变量
+		curl_setopt($ch, CURLOPT_POSTFIELDS, 'orderNo='.$orderNo);
+		$output = curl_exec($ch);
+		curl_close($ch);
+		$res = json_decode($output, TRUE);
+		if ($res['status'] == '0') {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 
