@@ -398,7 +398,7 @@ class OrderController extends BaseController {
     public function paySuccess () {
         $orderNo = I('post.orderNo');
         $save = [
-            'payStatus' => '1'
+            'payStatus' => 1
         ];
 
         M('orders')->where("orderNo = '$orderNo'")->save($save);
