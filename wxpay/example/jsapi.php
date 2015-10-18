@@ -23,10 +23,6 @@ if (!isset($_SESSION['money'])) {
 
 if(isset($_POST['orderNo'])){
 	$orderNo = $_POST['orderNo'];
-	if(!is_numeric($orderNo)) {
-		echo '数据错误';
-		return;
-	}
 } elseif (!isset($_POST['orderNo']) && !isset($_SESSION['orderNo'])) {
 	header('location: http://wx.tyll.net.cn/ChildrensFund/');
 }
