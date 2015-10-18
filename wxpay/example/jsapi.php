@@ -68,7 +68,6 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>叮叮猫</title>
-	<script src="jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
 	//调用微信JS api 支付
 	function jsApiCall()
@@ -81,7 +80,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 					alert('支付好像出了小问题, 请稍后再试T^T');
 //					alert(res.err_msg);
 				} else {
-					alert('支付成功!');
+					alert('支付成功~');
 					window.location.href='http://wx.tyll.net.cn/ChildrensFund/';
 				}
 			}
