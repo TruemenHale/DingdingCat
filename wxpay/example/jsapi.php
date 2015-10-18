@@ -81,7 +81,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 //					alert(res.err_msg);
 				} else {
 					alert('支付成功~');
-					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo=<?php echo $orderNo?>',function(data){
+					$.post('./api/index.php?s=/Home/Order/paySuccess','orderNo='<?php echo $orderNo?>,function(data){
 						if(data){
 							var status = data.status;
 							if (status != 0) {
