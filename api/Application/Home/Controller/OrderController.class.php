@@ -407,6 +407,35 @@ class OrderController extends BaseController {
         ];
         $this->ajaxReturn($return);
     }
+
+    public function sendNowOrder () {
+        $openid = I('openid');
+        $Info = M('user')->where("openid = '$openid'")->find();
+
+        if (!$Info) {
+            $return = [
+                'status' => '-6',
+                'info'   => 'Account Not Found'
+            ];
+            $this->ajaxReturn($return);
+        }
+
+        $userId = $Info ['id'];
+
+        $res = M('orders')->where("userId = '$userId' AND type = '1' AND status = '1'")->limit(1)->order('orderTime desc')->find();
+        if ($res) {
+            $orderNo = $res ['orderNo'];
+            $return = [
+                'status' => '0',
+                'order'  => $orderNo
+            ];
+        } else {
+            $return = [
+                'status' => '-11'
+            ];
+        }
+        $this->ajaxReturn($return);
+    }
     /**
      * @param $lng
      * @param $lat
