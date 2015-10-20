@@ -1,5 +1,5 @@
 <?php
-    $jsKey = "m7RQzjA_ljjEkt-JCoklRLXP7SEo-gbvSxemPXafQj_OtIzyMtDp1Q2idJ1wR2rCo5FUta1My6u5n30FyE1UXA";
+    $jsKey = "bxLdikRXVbTPdHSM05e5u8YOcvFhs2iLUYQpmSjBaEOlBfpRG2vDpy3RGKw5NERhG3ho9tOOGFbFE0jTm5q9DA";
 
     $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     $nonceStr = "";
