@@ -91,7 +91,7 @@ class WeixinController extends Controller {
             $news [0] = array (
                 'Title' => '下单',
                 'Description' => '点击进入进行下单',
-                'Url' => "http://deadsoul.net/dingdingCat/index.php?".$this->openid
+                'Url' => "http://deadsoul.net/dingdingCat/index.php?openid=".$this->openid
             );
         } else if ($content == "runnerApply") {
             $news [0] = array (

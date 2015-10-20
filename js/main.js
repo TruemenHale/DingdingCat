@@ -10,7 +10,7 @@ setTimeout(function(){
 	$.ajax({
 		type : 'POST',
 		url  : './api/index.php?s=/Home/Account/openidToUser',
-		data : 'openid='+openid,
+		data : openid,
 		dataType : 'json',
 		error: function (request) {
 			alert('获取失败')

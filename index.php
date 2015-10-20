@@ -11,7 +11,7 @@
 
     $timestamp = time();
 
-    $url = "http://deadsoul.net/dingdingCat/index.php";
+    $url = "http://deadsoul.net/dingdingCat/index.php?openid=".$_GET['openid'];
 
     $key = "jsapi_ticket=$jsKey&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
     $signature = sha1($key);
