@@ -1,20 +1,8 @@
 <?php
-    $jsKey = "bxLdikRXVbTPdHSM05e5u8YOcvFhs2iLUYQpmSjBaEOlBfpRG2vDpy3RGKw5NERhG3ho9tOOGFbFE0jTm5q9DA";
+    require_once "jssdk/jssdk.php";
+    $jsapi = new JSSDK("wx33717b4ef804de31","62d1a73eb4c3c141ac0758970d12906e");
+    $signPackage = $jsapi->getSignPackage();
 
-    $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    $nonceStr = "";
-    for ($i = 0 ;$i <16;$i++){
-        $num = mt_rand(0,61);
-        $nonceStr .= $str[$num];
-    }
-
-
-    $timestamp = time();
-
-    $url = "http://deadsoul.net/dingdingCat/index.php?openid=".$_GET['openid'];
-
-    $key = "jsapi_ticket=$jsKey&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
-    $signature = sha1($key);
 ?>
 
 <!DOCTYPE html>
@@ -274,10 +262,10 @@
 </div>
 <script>
     wx.config({
-        appId: 'wx33717b4ef804de31', // 必填，公众号的唯一标识
-        timestamp: <?php echo "'".$timestamp."'" ?>, // 必填，生成签名的时间戳
-        nonceStr: <?php echo "'".$nonceStr."'"?>, // 必填，生成签名的随机串
-        signature: <?php echo "'".$signature."'"?>,// 必填，签名，见附录1
+        appId: '<?php echo $signPackage["appId"];?>',
+        timestamp: <?php echo $signPackage["timestamp"];?>,
+        nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+        signature: '<?php echo $signPackage["signature"];?>',
         jsApiList: [
             'openLocation',
             'getLocation',
