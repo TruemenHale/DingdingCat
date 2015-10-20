@@ -11,7 +11,7 @@
 
     $timestamp = time();
 
-    $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $url = "http://deadsoul.net/dingdingCat/index.php";
 
     $key = "jsapi_ticket=$jsKey&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
     $signature = sha1($key);
