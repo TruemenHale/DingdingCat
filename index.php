@@ -274,7 +274,6 @@
 </div>
 <script>
     wx.config({
-        debug:true,
         appId: 'wx33717b4ef804de31', // 必填，公众号的唯一标识
         timestamp: <?php echo "'".$timestamp."'" ?>, // 必填，生成签名的时间戳
         nonceStr: <?php echo "'".$nonceStr."'"?>, // 必填，生成签名的随机串
