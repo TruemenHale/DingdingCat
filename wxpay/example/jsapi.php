@@ -24,7 +24,7 @@ if (!isset($_SESSION['money'])) {
 if(isset($_POST['orderNo'])){
 	$orderNo = $_POST['orderNo'];
 } elseif (!isset($_POST['orderNo']) && !isset($_SESSION['orderNo'])) {
-	header('location: http://wx.tyll.net.cn/ChildrensFund/');
+	header('location: http://wx.tyll.net.cn/DingdingCat/');
 }
 
 if (!isset($_SESSION['orderNo'])) {
@@ -81,7 +81,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 //					alert(res.err_msg);
 				} else {
 					alert('支付成功~');
-					window.location.href='http://wx.tyll.net.cn/ChildrensFund/';
+					window.location.href='http://wx.tyll.net.cn/DingdingCat';
 				}
 			}
 		);
