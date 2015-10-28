@@ -1,5 +1,5 @@
 <?php
-    /*ini_set('date.timezone','Asia/Shanghai');
+    ini_set('date.timezone','Asia/Shanghai');
     require_once "jssdk/jssdk.php";
 
     $appid = "wxcb5b14c964fadb27";
@@ -30,10 +30,10 @@
     }
     //根据openid和access_token查询用户信息
     $access_token = $json_obj['access_token'];
-    $openid = $json_obj['openid'];*/
+    $openid = $json_obj['openid'];
 
-    /*$jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
-    $signPackage = $jsapi->getSignPackage();*/
+    $jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
+    $signPackage = $jsapi->getSignPackage();
 
 ?>
 
