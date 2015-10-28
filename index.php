@@ -1,5 +1,5 @@
 <?php
-    ini_set('date.timezone','Asia/Shanghai');
+    /*ini_set('date.timezone','Asia/Shanghai');
     require_once "jssdk/jssdk.php";
 
     $appid = "wxcb5b14c964fadb27";
@@ -30,16 +30,14 @@
     }
     //根据openid和access_token查询用户信息
     $access_token = $json_obj['access_token'];
-    $openid = $json_obj['openid'];
-
-    echo $openid;
+    $openid = $json_obj['openid'];*/
 
     /*$jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
     $signPackage = $jsapi->getSignPackage();*/
 
 ?>
 
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -50,7 +48,7 @@
     <link rel="stylesheet" href="style/style.css"/>
     <link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
     <script>
-        var openid = "<?php /*echo $openid; */?>";
+        var openid = "<?php echo $openid; ?>";
     </script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -195,14 +193,15 @@
             <input class="dgPay moneyInput" type="text" data-role="none"/>
             <span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
         </div>
-        <div id="daigouPay" style="display:none ;">
+        <input type="button" value="提交订单" id="dgApply" class="dgApply"/>
+        <div id="daigouPay" style="display:;">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="wxpayMoney" value="0.01">
-                <input type="hidden" name="orderNo" id="wxpayOrder">
+                <input type="hidden" name="orderNo" id="wxpayOrder" value="B144448678317406968">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
-        <input type="button" value="提交订单" id="dgApply" class="dgApply"/>
+
     </div>
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
@@ -299,10 +298,10 @@
 </div>
 <script>
     wx.config({
-        appId: '<?php /*echo $signPackage["appId"];*/?>',
-        timestamp: <?php /*echo $signPackage["timestamp"];*/?>,
-        nonceStr: '<?php /*echo $signPackage["nonceStr"];*/?>',
-        signature: '<?php /*echo $signPackage["signature"];*/?>',
+        appId: '<?php echo $signPackage["appId"];?>',
+        timestamp: <?php echo $signPackage["timestamp"];?>,
+        nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+        signature: '<?php echo $signPackage["signature"];?>',
         jsApiList: [
             'openLocation',
             'getLocation',
@@ -343,4 +342,3 @@
 </script>
 </body>
 </html>
--->
