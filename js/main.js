@@ -16,7 +16,6 @@ setTimeout(function(){
 			var status = response.status;
 			var data = response.phone;
 			if (status != 0) {
-				alert('账户不存在！！！');
 				alert(openid);
 			} else {
 				phone = data;
