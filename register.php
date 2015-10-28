@@ -4,10 +4,11 @@
 
 	$appid = "wxcb5b14c964fadb27";
 	$secret = "7cfbf146c18280d071d6e97a15f0acb7";
-	$code = $_GET["code"];
 
-	if (!is_null($code)) {
-		$url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+	if (isset($_GET['code'])){
+		$code = $_GET['code'];
+	}else{
+		$url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 		header("Location:".$url);
 	}
 
@@ -21,17 +22,9 @@
 	$res = curl_exec($ch);
 	curl_close($ch);
 	$json_obj = json_decode($res,true);
-
-	$errcode = $json_obj ['errcode'];
-
-	if ($errcode) {
-		$url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-		header("Location:".$url);
-	}
 	//根据openid和access_token查询用户信息
 	$access_token = $json_obj['access_token'];
 	$openid = $json_obj['openid'];
-
 	$jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
 	$signPackage = $jsapi->getSignPackage();
 
@@ -52,6 +45,7 @@
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<script src="js/register.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 		<link rel="stylesheet" href="style/register.css"/>
 	</head>
 	<body>
@@ -80,4 +74,15 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		wx.config({
+			appId: '<?php echo $signPackage["appId"];?>',
+			timestamp: <?php echo $signPackage["timestamp"];?>,
+			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+			signature: '<?php echo $signPackage["signature"];?>',
+			jsApiList: [
+				'hideAllNonBaseMenuItem'
+			] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		});
+	</script>
 </html>
