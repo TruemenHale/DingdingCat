@@ -25,13 +25,7 @@ $access_token = $json_obj['access_token'];
 $openid = $json_obj['openid'];
 $get_user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
 
-$ch = curl_init();
-curl_setopt($ch,CURLOPT_URL,$get_user_info_url);
-curl_setopt($ch,CURLOPT_HEADER,0);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-$res = curl_exec($ch);
-curl_close($ch);
+$res = file_get_contents($get_user_info_url);
 
 //解析json
 $user_obj = json_decode($res,true);
