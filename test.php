@@ -9,10 +9,6 @@ if (!$code) {
     header("Location:".$url);
 }
 
-
-
-
-
 $get_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$secret.'&code='.$code.'&grant_type=authorization_code';
 
 $ch = curl_init();
@@ -39,7 +35,6 @@ curl_close($ch);
 
 //解析json
 $user_obj = json_decode($res,true);
-$_SESSION['user'] = $user_obj;
-print_r($user_obj);
+$openid = $user_obj ['openid'];
 
 ?>
