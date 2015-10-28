@@ -6,7 +6,7 @@
     $secret = "7cfbf146c18280d071d6e97a15f0acb7";
     $code = $_GET["code"];
 
-    if (!$code) {
+    if (!is_null($code)) {
         $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2findex.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
         header("Location:".$url);
     }
