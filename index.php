@@ -1,5 +1,9 @@
 <?php
     require_once "jssdk/jssdk.php";
+    require_once "./jssdk/oAuth.php";
+
+    $tools = new oAuth();
+    $openid = $tools->getOpenId();
     $jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
     $signPackage = $jsapi->getSignPackage();
 
@@ -15,6 +19,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="stylesheet" href="style/style.css"/>
     <link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script>
+        var openid = "<?php echo $openid; ?>";
+    </script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/main.js"></script>

@@ -1,9 +1,6 @@
 
 var phone = "";
-var _url = self.location.href;
-if(_url.indexOf("?")>0){
-	var openid = _url.substr(_url.indexOf("?")+1,_url.length-_url.indexOf("?"));
-}
+
 
 setTimeout(function(){
 	var tel = "";
@@ -87,7 +84,6 @@ $(document).on("pagebeforeshow","#xiangqing",function(){
 	$('#xiangqing').find('.xiangqing').addClass('ui-link ui-btn ui-btn-active');
 });
 $(function(){
-	$.mobile.loading('show');
 	$('.clearAddress').on('tap',function(){
 		$(".getAdress").val('');
 	});
