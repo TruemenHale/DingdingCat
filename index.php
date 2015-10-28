@@ -6,6 +6,11 @@
     $secret = "7cfbf146c18280d071d6e97a15f0acb7";
     $code = $_GET["code"];
 
+    if (!$code) {
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2ftest.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+        header("Location:".$url);
+    }
+
     $get_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$secret.'&code='.$code.'&grant_type=authorization_code';
 
     $ch = curl_init();
@@ -26,12 +31,14 @@
         header("Location:".$url);
     }
 
-    $jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
-    $signPackage = $jsapi->getSignPackage();
+    echo $openid;
+
+    /*$jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
+    $signPackage = $jsapi->getSignPackage();*/
 
 ?>
 
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -42,7 +49,7 @@
     <link rel="stylesheet" href="style/style.css"/>
     <link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
     <script>
-        var openid = "<?php echo $openid; ?>";
+        var openid = "<?php /*echo $openid; */?>";
     </script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -291,10 +298,10 @@
 </div>
 <script>
     wx.config({
-        appId: '<?php echo $signPackage["appId"];?>',
-        timestamp: <?php echo $signPackage["timestamp"];?>,
-        nonceStr: '<?php echo $signPackage["nonceStr"];?>',
-        signature: '<?php echo $signPackage["signature"];?>',
+        appId: '<?php /*echo $signPackage["appId"];*/?>',
+        timestamp: <?php /*echo $signPackage["timestamp"];*/?>,
+        nonceStr: '<?php /*echo $signPackage["nonceStr"];*/?>',
+        signature: '<?php /*echo $signPackage["signature"];*/?>',
         jsApiList: [
             'openLocation',
             'getLocation',
@@ -335,3 +342,4 @@
 </script>
 </body>
 </html>
+-->
