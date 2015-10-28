@@ -20,7 +20,7 @@ curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 $res = curl_exec($ch);
 curl_close($ch);
 $json_obj = json_decode($res,true);
-
+var_dump($json_obj);
 //根据openid和access_token查询用户信息
 $access_token = $json_obj['access_token'];
 $openid = $json_obj['openid'];
