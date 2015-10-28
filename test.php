@@ -36,5 +36,5 @@ curl_close($ch);
 //解析json
 $user_obj = json_decode($res,true);
 $openid = $user_obj ['openid'];
-
+echo $openid;
 ?>
