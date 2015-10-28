@@ -1,4 +1,5 @@
 <?php
+    ini_set('date.timezone','Asia/Shanghai');
     require_once "jssdk/jssdk.php";
     require_once "./jssdk/oAuth.php";
 
