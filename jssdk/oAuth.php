@@ -5,6 +5,8 @@ class oAuth {
 
     const CURL_PROXY_HOST = "0.0.0.0";//"10.152.18.220";
     const CURL_PROXY_PORT = 0;//8080;
+    const APPID = 'wxcb5b14c964fadb27';
+    const APPSECRET = '7cfbf146c18280d071d6e97a15f0acb7';
 
     public function getOpenId ()
     {
@@ -24,7 +26,7 @@ class oAuth {
 
     private function __CreateOauthUrlForCode($redirectUrl)
     {
-        $urlObj["appid"] = WxPayConfig::APPID;
+        $urlObj["appid"] = self::APPID;
         $urlObj["redirect_uri"] = "$redirectUrl";
         $urlObj["response_type"] = "code";
         $urlObj["scope"] = "snsapi_base";
@@ -71,8 +73,8 @@ class oAuth {
     }
     private function __CreateOauthUrlForOpenid($code)
     {
-        $urlObj["appid"] = WxPayConfig::APPID;
-        $urlObj["secret"] = WxPayConfig::APPSECRET;
+        $urlObj["appid"] = self::APPID;
+        $urlObj["secret"] = self::APPSECRET;
         $urlObj["code"] = $code;
         $urlObj["grant_type"] = "authorization_code";
         $bizString = $this->ToUrlParams($urlObj);
