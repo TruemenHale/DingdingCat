@@ -24,12 +24,5 @@ var_dump($json_obj);
 //根据openid和access_token查询用户信息
 $access_token = $json_obj['access_token'];
 $openid = $json_obj['openid'];
-$get_user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
-
-$res = file_get_contents($get_user_info_url);
-
-//解析json
-$user_obj = json_decode($res,true);
-$openid = $user_obj ['openid'];
-var_dump($user_obj);
+echo $openid;
 ?>
