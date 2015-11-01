@@ -7,7 +7,7 @@ setTimeout(function(){
 	$.ajax({
 		type : 'POST',
 		url  : './api/index.php?s=/Home/Account/openidToUser',
-		data : openid,
+		data : 'openid='+openid,
 		dataType : 'json',
 		error: function (request) {
 			alert('获取失败')
@@ -62,17 +62,17 @@ setTimeout(function () {
 		}
 	});
 	/*$.post('url',"pay",function(data){
-		//content是我编的，反正你看给我一个什么我判断他是不是支付了就行.
-		if(data.content == 1){
-			//如果支付了就让支付按钮消失.
-			$('#pay').css('display','none');
-		}else{
-			$('#pay').on('tap',function(){
-				//填跳支付的接口.
+	 //content是我编的，反正你看给我一个什么我判断他是不是支付了就行.
+	 if(data.content == 1){
+	 //如果支付了就让支付按钮消失.
+	 $('#pay').css('display','none');
+	 }else{
+	 $('#pay').on('tap',function(){
+	 //填跳支付的接口.
 
-			})
-		}
-	});*/
+	 })
+	 }
+	 });*/
 },1000);
 
 $(document).on("pagebeforeshow","#daisong",function(){
@@ -92,35 +92,6 @@ $(function(){
 			transition:'none'
 		});
 	});
-	$('.AddressInput').on('tap',function(){
-		var x = "";
-		var oInput = $('.AddressInput');
-		var _arr = [];
-		for(var i = 0 ; i < 10 ; i++){
-			var _html = '<li>'+
-				'<p class="add-name">'
-				+'</p>'+
-				'<p +class="add-area">'+'</p>';
-			_arr.push(_html);
-		}
-		var timer = setInterval(function(){
-			if(x == $('.AddressInput').val()){
-				return false;
-			}else{
-				x = oInput.val();
-				var keyword = {};
-				keyword.keyword = x;
-				$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
-					if(data.status == 0){
-						oInput.val(_arr.join(""));
-						oInput.listview('refresh');
-					}else{
-						alert(data.info);
-					}
-				});
-			}
-		},1000);
-	});
 	$('.cancel').on('tap',function(){
 		$.mobile.changePage('#daisong',{
 			transition:'none'
@@ -138,6 +109,30 @@ $(function(){
 	$('.plus').on('tap',function(){
 		var a = parseFloat(KgNum.val())+0.5;
 		KgNum.val(a);
+	});
+	$('.AddressInput').on('tap',function(){
+		var x = "";
+		var oInput = $('.AddressInput');
+		var oList = $('.addressList');
+		var data = "";
+		var timer = setInterval(function(){
+			if(x == $('.AddressInput').val()){
+				return false;
+			}else{
+				x = oInput.val();
+				var keyword = {};
+				keyword.keyword = x;
+				$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
+					if(data.status == 0){
+						oList.html("");
+						$('#place_list').tmpl(data.list).appendTo(".addressList");
+						$('.addressList').listview('refresh');
+					}else{
+						alert(data.info);
+					}
+				});
+			}
+		},1000);
 	});
 	$('.dgApply').on('tap',function(){
 		$.mobile.loading('show');
@@ -190,10 +185,10 @@ $(function(){
 				var orderNo = data.orderNo;
 				var payType = data.payType;
 				var money = data.money;
-					alert('下单成功，请确认支付支付');
-					document.getElementById('daisongPay').style.display= "";
-					document.getElementById('wxpayMoney').setAttribute('value',"0.02");
-					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
+				alert('下单成功，请确认支付支付');
+				document.getElementById('daisongPay').style.display= "";
+				document.getElementById('wxpayMoney').setAttribute('value',"0.02");
+				document.getElementById('wxpayOrder').setAttribute('value',orderNo);
 			}
 			else{
 				alert(data.info);
@@ -215,7 +210,7 @@ function money () {
 		if(data.status!= 0){
 			var status = data.status;
 			var money = data.money;
-				document.getElementById("moneyDisplay").setAttribute("value",money+"元");
+			document.getElementById("moneyDisplay").setAttribute("value",money+"元");
 		}
 		else{
 			alert(data.info);
