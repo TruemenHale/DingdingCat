@@ -92,6 +92,12 @@ $(function(){
 			transition:'none'
 		});
 	});
+	$('.AddressInput').on('input propertychange',function(){
+		var keyword = $(this).val();
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
+			console.log(data.list);
+		});
+	});
 	$('.cancel').on('tap',function(){
 		$.mobile.changePage('#daisong',{
 			transition:'none'
