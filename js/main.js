@@ -125,8 +125,8 @@ $(function(){
 				$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
 					if(data.status == 0){
 						oList.html("");
-						console.log(data);
 						$('#place_list').tmpl(data.list).appendTo(".addressList");
+						$('.addressList').listview('refresh');
 					}else{
 						alert(data.info);
 					}
