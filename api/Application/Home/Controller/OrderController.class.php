@@ -409,6 +409,7 @@ class OrderController extends BaseController {
     }
 
     public function placeSuggestion () {
+        header("Access-Control-Allow-Origin: *");
         $keyword = I("post.keyword");
 
         $str = "http://api.map.baidu.com/place/v2/suggestion?query=$keyword&region=132&output=json&ak=AqFXx3FQKGme9bkLhrW60i02";
