@@ -225,12 +225,10 @@ function money () {
 	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.weight = parseFloat(KgNum.val());
 	$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
-		if(data.status!= 0){
-			var status = data.status;
+		if(data.status == 0){
 			var money = data.money;
 			document.getElementById("moneyDisplay").setAttribute("value",money+"元");
-		}
-		else{
+		} else{
 			alert(data.info);
 		}
 	});
