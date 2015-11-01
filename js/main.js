@@ -227,7 +227,7 @@ function money () {
 	$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
 		if(data.status == 0){
 			var money = data.money;
-			document.getElementById("moneyDisplay").setAttribute("value",money+"元");
+			$('.money').html(money);
 		} else{
 			alert(data.info);
 		}

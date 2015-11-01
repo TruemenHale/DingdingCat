@@ -152,9 +152,10 @@
             </select>
         </div>
         <div class="ui-field-contain">
-            <label>订单价格：</label>
-            <input class="moneyDisplay" id="moneyDisplay" name="money" type="text" data-inline="true" disabled/>
+            <p>订单金额：<span class="money"></span>元</p>
+
         </div>
+
         <input type="button" id="apply" value="提交订单"/>
         <div id="daisongPay" style="display: none">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
