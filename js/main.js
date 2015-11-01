@@ -159,7 +159,7 @@ $(function(){
 		_data.priceLimit = $('.dgCost').val();
 		_data.runnerFee = $('.dgPay').val();
 		_data.phone = phone;
-		$.post('./api/index.php?s=/Home/Order/buyAccept',_data,function(data){
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/buyAccept',_data,function(data){
 			if (data) {
 				var status = data.status;
 				var orderNo = data.orderNo;
@@ -198,7 +198,7 @@ $(function(){
 		_data.payType = $(".payWays option:selected").val();
 		_data.phone = phone;
 		JSON.stringify(_data);
-		$.post('./api/index.php?s=/Home/Order/shipAccept',_data,function(data){
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/shipAccept',_data,function(data){
 			if(data.status!= 0){
 				var orderNo = data.orderNo;
 				var payType = data.payType;
@@ -224,7 +224,7 @@ function money () {
 	_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.weight = parseFloat(KgNum.val());
-	$.post('./api/index.php?s=/Home/Order/getMoney',_data,function(data){
+	$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
 		if(data.status!= 0){
 			var status = data.status;
 			var money = data.money;
