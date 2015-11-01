@@ -92,11 +92,34 @@ $(function(){
 			transition:'none'
 		});
 	});
-	$('.AddressInput').on('input propertychange',function(){
-		var keyword = $(this).val();
-		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
-			console.log(data.list);
-		});
+	$('.AddressInput').on('tap',function(){
+		var x = "";
+		var oInput = $('.AddressInput');
+		var _arr = [];
+		for(var i = 0 ; i < 10 ; i++){
+			var _html = '<li>'+
+				'<p class="add-name">'
+				+'</p>'+
+				'<p +class="add-area">'+'</p>';
+			_arr.push(_html);
+		}
+		var timer = setInterval(function(){
+			if(x == $('.AddressInput').val()){
+				return false;
+			}else{
+				x = oInput.val();
+				var keyword = {};
+				keyword.keyword = x;
+				$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
+					if(data.status == 0){
+						oInput.val(_arr.join(""));
+						oInput.listview('refresh');
+					}else{
+						alert(data.info);
+					}
+				});
+			}
+		},1000);
 	});
 	$('.cancel').on('tap',function(){
 		$.mobile.changePage('#daisong',{
