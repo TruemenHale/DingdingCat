@@ -85,11 +85,18 @@ $(document).on("pagebeforeshow","#xiangqing",function(){
 	$('#xiangqing').find('.xiangqing').addClass('ui-link ui-btn ui-btn-active');
 });
 $(function(){
-	$('.clearAddress').on('tap',function(){
-		$(".getAdress").val('');
-	});
 	//获取最新订单是否被付款.
 	var KgNum = $('.KgNum');
+	$('.getAddress').on('tap',function(){
+		$.mobile.changePage('#AddressGet',{
+			transition:'none'
+		});
+	});
+	$('.cancel').on('tap',function(){
+		$.mobile.changePage('#daisong',{
+			transition:'none'
+		});
+	});
 	$('.minus').on('tap',function(){
 		var a = parseFloat(KgNum.val())-0.5;
 		if(a<0){
@@ -137,8 +144,8 @@ $(function(){
 		$.mobile.loading('show');
 		_data = null;
 		var _data = {};
-		_data.pickupAddr = $(".getAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-		_data.sendAddr = $(".endAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+		_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+		_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 		_data.pickupTime = $(".getTime option:selected").text();
 		_data.weight = parseFloat(KgNum.val());
 		_data.recipientName = $('.geterName').val();
@@ -149,24 +156,18 @@ $(function(){
 		_data.payType = $(".payWays option:selected").val();
 		_data.phone = phone;
 		JSON.stringify(_data);
-		console.log(_data);
 		$.post('./api/index.php?s=/Home/Order/shipAccept',_data,function(data){
-			if(data){
-				var status = data.status;
+			if(data.status!= 0){
 				var orderNo = data.orderNo;
 				var payType = data.payType;
 				var money = data.money;
-				if (status != 0) {
-					alert('下单失败，可能是服务器出故障了');
-				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daisongPay').style.display= "";
 					document.getElementById('wxpayMoney').setAttribute('value',"0.02");
 					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
-				}
 			}
 			else{
-				alert("下单失败！");
+				alert(data.info);
 			}
 			$.mobile.loading('hide');
 			$(this).button('option','disabled',false);
@@ -178,18 +179,17 @@ function money () {
 	_data = null;
 	var KgNum = $('.KgNum');
 	var _data = {};
-	_data.pickupAddr = $(".getAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-	_data.sendAddr = $(".endAdress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+	_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.weight = parseFloat(KgNum.val());
 	$.post('./api/index.php?s=/Home/Order/getMoney',_data,function(data){
-		if(data){
+		if(data.status!= 0){
 			var status = data.status;
 			var money = data.money;
-			if (status != 0) {
-
-			} else {
 				document.getElementById("moneyDisplay").setAttribute("value",money+"元");
-			}
+		}
+		else{
+			alert(data.info);
 		}
 	});
 }

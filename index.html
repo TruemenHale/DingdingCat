@@ -23,12 +23,11 @@
 	<div role="main" class="ui-content">
 		<div class="ui-field-contain">
 			<label>取件地址：</label>
-			<input class="getAdress" type="text"/>
-			<div class="clearAddress">清除GPS定位地址</div>
+			<input class="getAddress" type="text"/>
 		</div>
 		<div class="ui-field-contain">
 			<label>送达地址：</label>
-			<input class="endAdress" type="text"/>
+			<input class="endAddress" type="text"/>
 		</div>
 		<div class="ui-field-contain">
 			<label>取件时间：</label>
@@ -168,9 +167,40 @@
 		</div>
 	</div>
 </div>
+<div data-role="page" id="AddressGet">
+	<div data-role="header" data-position="fixed">
+		<h1>取货地址</h1>
+	</div>
+	<div role="main" class="ui-content">
+			<p class="addressLine">
+				<input type="text" data-role="none" class="AddressInput">
+				<a class="cancel">
+					取消
+				</a>
+			</p>
+			<ul data-role="listview" class="addressList">
+				<li>
+					重庆市南岸区崇文路2号重庆邮电大学
+					重庆市南岸区崇文路2号重庆邮电大学
+					重庆市南岸区崇文路2号重庆邮电大学
+				</li>
+				<li>
+					重庆市南岸区崇文路2号重庆邮电大学
+				</li>
+				<li>
+					重庆市南岸区崇文路2号重庆邮电大学
+				</li>
+				<li>
+					重庆市南岸区崇文路2号重庆邮电大学
+				</li>
+				<li>
+					重庆市南岸区崇文路2号重庆邮电大学
+				</li>
 
+			</ul>
+	</div>
+</div>
 <!--详情页面-->
-
 <div data-role="page" id="xiangqing">
 	<div data-role="header" data-position="fixed">
 		<h1>最新订单</h1>
