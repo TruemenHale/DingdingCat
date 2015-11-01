@@ -1,7 +1,7 @@
 
 var phone = "";
 
-
+var From = "";
 setTimeout(function(){
 	var tel = "";
 	$.ajax({
@@ -88,6 +88,13 @@ $(function(){
 	//获取最新订单是否被付款.
 	var KgNum = $('.KgNum');
 	$('.getAddress').on('tap',function(){
+		From = '.'+$(this).attr('class');
+		$.mobile.changePage('#AddressGet',{
+			transition:'none'
+		});
+	});
+	$('.endAddress').on('tap',function(){
+		From = '.'+$(this).attr('class');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
@@ -126,6 +133,15 @@ $(function(){
 					if(data.status == 0){
 						oList.html("");
 						$('#place_list').tmpl(data.list).appendTo(".addressList");
+						oList.find('li').on('click',function(){
+							var y = $(this).find('.add-name').html();
+								$(From).val(y);
+								oList.html("");
+								oInput.val("");
+								$.mobile.changePage('#daisong',{
+									transition:'none'
+								});
+						});
 						$('.addressList').listview('refresh');
 					}else{
 						alert(data.info);
@@ -169,7 +185,9 @@ $(function(){
 		_data = null;
 		var _data = {};
 		_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+		_data.GdetAddr = $(".GetdetAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 		_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+		_data.EdetAddr = $(".EnddetAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 		_data.pickupTime = $(".getTime option:selected").text();
 		_data.weight = parseFloat(KgNum.val());
 		_data.recipientName = $('.geterName').val();
