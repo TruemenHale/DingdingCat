@@ -17,7 +17,7 @@ class OrderController extends BaseController {
         if ($phone != session('phone')) {
             $return = [
                 'status' => '-10',
-                'info'   => 'Error'
+                'info'   => '账户不存在！'
             ];
             $this->ajaxReturn($return);
         } else {
@@ -75,7 +75,7 @@ class OrderController extends BaseController {
         if ($phone != session('phone')) {
             $return = [
                 'status' => '-10',
-                'info'   => 'Error'
+                'info'   => '账户不存在'
             ];
             $this->ajaxReturn($return);
         } else {
@@ -404,6 +404,32 @@ class OrderController extends BaseController {
         M('orders')->where("orderNo = '$orderNo'")->save($save);
         $return = [
             'status' => '0'
+        ];
+        $this->ajaxReturn($return);
+    }
+
+    public function placeSuggestion () {
+        $keyword = I("post.keyword");
+
+        $str = "http://api.map.baidu.com/place/v2/suggestion?query=$keyword&region=132&output=json&ak=AqFXx3FQKGme9bkLhrW60i02";
+
+        $json = file_get_contents($str);
+        $output = json_decode($json,true);
+
+        $result = $output ['result'];
+
+        $list = [];
+        $i = 1;
+        foreach ($result as $var) {
+            $list [$i] ['name'] = $var ['name'];
+            $list [$i] ['area'] = $var ['city'].$var ['district'];
+            $i++;
+        }
+
+        $return = [
+            'status' => '0',
+            'info'   => 'success',
+            'list'   => $list
         ];
         $this->ajaxReturn($return);
     }
