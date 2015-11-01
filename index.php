@@ -45,8 +45,8 @@
     </script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/jquery.tmpl.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 </head>
 <body>
@@ -306,7 +306,7 @@
         </div>
     </div>
 </div>
-<script id="place-list" type="text/x-jquery-tmpl">
+<script id="place_list" type="text/x-jquery-tmpl">
     <li>
         <p class="add-name">${name}</p>
         <p class="add-area">${area}</p>
