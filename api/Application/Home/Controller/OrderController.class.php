@@ -252,6 +252,7 @@ class OrderController extends BaseController {
 
         $return = [
             'status' => '0',
+            'info'   => 'success',
             'money'  => floor($money),
         ];
         $this->ajaxReturn($return);
