@@ -33,7 +33,7 @@ $(function(){
 		var _this = $(this);
 		if(getCookie("flag") == "true"||!getCookie("flag")){
 			document.cookie = "flag = true";
-			document.cookie = "time = "+5;
+			document.cookie = "time = "+120;
 			if($('.phoneNum').val().length != 11){
 				alert('请输入正确的手机号！');
 				return;
