@@ -37,7 +37,8 @@ class OrderController extends BaseController {
         }
         $save ['money']    = $this->moneyCal($info['pickupAddr'],$info['sendAddr'],$info ['weight']);
         $save ['distance'] = number_format($this->distance($info['pickupAddr'],$info['sendAddr']) / 1000,1);
-
+        $save ['pickupAddr'] = $info ['pickupAddr'].$info ['GdetAddr'];
+        $save ['sendAddr']   = $info ['sendAddr'].$info ['EdetAddr'];
         M('send')->add($save);
         $sendId = M('send')->getLastInsID();
         $string = new \Org\Util\String();
