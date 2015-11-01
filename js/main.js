@@ -92,28 +92,6 @@ $(function(){
 			transition:'none'
 		});
 	});
-	$('.AddressInput').on('tap',function(){
-		var x = "";
-		var oInput = $('.AddressInput');
-		var oList = $('.addressList');
-		var timer = setInterval(function(){
-			if(x == $('.AddressInput').val()){
-				return false;
-			}else{
-				x = oInput.val();
-				var keyword = {};
-				keyword.keyword = x;
-				$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
-					if(data.status == 0){
-						oList.html("");
-						oList.tmpl(data.list).appendTo("#placeSuggestion");
-					}else{
-						alert(data.info);
-					}
-				});
-			}
-		},1000);
-	});
 	$('.cancel').on('tap',function(){
 		$.mobile.changePage('#daisong',{
 			transition:'none'
@@ -131,6 +109,30 @@ $(function(){
 	$('.plus').on('tap',function(){
 		var a = parseFloat(KgNum.val())+0.5;
 		KgNum.val(a);
+	});
+	$('.AddressInput').on('tap',function(){
+		var x = "";
+		var oInput = $('.AddressInput');
+		var oList = $('.addressList');
+		var data = "";
+		var timer = setInterval(function(){
+			if(x == $('.AddressInput').val()){
+				return false;
+			}else{
+				x = oInput.val();
+				var keyword = {};
+				keyword.keyword = x;
+				$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
+					if(data.status == 0){
+						oList.html("");
+						console.log(data);
+						$('#place_list').tmpl(data.list).appendTo(".addressList");
+					}else{
+						alert(data.info);
+					}
+				});
+			}
+		},1000);
 	});
 	$('.dgApply').on('tap',function(){
 		$.mobile.loading('show');

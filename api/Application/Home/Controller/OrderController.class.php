@@ -420,7 +420,7 @@ class OrderController extends BaseController {
         $result = $output ['result'];
 
         $list = [];
-        $i = 1;
+        $i = 0;
         foreach ($result as $var) {
             $list [$i] ['name'] = $var ['name'];
             $list [$i] ['area'] = $var ['city'].$var ['district'];

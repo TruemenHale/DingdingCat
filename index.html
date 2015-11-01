@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/jquery.tmpl.min.js"></script>
 	<script src="js/main.js"></script>
 </head>
 <body>
@@ -181,10 +182,7 @@
 				</a>
 			</p>
 			<ul data-role="listview" class="addressList">
-				<li>
-					<p class="add-name"></p>
-					<p class="add-area"></p>
-				</li>
+
 			</ul>
 	</div>
 </div>
@@ -259,4 +257,10 @@
 	</div>
 </div>
 </body>
+<script id="place_list" type="text/x-jquery-tmpl">
+    <li>
+        <p class="add-name">${name}</p>
+        <p class="add-area">${area}</p>
+    </li>
+</script>
 </html>
