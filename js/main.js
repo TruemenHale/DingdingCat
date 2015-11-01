@@ -95,14 +95,6 @@ $(function(){
 	$('.AddressInput').on('tap',function(){
 		var x = "";
 		var oInput = $('.AddressInput');
-		var _arr = [];
-		for(var i = 0 ; i < 10 ; i++){
-			var _html = '<li>'+
-				'<p class="add-name">'
-				+'</p>'+
-				'<p +class="add-area">'+'</p>';
-			_arr.push(_html);
-		}
 		var timer = setInterval(function(){
 			if(x == $('.AddressInput').val()){
 				return false;
@@ -112,8 +104,8 @@ $(function(){
 				keyword.keyword = x;
 				$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/placeSuggestion',keyword,function(data){
 					if(data.status == 0){
-						oInput.val(_arr.join(""));
-						oInput.listview('refresh');
+						oInput.val("");
+						oInput.tmpl(data.list).appendTo("#placeSuggestion");
 					}else{
 						alert(data.info);
 					}

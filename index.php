@@ -46,6 +46,7 @@
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/jquery.tmpl.min.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 </head>
 <body>
@@ -218,6 +219,23 @@
     </div>
 </div>
 
+<div data-role="page" id="AddressGet">
+    <div data-role="header" data-position="fixed">
+        <h1>取货地址</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <p class="addressLine">
+            <input type="text" data-role="none" class="AddressInput">
+            <a class="cancel">
+                取消
+            </a>
+        </p>
+        <ul data-role="listview" class="addressList">
+
+        </ul>
+    </div>
+</div>
+
 <!--详情页面-->
 
 <div data-role="page" id="xiangqing">
@@ -288,6 +306,12 @@
         </div>
     </div>
 </div>
+<script id="place-list" type="text/x-jquery-tmpl">
+    <li>
+        <p class="add-name">${name}</p>
+        <p class="add-area">${area}</p>
+    </li>
+</script>
 <script>
     wx.config({
         appId: '<?php echo $signPackage["appId"];?>',
