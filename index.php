@@ -58,12 +58,11 @@
     <div role="main" class="ui-content">
         <div class="ui-field-contain">
             <label>取件地址：</label>
-            <input class="getAdress" name="pickupAddr" type="text"/>
-            <div class="clearAddress">清除GPS定位地址</div>
+            <input class="getAddress" type="text"/>
         </div>
         <div class="ui-field-contain">
             <label>送达地址：</label>
-            <input class="endAdress" name="sendAddr" type="text"/>
+            <input class="endAddress" type="text"/>
         </div>
         <div class="ui-field-contain">
             <label>取件时间：</label>
@@ -296,42 +295,9 @@
         nonceStr: '<?php echo $signPackage["nonceStr"];?>',
         signature: '<?php echo $signPackage["signature"];?>',
         jsApiList: [
-            'openLocation',
-            'getLocation',
             'hideAllNonBaseMenuItem'
         ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
-    $.mobile.loading('hide');
-    wx.ready(function(){
-        wx.getLocation({
-            type: 'gcj02',
-            success: function (res) {
-                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-                if (res == null) {
-                    alert('地理位置获取失败');
-                    $.mobile.loading('hide');
-                } else {
-                    $.ajax({
-                        type : 'POST',
-                        url  : './api/index.php?s=/Home/Order/locationTrans',
-                        data : 'lat='+latitude+'&lng='+longitude,
-                        dataType : 'json',
-                        error: function (request) {
-                            alert('获取失败')
-                        } ,
-                        success : function (response) {
-                            var location = response.location;
-                            $(".getAdress").val(location);
-                        }
-                    })
-                }
-
-            }
-        });
-    });
-
-
 </script>
 </body>
 </html>
