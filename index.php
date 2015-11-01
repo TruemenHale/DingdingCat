@@ -57,13 +57,17 @@
         <h1>代送</h1>
     </div>
     <div role="main" class="ui-content">
-        <div class="ui-field-contain">
-            <label>取件地址：</label>
-            <input class="getAddress" type="text"/>
+        <div class="ui-field-contain" style="margin-top: 14px">
+            <label>取件区域：</label>
+            <input class="getAddress" type="text"/><br/>
+            <label>详细地址：</label>
+            <input class="GetdetAddress" type="text"/>
         </div>
         <div class="ui-field-contain">
-            <label>送达地址：</label>
-            <input class="endAddress" type="text"/>
+            <label>送达区域：</label>
+            <input class="endAddress" type="text"/><br/>
+            <label>详细地址：</label>
+            <input class="EnddetAddress" type="text"/>
         </div>
         <div class="ui-field-contain">
             <label>取件时间：</label>
