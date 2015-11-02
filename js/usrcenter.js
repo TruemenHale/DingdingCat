@@ -52,14 +52,14 @@ function orderList (phone) {
             var status = response.status;
             var send   = response.send;
             var buy    = response.buy;
-
-            if (status != 0) {
+            alert(status);
+            /*if (status != 0) {
                 alert("订单获取失败");
             } else {
                 $("#all_list").tmpl(response.all).appendTo('#allList');
                 $("#send_list").tmpl(send).appendTo('#sendList');
                 $("#buy_list").tmpl(buy).appendTo('#buyList');
-            }
+            }*/
         }
     });
 }
