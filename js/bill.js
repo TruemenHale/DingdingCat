@@ -3,10 +3,7 @@
  */
 var billInfoUrl = "./api/index.php?s=/Home/Account/billInfo";
 var phone = "";
-var _url = self.location.href;
-if(_url.indexOf("?")>0){
-	var openid = _url.substr(_url.indexOf("?")+1,_url.length-_url.indexOf("?"));
-}
+
 
 setTimeout(function(){
 	$.ajax({
