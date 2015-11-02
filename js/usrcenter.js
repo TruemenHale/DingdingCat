@@ -10,7 +10,7 @@ $(document).on("pagebeforeshow","#Daigouorder",function(){
     $('#Daigouorder').find('.daigou').addClass('ui-link ui-btn ui-btn-active');
 });
 
-$(function () {
+setTimeout(function () {
     $.mobile.loading('show');
     $.ajax({
         type: 'POST',
@@ -37,7 +37,7 @@ $(function () {
             $.mobile.loading('hide');
         }
     });
-});
+},100);
 
 function orderList (phone) {
     $.ajax({
