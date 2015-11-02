@@ -181,7 +181,6 @@ $(function(){
 	});
 	$('#apply').on('tap',function(){
 		$(this).button('option','disabled',true);
-		$.mobile.loading('show');
 		_data = null;
 		var _data = {};
 		_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
@@ -210,11 +209,8 @@ $(function(){
 			} else{
 				if (data.status == -100) {
 					alert(data.info);
-					$(this).button('option','disabled',false);
 				}
-
 			}
-			$.mobile.loading('hide');
 			$(this).button('option','disabled',false);
 		});
 	})
