@@ -75,7 +75,12 @@ $(function(){
 				window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2findex.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
 ;			}
 			else{
-				alert(data.info);
+				if (data.status == -3) {
+					alert(data.info);
+					window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2findex.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+				} else {
+					alert(data.info);
+				}
 			}
 		});
 	});

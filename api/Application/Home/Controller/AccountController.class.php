@@ -45,7 +45,7 @@ class AccountController extends BaseController {
         if (!$res) {
             $return = [
                 'status' => '-3',
-                'info'   => 'Phone Already Exist'
+                'info'   => '该手机号已经注册！'
             ];
             $this->ajaxReturn($return);
         }
@@ -54,7 +54,7 @@ class AccountController extends BaseController {
         if (!$res) {
             $return = [
                 'status' => '-2',
-                'info'   => 'Code Error'
+                'info'   => '验证码错误！'
             ];
             $this->ajaxReturn($return);
         }
