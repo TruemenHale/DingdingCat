@@ -193,13 +193,12 @@ $(function(){
 		_data.recipientName = $('.geterName').val();
 		_data.recipientTel = $('.geterPhone').val();
 		_data.goodsDesc = $('.goodsNote').val();
-		_data.remark = $('.note').val();
 		_data.trandsportType = $(".transport option:selected").val();
 		_data.payType = $(".payWays option:selected").val();
 		_data.phone = phone;
 		JSON.stringify(_data);
 		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/shipAccept',_data,function(data){
-			if(data.status!= 0){
+			if(data.status == 0){
 				var orderNo = data.orderNo;
 				var payType = data.payType;
 				var money = data.money;
@@ -207,9 +206,13 @@ $(function(){
 				document.getElementById('daisongPay').style.display= "";
 				document.getElementById('wxpayMoney').setAttribute('value',"0.02");
 				document.getElementById('wxpayOrder').setAttribute('value',orderNo);
-			}
-			else{
-				alert(data.info);
+				$(this).button('option','disabled',true);
+			} else{
+				if (data.status == -100) {
+					alert(data.info);
+					$(this).button('option','disabled',false);
+				}
+
 			}
 			$.mobile.loading('hide');
 			$(this).button('option','disabled',false);

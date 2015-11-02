@@ -24,6 +24,14 @@ class OrderController extends BaseController {
             $save ['userId'] = session('userId');
         }
 
+        if ($info ['pickupAddr'] == null || $info ['sendAddr'] == null || $info ['pickupTime'] == null || $info ['weight'] == null || $info ['recipientName'] == null || $info ['recipientName'] == null || $info ['goodsDesc'] == null) {
+            $return = [
+                'status' => '-100',
+                'info'   => '请完整填写上述内容'
+            ];
+            $this->ajaxReturn($return);
+        }
+
         if ($info ['weight'] < 5) {
             $save ['weight'] = 0;
         } else if ($info ['weight'] < 10) {

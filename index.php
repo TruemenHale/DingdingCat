@@ -131,10 +131,6 @@
             <input class="goodsNote" name="goodsDesc" type="text"/>
         </div>
         <div class="ui-field-contain">
-            <label>其他备注：</label>
-            <input class="note" name="remark" type="text"/>
-        </div>
-        <div class="ui-field-contain">
             <label>运输工具：</label>
             <select class="transport" name="transportType" id="">
                 <option value="0">不限</option>
