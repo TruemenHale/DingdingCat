@@ -25,6 +25,8 @@ setTimeout(function () {
             var data = response.phone;
             if (status != 0) {
                 alert('账户不存在！！！');
+                alert(openid);
+                alert(status)
             } else {
                 phone = data;
                 document.getElementById('name').innerText = response.name;
@@ -52,14 +54,14 @@ function orderList (phone) {
             var status = response.status;
             var send   = response.send;
             var buy    = response.buy;
-            alert(status);
-            /*if (status != 0) {
+
+            if (status != 0) {
                 alert("订单获取失败");
             } else {
                 $("#all_list").tmpl(response.all).appendTo('#allList');
                 $("#send_list").tmpl(send).appendTo('#sendList');
                 $("#buy_list").tmpl(buy).appendTo('#buyList');
-            }*/
+            }
         }
     });
 }
