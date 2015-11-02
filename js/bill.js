@@ -18,7 +18,8 @@ setTimeout(function(){
 			var status = response.status;
 			var data = response.data;
 			if (status != 0) {
-				alert('账户不存在！！！');
+				alert("你还没有注册，将自动跳转到注册页面！");
+				window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 			} else {
 				document.getElementById('billTotal').innerText=data.total+'元';
 				document.getElementById('billUsed').innerText=data.used+'元';
