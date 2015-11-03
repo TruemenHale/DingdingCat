@@ -117,6 +117,9 @@ $(function(){
 		var a = parseFloat(KgNum.val())+0.5;
 		KgNum.val(a);
 	});
+	$('.clearAdd').on('tap',function(){
+		$('.getAddress').val("");
+	});
 	$('.AddressInput').on('tap',function(){
 		var x = "";
 		var oInput = $('.AddressInput');
