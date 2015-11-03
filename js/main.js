@@ -230,7 +230,7 @@ function money () {
 	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.weight = parseFloat(KgNum.val());
 
-	if (_data.pickupAddr != null && _data.sendAddr != null) {
+	if (_data.pickupAddr != "" && _data.sendAddr != "") {
 
 		if (pAddress != _data.pickupAddr || sAddress != _data.sendAddr || zhong != _data.weight) {
 			$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
