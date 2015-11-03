@@ -1,5 +1,8 @@
 
 var phone = "";
+var pAddress = "";
+var sAddress = "";
+var zhong = "";
 
 var From = "";
 setTimeout(function(){
@@ -228,20 +231,25 @@ function money () {
 	_data.weight = parseFloat(KgNum.val());
 
 	if (_data.pickupAddr != null && _data.sendAddr != null) {
-		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
-			if(data.status == 0){
-				var money = data.money;
-				$('.money').html(money);
-			} else{
-				alert(data.info);
-			}
-		});
+
+		if (pAddress != _data.pickupAddr || sAddress != _data.sendAddr || zhong != _data.weight) {
+			$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
+				if(data.status == 0){
+					var money = data.money;
+					$('.money').html(money);
+					pAddress = _data.pickupAddr;
+					sAddress = _data.sendAddr;
+					zhong    = _data.weight;
+				} else{
+					alert(data.info);
+				}
+			});
+		}
+		return 0;
 	} else {
 		return 0;
 	}
 
 }
 
-setInterval(function (){
-	alert(1);
-},3000);
+setInterval(money,1000);
