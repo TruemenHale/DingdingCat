@@ -77,7 +77,7 @@
             <label>物品重量：</label>
             <div class="numBox">
                 <a class="minus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="minus" data-iconpos="notext"></a>
-                <input type="text" name="weight" data-role="none" class="KgNum" value="1" onchange="money()">
+                <input type="text" name="weight" data-role="none" class="KgNum" value="1">
                 <a class="plus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="plus" data-iconpos="notext"></a>
                 <span style="margin-left:3px">Kg</span>
             </div>

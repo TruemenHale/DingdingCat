@@ -117,11 +117,13 @@ $(function(){
 		}
 		else{
 			KgNum.val(a);
+			money();
 		}
 	});
 	$('.plus').on('tap',function(){
 		var a = parseFloat(KgNum.val())+1;
 		KgNum.val(a);
+		money();
 	});
 	$('.clearAdd').on('tap',function(){
 		getAdd.val("");
