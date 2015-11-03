@@ -58,35 +58,31 @@
     </div>
     <div role="main" class="ui-content">
         <div class="ui-field-contain" style="margin-top: 14px">
-            <label>取件区域：</label>
-            <input class="getAddress" type="text"/><br/>
+            <label>选择取件区域：</label>
+            <input class="getAddress" type="text" onchange="money()"/><br/>
+            <span class="clearAdd">清除定位区域</span>
             <label>详细地址：</label>
             <input class="GetdetAddress" type="text"/>
         </div>
         <div class="ui-field-contain">
-            <label>送达区域：</label>
-            <input class="endAddress" type="text"/><br/>
+            <label>选择送达区域：</label>
+            <input class="endAddress" type="text" onchange="money()"/><br/>
             <label>详细地址：</label>
             <input class="EnddetAddress" type="text"/>
         </div>
-        <div class="ui-field-contain">
-            <label>取件时间：</label>
-            <select class="getTime" name="pickupTime" id="">
-                <option value="0">马上代送</option>
-                <option value="1">半小时以后</option>
-                <option value="2">预约其他时间</option>
-            </select>
+        <div class="ui-field-contain money_num">
+            <p>订单金额：<span class="money"></span>元</p>
         </div>
         <div class="ui-field-contain">
             <label>物品重量：</label>
             <div class="numBox">
                 <a class="minus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="minus" data-iconpos="notext"></a>
-                <input type="text" name="weight" data-role="none" class="KgNum" value="0.5">
+                <input type="text" name="weight" data-role="none" class="KgNum" value="1">
                 <a class="plus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="plus" data-iconpos="notext"></a>
                 <span style="margin-left:3px">Kg</span>
             </div>
         </div>
-        <a href="#daisong2" data-transition="none"><input type="button" class="ui-btn-b" value="下一步" onclick="money()"/></a>
+        <a href="#daisong2" data-transition="none"><input type="button" class="ui-btn-b" value="下一步" /></a>
     </div>
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
@@ -138,6 +134,13 @@
                 <option value="2">面包车</option>
                 <option value="3">小轿车</option>
                 <option value="4">地铁</option>
+            </select>
+        </div>
+        <div class="ui-field-contain">
+            <label>取件时间：</label>
+            <select class="getTime" name="pickupTime" id="">
+                <option>马上代送</option>
+                <option>预约其他时间</option>
             </select>
         </div>
         <div class="ui-field-contain">
@@ -320,8 +323,38 @@
         nonceStr: '<?php echo $signPackage["nonceStr"];?>',
         signature: '<?php echo $signPackage["signature"];?>',
         jsApiList: [
+            'openLocation',
+            'getLocation',
             'hideAllNonBaseMenuItem'
         ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+    $.mobile.loading('hide');
+    wx.ready(function(){
+        wx.getLocation({
+            type: 'gcj02',
+            success: function (res) {
+                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                if (res == null) {
+                    alert('地理位置获取失败');
+                } else {
+                    $.ajax({
+                        type : 'POST',
+                        url  : './api/index.php?s=/Home/Order/locationTrans',
+                        data : 'lat='+latitude+'&lng='+longitude,
+                        dataType : 'json',
+                        error: function (request) {
+                            return 0;
+                        } ,
+                        success : function (response) {
+                            var location = response.location;
+                            $(".getAdress").val(location);
+                        }
+                    })
+                }
+
+            }
+        });
     });
 </script>
 </body>

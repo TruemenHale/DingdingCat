@@ -8,6 +8,7 @@
 
 namespace Home\Controller;
 use Think\Controller;
+use Think\Model;
 
 class OrderController extends BaseController {
     public function shipAccept () {
@@ -52,6 +53,12 @@ class OrderController extends BaseController {
         $string = new \Org\Util\String();
         $randNum = $string->randString(8,1);
         $orderNo = "S".time().$randNum;
+
+        $coupon = session("couponNo");
+        if ($coupon) {
+            $this->useCoupon($orderNo);
+        }
+
         $order = [
             'orderNo'   => $orderNo,
             'type'      => 0,
@@ -532,20 +539,25 @@ class OrderController extends BaseController {
      * @return float
      */
     private function moneyCal ($location1,$location2,$weight) {
-        $money = 19.00;
+        $money = null;
 
         $distance = $this->distance($location1,$location2);
 
+        $res = M("money")->find();
+
+        $money = $res ['start'];
+        $km = $res ['km'];
+        $kg = $res ['kg'];
         if ($distance > 5000) {
             $a = floor($distance / 5000);
-            $money += ($a * 10);
+            $money += ($a * $km);
         }
 
         if ($weight > 5) {
             $b = ceil($weight - 5) ;
-            $money += ($b * 5);
+            $money += ($b * $kg);
         }
-
+        $money = $this->coupon($money);
         return $money;
     }
 
@@ -587,5 +599,49 @@ class OrderController extends BaseController {
         return $status;
     }
 
+    /**
+     * @param $money
+     */
+    private function coupon ($money) {
+        $user = session("userId");
+        $now  = date("Y-m-d",time());
+        $new  = $this->newJudge();
 
+        if ($new == 1) {
+            $res  = M('coupon')->field("coupon.money,couponNo")->where("coupon.useStartTime < '$now' AND coupon.useEndTime > $now AND usecoupon.customerId = '$user' AND coupon.minimum <= '$money' AND usecoupon.status = 0 AND coupon.area = 0")->join("usecoupon ON couponId = coupon.id")->order("coupon.money DESC")->find();
+        } else {
+            $res  = M('coupon')->field("coupon.money,couponNo")->where("coupon.useStartTime < '$now' AND coupon.useEndTime > $now AND usecoupon.customerId = '$user' AND coupon.minimum <= '$money' AND usecoupon.status = 0 ")->join("usecoupon ON couponId = coupon.id")->order("coupon.money DESC")->find();
+        }
+
+        if ($res) {
+            $money = $money - $res ['money'];
+            $couponNo = $res ['couponNo'];
+            session(array('couponNo'=>$couponNo,'expire'=>1800));
+        }
+
+        return $money;
+    }
+
+    private function newJudge () {
+        $user = session("userId");
+        $res = M('orders')->where("userId = '$user'")->find();
+
+        if ($res) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    private function useCoupon ($orderId) {
+        $couponNo = session("couponNo");
+        $user     = session("userId");
+
+        $save = [
+            'orderId' => $orderId,
+            'status'  => 1
+        ];
+
+        M('usecoupon')->where("customerId = '$user' AND couponNo = '$couponNo'")->save($save);
+    }
 }

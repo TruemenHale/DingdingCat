@@ -105,7 +105,7 @@ $(function(){
 		});
 	});
 	$('.minus').on('tap',function(){
-		var a = parseFloat(KgNum.val())-0.5;
+		var a = parseFloat(KgNum.val())-1;
 		if(a<0){
 			return false;
 		}
@@ -114,7 +114,7 @@ $(function(){
 		}
 	});
 	$('.plus').on('tap',function(){
-		var a = parseFloat(KgNum.val())+0.5;
+		var a = parseFloat(KgNum.val())+1;
 		KgNum.val(a);
 	});
 	$('.clearAdd').on('tap',function(){
@@ -172,7 +172,7 @@ $(function(){
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
-					document.getElementById('wxpayMoney').setAttribute('value',"0.02");
+					document.getElementById('wxpayMoney').setAttribute('value',money);
 					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
 				}
 
@@ -206,7 +206,7 @@ $(function(){
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
-				document.getElementById('wxpayMoney').setAttribute('value',"0.02");
+				document.getElementById('wxpayMoney').setAttribute('value',money);
 				document.getElementById('wxpayOrder').setAttribute('value',orderNo);
 				$(this).button('option','disabled',true);
 			} else{
@@ -226,12 +226,18 @@ function money () {
 	_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.weight = parseFloat(KgNum.val());
-	$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
-		if(data.status == 0){
-			var money = data.money;
-			$('.money').html(money);
-		} else{
-			alert(data.info);
-		}
-	});
+
+	if (_data.pickupAddr != null && _data.sendAddr != null) {
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
+			if(data.status == 0){
+				var money = data.money;
+				$('.money').html(money);
+			} else{
+				alert(data.info);
+			}
+		});
+	} else {
+		return 0;
+	}
+
 }
