@@ -70,14 +70,14 @@
             <label>详细地址：</label>
             <input class="EnddetAddress" type="text"/>
         </div>
-        <div class="ui-field-contain money_num">
+        <div class="ui-field-contain">
             <p>订单金额：<span class="money"></span>元</p>
         </div>
         <div class="ui-field-contain">
             <label>物品重量：</label>
             <div class="numBox">
                 <a class="minus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="minus" data-iconpos="notext"></a>
-                <input type="text" name="weight" data-role="none" class="KgNum" value="1">
+                <input type="text" name="weight" data-role="none" class="KgNum" value="1" onchange="money()">
                 <a class="plus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="plus" data-iconpos="notext"></a>
                 <span style="margin-left:3px">Kg</span>
             </div>
@@ -149,10 +149,6 @@
                 <option value="0">微信支付</option>
                 <option value="1">现金</option>
             </select>
-        </div>
-        <div class="ui-field-contain">
-            <p>订单金额：<span class="money"></span>元</p>
-
         </div>
 
         <input type="button" id="apply" value="提交订单"/>
