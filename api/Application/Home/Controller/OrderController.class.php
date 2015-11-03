@@ -545,9 +545,9 @@ class OrderController extends BaseController {
 
         $db = M('money');
 
-        $money = $db->where("type = start")->getField("money");
-        $km = $db->where("type = km")->getField("money");
-        $kg = $db->where("type = kg")->getField("money");
+        $money = $db->where("type = 'start'")->getField("money");
+        $km = $db->where("type = 'km'")->getField("money");
+        $kg = $db->where("type = 'kg'")->getField("money");
         if ($distance > 5000) {
             $a = floor($distance / 5000);
             $money += ($a * $km);
