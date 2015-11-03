@@ -241,3 +241,7 @@ function money () {
 	}
 
 }
+
+setInterval(function (){
+	alert(1);
+},3000);
