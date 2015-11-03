@@ -2,7 +2,7 @@
 var phone = "";
 var pAddress = "";
 var sAddress = "";
-var zhong = "";
+var zhong = "1";
 
 var From = "";
 setTimeout(function(){
