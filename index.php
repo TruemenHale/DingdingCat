@@ -59,14 +59,14 @@
     <div role="main" class="ui-content">
         <div class="ui-field-contain" style="margin-top: 14px">
             <label>选择取件区域：</label>
-            <input class="getAddress" type="text" onchange="money()"/><br/>
+            <input class="getAddress" id="getAddress" type="text"/><br/>
             <span class="clearAdd">清除定位区域</span>
             <label>详细地址：</label>
             <input class="GetdetAddress" type="text"/>
         </div>
         <div class="ui-field-contain">
             <label>选择送达区域：</label>
-            <input class="endAddress" type="text" onchange="money()"/><br/>
+            <input class="endAddress" id="endAddress" type="text"/><br/>
             <label>详细地址：</label>
             <input class="EnddetAddress" type="text"/>
         </div>
