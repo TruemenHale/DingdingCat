@@ -3,8 +3,9 @@ var phone = "";
 var pAddress = "";
 var sAddress = "";
 var zhong = "1";
-
 var From = "";
+var getToken = false;
+var endToken = false;
 setTimeout(function(){
 	var tel = "";
 	$.ajax({
@@ -90,13 +91,15 @@ $(document).on("pagebeforeshow","#xiangqing",function(){
 $(function(){
 	//获取最新订单是否被付款.
 	var KgNum = $('.KgNum');
-	$('.getAddress').on('tap',function(){
+	var getAdd = $('.getAddress');
+	var endAdd = $('.endAddress');
+	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
 	});
-	$('.endAddress').on('tap',function(){
+	endAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -121,7 +124,7 @@ $(function(){
 		KgNum.val(a);
 	});
 	$('.clearAdd').on('tap',function(){
-		$('.getAddress').val("");
+		getAdd.val("");
 	});
 	$('.AddressInput').on('tap',function(){
 		var x = "";
@@ -140,10 +143,18 @@ $(function(){
 						oList.html("");
 						$('#place_list').tmpl(data.list).appendTo(".addressList");
 						oList.find('li').on('click',function(){
+							if(From == '.getAddress'){
+								getToken = true;
+							}else{
+								endToken = true;
+							}
 							var y = $(this).find('.add-name').html();
 								$(From).val(y);
 								oList.html("");
 								oInput.val("");
+								if(endToken && getToken){
+									money();
+								}
 								$.mobile.changePage('#daisong',{
 									transition:'none'
 								});
@@ -219,7 +230,29 @@ $(function(){
 			}
 			$(this).button('option','disabled',false);
 		});
-	})
+	});
+	//$('#getAddress').bind('input propertychange',function(){
+	//	console.log(1);
+	//	var w = $(this).val();
+	//	if(getToken && endToken && w.length){
+	//		money();
+	//	}else{
+	//		if(w.length != 0){
+	//			getToken = true;
+	//		}
+	//	}
+	//});
+	//$('#endAddress').bind('input propertychange', function() {
+	//	console.log(2);
+	//	var e = $(this).val();
+	//	if (getToken && endToken && e.length) {
+	//		money();
+	//	} else {
+	//		if (e.length != 0) {
+	//			getToken = true;
+	//		}
+	//	}
+	//});
 });
 
 function money () {
@@ -237,6 +270,7 @@ function money () {
 				if(data.status == 0){
 					var money = data.money;
 					$('.money').html(money);
+					$('.money_num').css('visibility','visible');
 					pAddress = _data.pickupAddr;
 					sAddress = _data.sendAddr;
 					zhong    = _data.weight;
@@ -249,7 +283,4 @@ function money () {
 	} else {
 		return 0;
 	}
-
 }
-
-setInterval(money,1000);
