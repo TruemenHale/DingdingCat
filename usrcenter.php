@@ -29,7 +29,7 @@ $openid = $json_obj['openid'];
 $get_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
 $info_json = file_get_contents($get_info_url);
 $info_res = json_decode($info_json,true);
-$info_res = (array)$info_res;
+$info_arr = (array)$info_res;
 $jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
 $signPackage = $jsapi->getSignPackage();
 
@@ -60,7 +60,7 @@ $signPackage = $jsapi->getSignPackage();
 	<div role="main" class="ui-content">
 		<ul data-inset="true" data-role="listview" style="font-size: 14px;font-family: 'Microsoft Yahei'">
 			<li>
-				昵称：<span id="nickname"><?php echo $info_res ['nickname']; ?></span>
+				昵称：<span id="nickname"><?php echo var_dump($info_arr); ?></span>
 			</li>
 			<li>
 				姓名：<span id="name"></span>
