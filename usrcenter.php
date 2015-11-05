@@ -60,7 +60,7 @@ $signPackage = $jsapi->getSignPackage();
 	<div role="main" class="ui-content">
 		<ul data-inset="true" data-role="listview" style="font-size: 14px;font-family: 'Microsoft Yahei'">
 			<li>
-				昵称：<span id="nickname"><?php echo $info_arr['nickname'] ?></span>
+				昵称：<span id="nickname"><?php echo var_dump($info_arr); ?></span>
 			</li>
 			<li>
 				姓名：<span id="name"></span>
