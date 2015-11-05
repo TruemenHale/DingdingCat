@@ -224,7 +224,7 @@
 
 <div data-role="page" id="AddressGet">
     <div data-role="header" data-position="fixed">
-        <h1>取货地址</h1>
+        <h1 class="selectTitle">取货区域</h1>
     </div>
     <div role="main" class="ui-content">
         <p class="addressLine">
@@ -269,20 +269,20 @@
             <tbody>
             <tr>
                 <td id="type"></td>
-                <td id="orderNo">CQ123456789</td>
-                <td id="orderTime">2015年7月7日7：00</td>
-                <td id="name">花千骨</td>
-                <td id="tel">18912345678</td>
-                <td id="pickAddr">长留山绝情殿一号厅</td>
-                <td id="sendAddr">蜀山大殿掌门书房书架上</td>
-                <td id="distance">100公里</td>
-                <td id="runner">1234</td>
-                <td id="getTime">2015年7月7日6:55</td>
-                <td id="pickTime">2015年7月7日7:15</td>
-                <td id="planTime">2015年7月7日8:15前</td>
-                <td id="endTime">2015年7月7日8:10</td>
-                <td id="pay">微信支付/未支付</td>
-                <td id="status">派送中</td>
+                <td id="orderNo"></td>
+                <td id="orderTime"></td>
+                <td id="name"></td>
+                <td id="tel"></td>
+                <td id="pickAddr"></td>
+                <td id="sendAddr"></td>
+                <td id="distance"></td>
+                <td id="runner"></td>
+                <td id="getTime"></td>
+                <td id="pickTime"></td>
+                <td id="planTime"></td>
+                <td id="endTime"></td>
+                <td id="pay"></td>
+                <td id="status"></td>
             </tr>
             </tbody>
         </table>
