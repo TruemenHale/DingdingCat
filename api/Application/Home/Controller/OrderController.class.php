@@ -554,7 +554,7 @@ class OrderController extends BaseController {
             $money += ($a * $km);
         }
 
-        $km = sprintf("%.2f",$distance/5000);
+        $km = sprintf("%.2f",$distance/1000);
         session("km",$km);
 
         if ($weight > 5) {
