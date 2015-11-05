@@ -62,8 +62,8 @@ $signPackage = $jsapi->getSignPackage();
   <div class="ui-field-contain">
     <label>建议分类：</label>
     <select class="type">
-      <option value="0">建议</option>
-      <option value="1">上报异常</option>
+      <option value="0">意见建议</option>
+      <option value="1">问题上报</option>
     </select>
   </div>
   <input type="button" value="提交建议" class="sApply"/>
