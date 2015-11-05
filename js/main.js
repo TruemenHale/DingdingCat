@@ -202,8 +202,8 @@ $(function(){
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
-					document.getElementById('wxpayMoney').setAttribute('value',money);
-					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
+					$('#buyMoney').val(money);
+					$('#buyOrder').val(orderNo);
 				}
 			} else {
 				alert("下单失败!");
@@ -235,8 +235,8 @@ $(function(){
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
-				$('#wxpayMoney').val(money);
-				$('#wxpayOrder').val(orderNo);
+				$('#sendMoney').val(money);
+				$('#sendOrder').val(orderNo);
 				$(this).button('option','disabled',true);
 			} else{
 				if (data.status == -100) {
