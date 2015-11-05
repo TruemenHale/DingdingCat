@@ -104,7 +104,7 @@ class OrderController extends BaseController {
         } else {
             $save ['recipientName'] = session("userNick");
         }
-
+        $save ['sendAddr'] = $info ['sendAddr'].$info ['sendDet'];
         M('purchase')->add($save);
 
         $sendId = M('purchase')->getLastInsID();

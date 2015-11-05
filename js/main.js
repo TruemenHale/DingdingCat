@@ -187,6 +187,7 @@ $(function(){
 		$(this).button('option','disabled',true);
 		var _data = {};
 		_data.sendAddr = $('.dgAddress').val();
+		_data.sendDet = $('sendDet').val();
 		_data.goodsDesc = $('.dgDescribe').val();
 		_data.priceLimit = $('.dgCost').val();
 		_data.runnerFee = $('.dgPay').val();
