@@ -162,9 +162,15 @@ $(function(){
 								if(endToken && getToken && !sendToken){
 									money();
 								}
-								$.mobile.changePage('#daisong',{
-									transition:'none'
-								});
+								if(From == '.getAddress' || From == '.endAddress'){
+									$.mobile.changePage('#daisong',{
+										transition:'none'
+									});
+								}else{
+									$.mobile.changePage('#daigou',{
+										transition:'none'
+									});
+								}
 						});
 						$('.addressList').listview('refresh');
 					}else{
