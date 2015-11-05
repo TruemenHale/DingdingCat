@@ -204,7 +204,6 @@ $(function(){
 					document.getElementById('wxpayMoney').setAttribute('value',money);
 					document.getElementById('wxpayOrder').setAttribute('value',orderNo);
 				}
-
 			} else {
 				alert("下单失败!");
 			}
