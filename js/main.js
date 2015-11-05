@@ -4,8 +4,6 @@ var pAddress = "";
 var sAddress = "";
 var zhong = "1";
 var From = "";
-var pArea = "";
-var sArea = "";
 var getToken = false;
 var endToken = false;
 setTimeout(function(){
@@ -157,8 +155,9 @@ $(function(){
 							}else{
 								endToken = true;
 							}
-							var y = $(this).find('.add-area').html() + $(this).find('.add-name').html();
-
+							var y = $(this).find('.add-name').html();
+							var d = $(this).find('.add-area').html();
+								y = d + y;
 								$(From).val(y);
 								oList.html("");
 								oInput.val("");
@@ -272,8 +271,6 @@ function money () {
 	_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.weight = parseFloat(KgNum.val());
-	_data.pArea = pArea;
-	_data.sArea = sArea;
 	if (_data.pickupAddr != "" && _data.sendAddr != "") {
 
 		if (pAddress != _data.pickupAddr || sAddress != _data.sendAddr || zhong != _data.weight) {

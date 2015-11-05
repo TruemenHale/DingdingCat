@@ -262,8 +262,6 @@ class OrderController extends BaseController {
         $pickupAddr = I('post.pickupAddr');
         $sendAddr   = I('post.sendAddr');
         $weight     = I('post.weight');
-        $pArea      = I('post.pArea');
-        $sArea      = I('post.sArea');
 
         $money = $this->moneyCal($pickupAddr,$sendAddr,$weight);
 
