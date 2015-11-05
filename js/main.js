@@ -104,9 +104,16 @@ $(function(){
 		});
 	});
 	$('.cancel').on('tap',function(){
-		$.mobile.changePage('#daisong',{
-			transition:'none'
-		});
+		if(From == '.getAddress' || From == '.endAddress'){
+			$.mobile.changePage('#daisong',{
+				transition:'none'
+			});
+		}else{
+			console.log(1);
+			$.mobile.changePage('#daigou',{
+				transition:'none'
+			});
+		}
 	});
 	$('.minus').on('tap',function(){
 		var a = parseFloat(KgNum.val())-1;
@@ -169,6 +176,7 @@ $(function(){
 										transition:'none'
 									});
 								}else{
+									console.log(1);
 									$.mobile.changePage('#daigou',{
 										transition:'none'
 									});
