@@ -30,6 +30,7 @@ $get_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_tok
 $info_json = file_get_contents($get_info_url);
 $info_res = json_decode($info_json,true);
 $info_arr = (array)$info_res;
+$nickname = $info_arr ['nickname'];
 $jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
 $signPackage = $jsapi->getSignPackage();
 
@@ -45,6 +46,7 @@ $signPackage = $jsapi->getSignPackage();
 	<link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
 	<script>
 		var openid = "<?php echo $openid; ?>";
+		var nickname = "<?php echo $nickname; ?>"
 	</script>
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -57,7 +59,6 @@ $signPackage = $jsapi->getSignPackage();
 	<div data-role="header" data-position="fixed">
 		<h1>个人中心</h1>
 	</div>
-	<?php echo var_dump($info_arr); ?>
 	<div role="main" class="ui-content">
 		<ul data-inset="true" data-role="listview" style="font-size: 14px;font-family: 'Microsoft Yahei'">
 			<li>
