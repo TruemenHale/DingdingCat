@@ -154,8 +154,8 @@
         <input type="button" id="apply" value="提交订单"/>
         <div id="daisongPay" style="display: none">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
-                <input type="hidden" name="money" id="wxpayMoney" value="0.01">
-                <input type="hidden" name="orderNo" id="wxpayOrder" value="S144368377852801627">
+                <input type="hidden" name="money" id="wxpayMoney" value="">
+                <input type="hidden" name="orderNo" id="wxpayOrder" value="">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
@@ -191,8 +191,8 @@
         <input type="button" value="提交订单" id="dgApply" class="dgApply"/>
         <div id="daigouPay" style="display:none;">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
-                <input type="hidden" name="money" id="wxpayMoney" value="0.01">
-                <input type="hidden" name="orderNo" id="wxpayOrder" value="B144448678317406968">
+                <input type="hidden" name="money" id="wxpayMoney" value="">
+                <input type="hidden" name="orderNo" id="wxpayOrder" value="">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
