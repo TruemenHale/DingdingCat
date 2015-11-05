@@ -64,7 +64,7 @@ class AccountController extends BaseController {
 
         $save   = [
             'name'     => $name,
-            'nickname' => $nickname,
+            'nickName' => $nickname,
             'phone'    => $phone,
             'header'   => $header,
             'regTime'  => date("Y-m-d H-i-s",time()),
