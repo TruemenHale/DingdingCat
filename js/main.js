@@ -130,6 +130,7 @@ $(function(){
 	});
 	$('.clearAdd').on('tap',function(){
 		getAdd.val("");
+		sendAdd.val("");
 	});
 	$('.AddressInput').on('tap',function(){
 		var x = "";

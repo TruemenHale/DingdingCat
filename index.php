@@ -171,6 +171,7 @@
         <div class="ui-field-contain">
             <label>选择送货区域：</label>
             <input class="dgAddress" type="text"/><br/>
+            <span class="clearAdd">清除定位区域</span>
             <label>详细地址：</label>
             <input class="sendDet" type="text"/>
         </div>
@@ -347,6 +348,7 @@
                         success : function (response) {
                             var location = response.location;
                             $(".getAddress").val(location);
+                            $(".dgAddress").val(location);
                             getToken = true;
                         }
                     })
