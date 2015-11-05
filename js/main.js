@@ -150,8 +150,10 @@ $(function(){
 						oList.find('li').on('click',function(){
 							if(From == '.getAddress'){
 								getToken = true;
+								sendToken = false;
 							}else if(From == '.endAddress'){
 								endToken = true;
+								sendToken = false;
 							}else{
 								sendToken = true;
 							}
