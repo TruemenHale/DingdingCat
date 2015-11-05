@@ -78,7 +78,7 @@ class OrderController extends BaseController {
             'info'   => 'success',
             'orderNo'=> $orderNo,
             'payType'=> $info['payType'],
-            'moeny'  => $money
+            'money'  => $money
         ];
         $this->ajaxReturn($return);
     }
