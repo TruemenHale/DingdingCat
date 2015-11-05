@@ -235,8 +235,8 @@ $(function(){
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
-				document.getElementById('wxpayMoney').setAttribute('value',money);
-				document.getElementById('wxpayOrder').setAttribute('value',orderNo);
+				$('#wxpayMoney').val(money);
+				$('#wxpayOrder').val(orderNo);
 				$(this).button('option','disabled',true);
 			} else{
 				if (data.status == -100) {
