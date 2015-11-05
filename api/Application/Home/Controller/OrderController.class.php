@@ -44,7 +44,8 @@ class OrderController extends BaseController {
         } else {
             $save ['weight'] = 4;
         }
-        $save ['money']    = $this->moneyCal($info['pickupAddr'],$info['sendAddr'],$info ['weight']);
+        $money = $this->moneyCal($info['pickupAddr'],$info['sendAddr'],$info ['weight']);
+        $save ['money']    = $money;
         $save ['distance'] = number_format($this->distance($info['pickupAddr'],$info['sendAddr']) / 1000,1);
         $save ['pickupAddr'] = $info ['pickupAddr'].$info ['GdetAddr'];
         $save ['sendAddr']   = $info ['sendAddr'].$info ['EdetAddr'];
@@ -76,7 +77,8 @@ class OrderController extends BaseController {
             'status' => '0',
             'info'   => 'success',
             'orderNo'=> $orderNo,
-            'payType'=> $info['payType']
+            'payType'=> $info['payType'],
+            'moeny'  => $money
         ];
         $this->ajaxReturn($return);
     }
