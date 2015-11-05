@@ -152,10 +152,10 @@
         </div>
 
         <input type="button" id="apply" value="提交订单"/>
-        <div id="daisongPay" style="display: none">
+        <div id="daisongPay" style="display:">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
-                <input type="hidden" name="money" id="sendMoney" value="">
-                <input type="hidden" name="orderNo" id="sendOrder" value="">
+                <input type="hidden" name="money" id="sendMoney" value="S144671858255314789">
+                <input type="hidden" name="orderNo" id="sendOrder" value="S144671858255314789">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
