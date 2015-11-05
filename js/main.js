@@ -146,7 +146,7 @@ $(function(){
 							}else{
 								endToken = true;
 							}
-							var y = $(this).find('.add-name').html();
+							var y = $(this).find('.add-area').html() + $(this).find('.add-name').html();
 
 								$(From).val(y);
 								oList.html("");
