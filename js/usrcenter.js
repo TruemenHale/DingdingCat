@@ -20,6 +20,7 @@ setTimeout(function () {
                 phone = data;
                 document.getElementById('name').innerText = response.name;
                 document.getElementById('nickname').innerText = nickname;
+                alert(nickname);
                 document.getElementById('score').innerText = response.score;
                 document.getElementById('phone').innerText = response.phone;
                 orderList(data);
