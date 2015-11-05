@@ -29,7 +29,6 @@ setTimeout(function () {
             } else {
                 phone = data;
                 document.getElementById('name').innerText = response.name;
-                document.getElementById('nickname').innerText = response.nickname;
                 document.getElementById('score').innerText = response.score;
                 document.getElementById('phone').innerText = response.phone;
                 orderList(data);
