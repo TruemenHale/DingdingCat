@@ -58,7 +58,7 @@
     </div>
     <div role="main" class="ui-content">
         <div class="ui-field-contain" style="margin-top: 14px">
-            <label>选择取件区域：</label>
+            <label>选择寄件区域：</label>
             <input class="getAddress" id="getAddress" type="text"/><br/>
             <span class="clearAdd">清除定位区域</span>
             <label>详细地址：</label>
