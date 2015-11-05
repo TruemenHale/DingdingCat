@@ -86,9 +86,9 @@ class OrderController extends BaseController {
      */
     public function buyAccept () {
         $info = I('post.');
-        $phone = $info ['phone'];
+        //$phone = $info ['phone'];
         $save = $info;
-        if ($phone != session('phone')) {
+        /*if ($phone != session('phone')) {
             $return = [
                 'status' => '-10',
                 'info'   => '账户不存在'
@@ -96,9 +96,9 @@ class OrderController extends BaseController {
             $this->ajaxReturn($return);
         } else {
             $save ['userId'] = session('userId');
-        }
+        }*/
 
-        $save ['recipientTel'] = $phone;
+        $save ['recipientTel'] = "18883862521";
         if (!is_null(session("userName"))){
             $save ['recipientName'] = session("userName");
         } else {
