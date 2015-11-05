@@ -40,6 +40,7 @@ class AccountController extends BaseController {
         $code   = I('post.code');
         $invite = I('post.invite');
         $openid = I('post.openid');
+        $nickname = I('post.nickname');
 
         $res = $this->registerCheck($phone);
         if (!$res) {
@@ -63,6 +64,7 @@ class AccountController extends BaseController {
 
         $save   = [
             'name'     => $name,
+            'nickname' => $nickname,
             'phone'    => $phone,
             'header'   => $header,
             'regTime'  => date("Y-m-d H-i-s",time()),
