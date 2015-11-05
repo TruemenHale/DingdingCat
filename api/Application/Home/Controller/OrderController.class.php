@@ -269,6 +269,7 @@ class OrderController extends BaseController {
             'status' => '0',
             'info'   => 'success',
             'money'  => floor($money),
+            'distance' => session("km")
         ];
         $this->ajaxReturn($return);
     }
@@ -552,6 +553,9 @@ class OrderController extends BaseController {
             $a = floor($distance / 5000);
             $money += ($a * $km);
         }
+
+        $km = sprintf("%.2f",$distance/5000);
+        session("km",$km);
 
         if ($weight > 5) {
             $b = ceil($weight - 5) ;

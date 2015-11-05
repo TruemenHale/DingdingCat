@@ -71,9 +71,6 @@
             <input class="EnddetAddress" type="text"/>
         </div>
         <div class="ui-field-contain">
-            <p>订单金额：<span class="money"></span>元</p>
-        </div>
-        <div class="ui-field-contain">
             <label>物品重量：</label>
             <div class="numBox">
                 <a class="minus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="minus" data-iconpos="notext"></a>
@@ -81,6 +78,9 @@
                 <a class="plus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="plus" data-iconpos="notext"></a>
                 <span style="margin-left:3px">Kg</span>
             </div>
+        </div>
+        <div class="ui-field-contain">
+            <p>订单金额：<span class="money"></span>元(<span class="distance"></span>公里)</p>
         </div>
         <a href="#daisong2" data-transition="none"><input type="button" class="ui-btn-b" value="下一步" /></a>
     </div>

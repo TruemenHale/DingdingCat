@@ -276,7 +276,9 @@ function money () {
 			$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/getMoney',_data,function(data){
 				if(data.status == 0){
 					var money = data.money;
+					var distance = data.distance;
 					$('.money').html(money);
+					$('.distance').html(distance);
 					$('.money_num').css('visibility','visible');
 					pAddress = _data.pickupAddr;
 					sAddress = _data.sendAddr;
