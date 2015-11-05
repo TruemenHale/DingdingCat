@@ -23,6 +23,11 @@
 	curl_close($ch);
 	$json_obj = json_decode($res,true);
 	//根据openid和access_token查询用户信息
+$get_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
+$info_json = file_get_contents($get_info_url);
+$info_res = json_decode($info_json,true);
+$info_arr = (array)$info_res;
+$nickname = $info_arr ['nickname'];
 	$access_token = $json_obj['access_token'];
 	$openid = $json_obj['openid'];
 	$jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
@@ -41,6 +46,7 @@
 		<link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
 		<script>
 			var openid = "<?php echo $openid; ?>";
+			var nickname = "<?php echo $nickname; ?>"
 		</script>
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
