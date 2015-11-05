@@ -84,14 +84,14 @@ $(function(){
 	oTitle = $('.selectTitle');
 	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		oTitle.html('取货区域');
+		oTitle.html('取件区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
 	});
 	endAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		oTitle.html('送达区域');
+		oTitle.html('收件区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
