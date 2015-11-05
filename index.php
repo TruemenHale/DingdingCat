@@ -189,10 +189,10 @@
             <span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
         </div>
         <input type="button" value="提交订单" id="dgApply" class="dgApply"/>
-        <div id="daigouPay" style="display:;">
+        <div id="daigouPay" style="display:none;">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
-                <input type="hidden" name="money" id="buyMoney" value="0.01">
-                <input type="hidden" name="orderNo" id="buyOrder" value="B144671690400438436">
+                <input type="hidden" name="money" id="buyMoney" value="">
+                <input type="hidden" name="orderNo" id="buyOrder" value="">
                 <input type="submit" id="wxpayBtn" value="前去支付">
             </form>
         </div>
