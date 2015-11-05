@@ -192,7 +192,6 @@ $(function(){
 		_data.priceLimit = $('.dgCost').val();
 		_data.runnerFee = $('.dgPay').val();
 		_data.phone = phone;
-		alert(123);
 		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/buyAccept',_data,function(data){
 			if (data) {
 				var status = data.status;
