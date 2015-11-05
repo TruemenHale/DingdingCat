@@ -344,7 +344,7 @@
                         } ,
                         success : function (response) {
                             var location = response.location;
-                            $(".getAdress").val(location);
+                            $(".getAddress").val(location);
                         }
                     })
                 }
