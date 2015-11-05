@@ -2,7 +2,6 @@ var phone = "";
 
 setTimeout(function () {
     $.mobile.loading('show');
-    alert(nickname);
     $.ajax({
         type: 'POST',
         url: './api/index.php?s=/Home/Account/openidToUser',

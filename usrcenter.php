@@ -59,7 +59,6 @@ $signPackage = $jsapi->getSignPackage();
 	<div data-role="header" data-position="fixed">
 		<h1>个人中心</h1>
 	</div>
-	<?php echo $nickname; ?>
 	<div role="main" class="ui-content">
 		<ul data-inset="true" data-role="listview" style="font-size: 14px;font-family: 'Microsoft Yahei'">
 			<li>
