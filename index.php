@@ -345,6 +345,7 @@
                         success : function (response) {
                             var location = response.location;
                             $(".getAddress").val(location);
+                            getToken = true;
                         }
                     })
                 }
