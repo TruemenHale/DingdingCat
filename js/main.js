@@ -8,6 +8,7 @@ var pArea = "";
 var sArea = "";
 var getToken = false;
 var endToken = false;
+var sendToken = false;
 setTimeout(function(){
 	var tel = "";
 	$.ajax({
@@ -81,6 +82,8 @@ $(function(){
 	var KgNum = $('.KgNum');
 	var getAdd = $('.getAddress');
 	var endAdd = $('.endAddress');
+	var sendAdd = $('.dgAddress');
+	oTitle = $('.selectTitle');
 	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
 		oTitle.html('取货区域');
@@ -89,6 +92,13 @@ $(function(){
 		});
 	});
 	endAdd.on('tap',function(){
+		From = '.'+$(this).attr('class');
+		oTitle.html('送达区域');
+		$.mobile.changePage('#AddressGet',{
+			transition:'none'
+		});
+	});
+	sendAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
 		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
@@ -139,19 +149,19 @@ $(function(){
 					if(data.status == 0){
 						oList.html("");
 						$('#place_list').tmpl(data.list).appendTo(".addressList");
-						oTitle = $('.selectTitle');
 						oList.find('li').on('click',function(){
 							if(From == '.getAddress'){
 								getToken = true;
-							}else{
+							}else if(From == '.endAddress'){
 								endToken = true;
+							}else{
+								sendToken = true;
 							}
 							var y = $(this).find('.add-area').html() + $(this).find('.add-name').html();
-
 								$(From).val(y);
 								oList.html("");
 								oInput.val("");
-								if(endToken && getToken){
+								if(endToken && getToken && !sendToken){
 									money();
 								}
 								$.mobile.changePage('#daisong',{
