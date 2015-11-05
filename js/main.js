@@ -43,9 +43,7 @@ setTimeout(function () {
 			var status = response.status;
 			var data = response.data;
 			if (status != 0) {
-				console.log("订单不存在");
 			} else {
-				console.log(data);
 				document.getElementById('type').innerText = data.type;
 				document.getElementById('orderNo').innerText = data.orderNo;
 				document.getElementById('orderTime').innerText = data.orderTime;
@@ -65,18 +63,6 @@ setTimeout(function () {
 			}
 		}
 	});
-	/*$.post('url',"pay",function(data){
-	 //content是我编的，反正你看给我一个什么我判断他是不是支付了就行.
-	 if(data.content == 1){
-	 //如果支付了就让支付按钮消失.
-	 $('#pay').css('display','none');
-	 }else{
-	 $('#pay').on('tap',function(){
-	 //填跳支付的接口.
-
-	 })
-	 }
-	 });*/
 },1000);
 
 $(document).on("pagebeforeshow","#daisong",function(){
@@ -95,12 +81,14 @@ $(function(){
 	var endAdd = $('.endAddress');
 	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
+		oTitle.html('取货区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
 	});
 	endAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
+		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
@@ -149,6 +137,7 @@ $(function(){
 					if(data.status == 0){
 						oList.html("");
 						$('#place_list').tmpl(data.list).appendTo(".addressList");
+						oTitle = $('.selectTitle');
 						oList.find('li').on('click',function(){
 							if(From == '.getAddress'){
 								getToken = true;
@@ -240,28 +229,6 @@ $(function(){
 			$(this).button('option','disabled',false);
 		});
 	});
-	//$('#getAddress').bind('input propertychange',function(){
-	//	console.log(1);
-	//	var w = $(this).val();
-	//	if(getToken && endToken && w.length){
-	//		money();
-	//	}else{
-	//		if(w.length != 0){
-	//			getToken = true;
-	//		}
-	//	}
-	//});
-	//$('#endAddress').bind('input propertychange', function() {
-	//	console.log(2);
-	//	var e = $(this).val();
-	//	if (getToken && endToken && e.length) {
-	//		money();
-	//	} else {
-	//		if (e.length != 0) {
-	//			getToken = true;
-	//		}
-	//	}
-	//});
 });
 
 function money () {
