@@ -155,13 +155,7 @@ $(function(){
 							}else{
 								sendToken = true;
 							}
-<<<<<<< HEAD
 							var y = $(this).find('.add-area').html() + $(this).find('.add-name').html();
-=======
-							var y = $(this).find('.add-name').html();
-							var d = $(this).find('.add-area').html();
-								y = d + y;
->>>>>>> daf041b7c975da74104e86c57c4905802cb11100
 								$(From).val(y);
 								oList.html("");
 								oInput.val("");
