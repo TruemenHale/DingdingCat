@@ -519,7 +519,7 @@ class OrderController extends BaseController {
      * @return array
      */
     private function locationToLal ($location) {
-        $url = "http://api.map.baidu.com/geocoder/v2/?ak=AqFXx3FQKGme9bkLhrW60i02&output=json&address=".$location;
+        $url = "http://api.map.baidu.com/geocoder/v2/?ak=AqFXx3FQKGme9bkLhrW60i02&output=json&city=重庆市&address=".$location;
 
         $json = file_get_contents($url);
         $output = json_decode($json,true);
