@@ -57,10 +57,11 @@ $signPackage = $jsapi->getSignPackage();
 	<div data-role="header" data-position="fixed">
 		<h1>个人中心</h1>
 	</div>
+	<?php echo var_dump($info_arr); ?>
 	<div role="main" class="ui-content">
 		<ul data-inset="true" data-role="listview" style="font-size: 14px;font-family: 'Microsoft Yahei'">
 			<li>
-				昵称：<span id="nickname"><?php echo var_dump($info_arr); ?></span>
+				昵称：<span id="nickname"></span>
 			</li>
 			<li>
 				姓名：<span id="name"></span>

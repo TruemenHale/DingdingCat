@@ -1,15 +1,5 @@
 var phone = "";
 
-$(document).on("pagebeforeshow","#Allorder",function(){
-    $('#Allorder').find('.xiangqing').addClass('ui-link ui-btn ui-btn-active');
-});
-$(document).on("pagebeforeshow","#Daisongorder",function(){
-    $('#Daisongorder').find('.daisong').addClass('ui-link ui-btn ui-btn-active');
-});
-$(document).on("pagebeforeshow","#Daigouorder",function(){
-    $('#Daigouorder').find('.daigou').addClass('ui-link ui-btn ui-btn-active');
-});
-
 setTimeout(function () {
     $.mobile.loading('show');
     $.ajax({
