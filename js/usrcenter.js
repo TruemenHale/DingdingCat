@@ -24,7 +24,6 @@ setTimeout(function () {
                 document.getElementById('phone').innerText = response.phone;
                 orderList(data);
                 commonAddr(data);
-                orderInfo();
             }
             $.mobile.loading('hide');
         }
