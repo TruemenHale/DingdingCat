@@ -168,6 +168,7 @@ $signPackage = $jsapi->getSignPackage();
 </div>
 <div data-role="page" id="orderInfo">
 	<div data-role="header" data-position="fixed">
+		<a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
 		<h1>订单详情</h1>
 	</div>
 	<div role="main" class="ui-content">

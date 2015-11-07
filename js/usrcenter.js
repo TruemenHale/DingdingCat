@@ -23,7 +23,8 @@ setTimeout(function () {
                 document.getElementById('score').innerText = response.score;
                 document.getElementById('phone').innerText = response.phone;
                 orderList(data);
-                commonAddr(data)
+                commonAddr(data);
+                orderInfo();
             }
             $.mobile.loading('hide');
         }
@@ -41,15 +42,25 @@ function orderList (phone) {
         },
         success: function (response) {
             var status = response.status;
-            var send   = response.send;
-            var buy    = response.buy;
-
+            var send   = jQuery.makeArray(response.send);
+            var buy    = jQuery.makeArray(response.buy);
+            var all    = jQuery.makeArray(response.all);
+            var sendList = $("#sendList");
+            var buyList  = $("#buyList");
+            var allList  = $("#allList");
             if (status != 0) {
                 alert("订单获取失败");
             } else {
-                $("#all_list").tmpl(response.all).appendTo('#allList');
-                $("#send_list").tmpl(send).appendTo('#sendList');
-                $("#buy_list").tmpl(buy).appendTo('#buyList');
+                if (send) {
+                    $("#send_list").tmpl(send).appendTo('#sendList');
+                }
+                if (buy) {
+                    $("#buy_list").tmpl(buy).appendTo('#buyList');
+                }
+                if (all) {
+                    $("#all_list").tmpl(response.all).appendTo('#allList');
+                    allList.listview("refresh");
+                }
             }
         }
     });
@@ -78,12 +89,45 @@ function commonAddr (phone) {
 }
 
 $(function () {
-    var order = $('.orderTap');
-    var No    = "";
-    order.find('li').on('click',function () {
-        No = (this).find('.orderNum').html();
-
+    $(".orderClick").on('click',function () {
+        var orderNo = $(this).find('.orderNum').html();
+        alert(orderNo)
     });
+    $('.orderTap').on('click',function () {
+        var orderNo = $(this).find('.orderNum').html();
+        $.ajax({
+            type : 'POST',
+            url  : './api/index.php?s=/Home/Order/orderInfo',
+            data : 'phone=' + phone + '&orderNo=' + orderNo,
+            dataType : 'json',
+            error: function (request) {
+                alert('获取失败')
+            } ,
+            success : function (response) {
+                var status = response.status;
+                var data = response.data;
+                if (status != 0) {
+                } else {
+                    document.getElementById('type').innerText = data.type;
+                    document.getElementById('orderNo').innerText = data.orderNo;
+                    document.getElementById('orderTime').innerText = data.orderTime;
+                    document.getElementById('tel').innerText = data.tel;
+                    document.getElementById('pickAddr').innerText = data.pickAddr;
+                    document.getElementById('sendAddr').innerText = data.sendAddr;
+                    document.getElementById('distance').innerText = data.distance;
+                    document.getElementById('runner').innerText = data.runner;
+                    document.getElementById('getTime').innerText = data.getTime;
+                    document.getElementById('pickTime').innerText = data.pickTime;
+                    document.getElementById('planTime').innerText = data.planTime;
+                    document.getElementById('endTime').innerText = data.endTime;
+                    document.getElementById('status').innerText = data.status;
+                    document.getElementById('pay').innerText = data.pay;
+
+                }
+            }
+        });
+    });
+
 });
 
 function orderInfo (orderNo) {
@@ -103,8 +147,8 @@ function orderInfo (orderNo) {
                 document.getElementById('type').innerText = data.type;
                 document.getElementById('orderNo').innerText = data.orderNo;
                 document.getElementById('orderTime').innerText = data.orderTime;
-                document.getElementById('name').innerText = data.name;
                 document.getElementById('tel').innerText = data.tel;
+                document.getElementById('orderInfo_name').innerText = data.name;
                 document.getElementById('pickAddr').innerText = data.pickAddr;
                 document.getElementById('sendAddr').innerText = data.sendAddr;
                 document.getElementById('distance').innerText = data.distance;
