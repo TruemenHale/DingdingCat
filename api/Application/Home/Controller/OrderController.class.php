@@ -188,7 +188,7 @@ class OrderController extends BaseController {
         }
 
         if ($orderNo) {
-            $res = M('orders')->where("orderNo = 'orderNo'")->find();
+            $res = M('orders')->where("orderNo = '$orderNo'")->find();
         } else {
             $res = M('orders')->where("userId = '$userId'")->order('orderTime desc')->find();
         }
