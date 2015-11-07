@@ -69,7 +69,7 @@ class OrderController extends BaseController {
             'status'    => 0,
             'binCode'   => '111',
             'sendId'    => $sendId,
-            'money'     => 0.01
+            'money'     => $money
         ];
         M('orders')->add($order);
 
@@ -100,6 +100,14 @@ class OrderController extends BaseController {
             $save ['userId'] = session('userId');
         }
 
+        if ($info ['sendAddr'] == null || $info ['goodsDesc'] == null || $info ['priceLimit'] == null || $info ['runnerFee'] == null) {
+            $return = [
+                'status' => '-100',
+                'info'   => '请完整填写上述内容'
+            ];
+            $this->ajaxReturn($return);
+        }
+
         $save ['recipientTel'] = $phone;
         if (!is_null(session("userName"))){
             $save ['recipientName'] = session("userName");
@@ -125,7 +133,7 @@ class OrderController extends BaseController {
             'status'    => 0,
             'binCode'   => '111',
             'sendId'    => $sendId,
-            'money'     => 0.01
+            'money'     => $info ['runnerFee']
         ];
         M('orders')->add($order);
 
