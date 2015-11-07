@@ -166,9 +166,56 @@ $signPackage = $jsapi->getSignPackage();
 
 	</ul>
 </div>
+<div data-role="page" id="orderInfo">
+	<div data-role="header" data-position="fixed">
+		<h1>订单详情</h1>
+	</div>
+	<div role="main" class="ui-content">
+		<table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
+			<thead>
+			<tr>
+				<th>订单类型：</th>
+				<th>订单号：</th>
+				<th>下单时间：</th>
+				<th>收件人姓名：</th>
+				<th>收件人手机号：</th>
+				<th>取件地址：</th>
+				<th>送达地址：</th>
+				<th>全程距离：</th>
+				<th>跑腿哥ID：</th>
+				<th>抢单时间：</th>
+				<th>取件时间：</th>
+				<th>预计送达时间：</th>
+				<th>送达时间：</th>
+				<th>支付方式及支付状态：</th>
+				<th>订单状态：</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td id="type"></td>
+				<td id="orderNo"></td>
+				<td id="orderTime"></td>
+				<td id="name"></td>
+				<td id="tel"></td>
+				<td id="pickAddr"></td>
+				<td id="sendAddr"></td>
+				<td id="distance"></td>
+				<td id="runner"></td>
+				<td id="getTime"></td>
+				<td id="pickTime"></td>
+				<td id="planTime"></td>
+				<td id="endTime"></td>
+				<td id="pay"></td>
+				<td id="status"></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 </body>
 <script id="all_list" type="text/x-jquery-tmpl">
-			<li class="ui-first-child ui-last-child">
+			<li class="ui-first-child ui-last-child orderTap">
 					<h1 class="orderType" style="font-size: 25px">${type}</h1>
 					<p>订单号：<span class="orderNum">${orderNo}</span></p>
 					<p>下单时间：<span class="date">${orderTime}</span></p>
@@ -178,7 +225,7 @@ $signPackage = $jsapi->getSignPackage();
 			</li>
 </script>
 <script id="send_list" type="text/x-jquery-tmpl">
-			<li class="ui-first-child ui-last-child">
+			<li class="ui-first-child ui-last-child orderTap">
 					<h1 class="orderType" style="font-size: 25px">送</h1>
 					<p>订单号：<span class="orderNum">${orderNo}</span></p>
 					<p>下单时间：<span class="date">${orderTime}</span></p>
@@ -188,7 +235,7 @@ $signPackage = $jsapi->getSignPackage();
 			</li>
 </script>
 <script id="buy_list" type="text/x-jquery-tmpl">
-			<li class="ui-first-child ui-last-child">
+			<li class="ui-first-child ui-last-child orderTap">
 					<h1 class="orderType" style="font-size: 25px">购</h1>
 					<p>订单号：<span class="orderNum">${orderNo}</span></p>
 					<p>下单时间：<span class="date">${orderTime}</span></p>

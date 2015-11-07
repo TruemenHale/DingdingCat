@@ -175,6 +175,7 @@ class OrderController extends BaseController {
 
     public function orderInfo () {
         $phone = I('post.phone');
+        $orderNo = I('post.orderNo');
 
         if ($phone != session('phone')) {
             $return = [
@@ -185,7 +186,13 @@ class OrderController extends BaseController {
         } else {
             $userId = session('userId');
         }
-        $res = M('orders')->where("userId = '$userId'")->order('orderTime desc')->find();
+
+        if ($orderNo) {
+            $res = M('orders')->where("orderNo = 'orderNo'")->find();
+        } else {
+            $res = M('orders')->where("userId = '$userId'")->order('orderTime desc')->find();
+        }
+
         if ($res) {
             $sendId = $res ['sendId'];
             if ($res ['type'] == "0") {
