@@ -88,11 +88,11 @@ function commonAddr (phone) {
 }
 
 $(function () {
-    $(".orderClick").on('click',function () {
+    $(".orderClick").on('tap',function () {
         var orderNo = $(this).find('.orderNum').html();
-        alert(orderNo)
+        orderInfo(orderNo);
     });
-    $('.orderTap').on('click',function () {
+    $('.orderTap').on('tap',function () {
         var orderNo = $(this).find('.orderNum').html();
         $.ajax({
             type : 'POST',
@@ -106,6 +106,7 @@ $(function () {
                 var status = response.status;
                 var data = response.data;
                 if (status != 0) {
+                    alert(response.info);
                 } else {
                     document.getElementById('type').innerText = data.type;
                     document.getElementById('orderNo').innerText = data.orderNo;
@@ -130,36 +131,27 @@ $(function () {
 });
 
 function orderInfo (orderNo) {
-    $.ajax({
-        type : 'POST',
-        url  : './api/index.php?s=/Home/Order/orderInfo',
-        data : 'phone=' + phone + '&orderNo=' + orderNo,
-        dataType : 'json',
-        error: function (request) {
-            alert('获取失败')
-        } ,
-        success : function (response) {
-            var status = response.status;
-            var data = response.data;
-            if (status != 0) {
-            } else {
-                document.getElementById('type').innerText = data.type;
-                document.getElementById('orderNo').innerText = data.orderNo;
-                document.getElementById('orderTime').innerText = data.orderTime;
-                document.getElementById('tel').innerText = data.tel;
-                document.getElementById('orderInfo_name').innerText = data.name;
-                document.getElementById('pickAddr').innerText = data.pickAddr;
-                document.getElementById('sendAddr').innerText = data.sendAddr;
-                document.getElementById('distance').innerText = data.distance;
-                document.getElementById('runner').innerText = data.runner;
-                document.getElementById('getTime').innerText = data.getTime;
-                document.getElementById('pickTime').innerText = data.pickTime;
-                document.getElementById('planTime').innerText = data.planTime;
-                document.getElementById('endTime').innerText = data.endTime;
-                document.getElementById('status').innerText = data.status;
-                document.getElementById('pay').innerText = data.pay;
-
-            }
+    $.post('./api/index.php?s=/Home/Order/orderInfo','phone=' + phone + '&orderNo=' + orderNo,function(data){
+        if(data.status == 0){
+            $('#type').html(data.type);
+            $('#orderNo').html(data.orderNo);
+            $('#orderTime').html(data.orderTime);
+            $('#tel').html(data.tel);
+            $('#orderInfo_name').html(data.name);
+            $('#pickAddr').html(data.pickAddr);
+            $('#sendAddr').html(data.sendAddr);
+            $('#runner').html(data.runner);
+            $('#getTime').html(data.getTime);
+            $('#pickTime').html(data.pickTime);
+            $('#planTime').html(data.planTime);
+            $('#endTime').html(data.endTime);
+            $('#status').html(data.status);
+            $('#pay').html(data.pay);
+            $.mobile.changePage('#detPage',{
+                transition:none
+            });
+        }else{
+            alert(data.info);
         }
     });
 }
