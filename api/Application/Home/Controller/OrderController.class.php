@@ -674,6 +674,6 @@ class OrderController extends BaseController {
 
         $content = "支付成功！\n\n你的订单号为".$order."的订单已经成功支付，请等待跑腿哥接单！";
         $res = $weChat->sendText($openid,$content);
-        return $res;
+        $this->ajaxReturn($res);
     }
 }
