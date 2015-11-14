@@ -671,7 +671,7 @@ class OrderController extends BaseController {
         $openid = I('post.openid');
         $order  = I('post.order');
         $weChat = new WechatAuth();
-
+        $weChat->getAccessToken();
         $content = "支付成功！\n\n你的订单号为".$order."的订单已经成功支付，请等待跑腿哥接单！";
         $res = $weChat->sendText($openid,$content);
         $this->ajaxReturn($res);
