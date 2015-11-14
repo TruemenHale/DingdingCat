@@ -7,6 +7,7 @@
  */
 
 namespace Home\Controller;
+use Com\WechatAuth;
 use Think\Controller;
 use Think\Model;
 
@@ -664,5 +665,13 @@ class OrderController extends BaseController {
         ];
 
         M('usecoupon')->where("customerId = '$user' AND couponNo = '$couponNo'")->save($save);
+    }
+
+    public function successMsgSend ($openid,$order) {
+        $weChat = new WechatAuth();
+
+        $content = "支付成功！\n\n你的订单号为".$order."的订单已经成功支付，请等待跑腿哥接单！";
+        $weChat->sendText($openid,$content);
+
     }
 }

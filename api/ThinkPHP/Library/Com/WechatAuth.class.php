@@ -33,13 +33,13 @@ class WechatAuth {
      * 微信开发者申请的appID
      * @var string
      */
-    private $appId = '';
+    private $appId = 'wx33717b4ef804de31';
 
     /**
      * 微信开发者申请的appSecret
      * @var string
      */
-    private $appSecret = '';
+    private $appSecret = '62d1a73eb4c3c141ac0758970d12906e';
 
     /**
      * 获取到的access_token
@@ -69,16 +69,9 @@ class WechatAuth {
      * @param string $secret 微信appsecret
      * @param string $token  获取到的access_token
      */
-    public function __construct($appid, $secret, $token = null){
-        if($appid && $secret){
-            $this->appId     = $appid;
-            $this->appSecret = $secret;
-
-            if(!empty($token)){
-                $this->accessToken = $token;
-            }
-        } else {
-            throw new \Exception('缺少参数 APP_ID 和 APP_SECRET!');
+    public function __construct( $token = null){
+        if(!empty($token)){
+            $this->accessToken = $token;
         }
     }
 

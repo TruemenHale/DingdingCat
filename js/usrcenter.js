@@ -1,36 +1,8 @@
 var phone = "";
 
-setTimeout(function () {
-    $.mobile.loading('show');
-    $.ajax({
-        type: 'POST',
-        url: './api/index.php?s=/Home/Account/openidToUser',
-        data: 'openid=' + openid,
-        dataType: 'json',
-        error: function (request) {
-            alert('获取失败')
-        },
-        success: function (response) {
-            var status = response.status;
-            var data = response.phone;
-            if (status != 0) {
-                alert("你还没有注册，将自动跳转到注册页面！");
-                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-            } else {
-                phone = data;
-                document.getElementById('name').innerText = response.name;
-                document.getElementById('nickname').innerText = nickname;
-                document.getElementById('score').innerText = response.score;
-                document.getElementById('phone').innerText = response.phone;
-                orderList(data);
-                commonAddr(data);
-            }
-            $.mobile.loading('hide');
-        }
-    });
-},100);
 
-function orderList (phone) {
+
+function orderList (phone,fn) {
     $.ajax({
         type: 'POST',
         url: './api/index.php?s=/Home/Order/orderList',
@@ -60,6 +32,7 @@ function orderList (phone) {
                     $("#all_list").tmpl(response.all).appendTo('#allList');
                     allList.listview("refresh");
                 }
+                fn();
             }
         }
     });
@@ -88,9 +61,38 @@ function commonAddr (phone) {
 }
 
 $(function () {
-    $(".orderClick").on('tap',function () {
-        var orderNo = $(this).find('.orderNum').html();
-        orderInfo(orderNo);
+    function litap(){
+        $(".orderClick").on('tap',function () {
+            var orderNo = $(this).find('.orderNum').html();
+            orderInfo(orderNo);
+        });
+    }
+    $.mobile.loading('show');
+    $.ajax({
+        type: 'POST',
+        url: './api/index.php?s=/Home/Account/openidToUser',
+        data: 'openid=' + openid,
+        dataType: 'json',
+        error: function (request) {
+            alert('获取失败')
+        },
+        success: function (response) {
+            var status = response.status;
+            var data = response.phone;
+            if (status != 0) {
+                alert("你还没有注册，将自动跳转到注册页面！");
+                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+            } else {
+                phone = data;
+                document.getElementById('name').innerText = response.name;
+                document.getElementById('nickname').innerText = nickname;
+                document.getElementById('score').innerText = response.score;
+                document.getElementById('phone').innerText = response.phone;
+                orderList(data,litap);
+                commonAddr(data);
+            }
+            $.mobile.loading('hide');
+        }
     });
     $('.orderTap').on('tap',function () {
         var orderNo = $(this).find('.orderNum').html();
@@ -133,22 +135,23 @@ $(function () {
 function orderInfo (orderNo) {
     $.post('./api/index.php?s=/Home/Order/orderInfo','phone=' + phone + '&orderNo=' + orderNo,function(data){
         if(data.status == 0){
-            $('#type').html(data.type);
-            $('#orderNo').html(data.orderNo);
-            $('#orderTime').html(data.orderTime);
-            $('#tel').html(data.tel);
-            $('#orderInfo_name').html(data.name);
-            $('#pickAddr').html(data.pickAddr);
-            $('#sendAddr').html(data.sendAddr);
-            $('#runner').html(data.runner);
-            $('#getTime').html(data.getTime);
-            $('#pickTime').html(data.pickTime);
-            $('#planTime').html(data.planTime);
-            $('#endTime').html(data.endTime);
-            $('#status').html(data.status);
-            $('#pay').html(data.pay);
-            $.mobile.changePage('#detPage',{
-                transition:none
+            $('#type').html(data.data.type);
+            $('#orderNo').html(data.data.orderNo);
+            $('#orderTime').html(data.data.orderTime);
+            $('#tel').html(data.data.tel);
+            $('#orderInfo_name').html(data.data.name);
+            $('#pickAddr').html(data.data.pickAddr);
+            $('#sendAddr').html(data.data.sendAddr);
+            $('#runner').html(data.data.runner);
+            $('#getTime').html(data.data.getTime);
+            $('#pickTime').html(data.data.pickTime);
+            $('#planTime').html(data.data.planTime);
+            $('#endTime').html(data.data.endTime);
+            $('#status').html(data.data.status);
+            $('#pay').html(data.data.pay);
+            console.log(data);
+            $.mobile.changePage('#orderInfo',{
+                transition:'none'
             });
         }else{
             alert(data.info);
