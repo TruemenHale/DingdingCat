@@ -668,6 +668,8 @@ class OrderController extends BaseController {
     }
 
     public function successMsgSend ($openid,$order) {
+        $openid = I('post.openid');
+        $order  = I('post.order');
         $weChat = new WechatAuth();
 
         $content = "支付成功！\n\n你的订单号为".$order."的订单已经成功支付，请等待跑腿哥接单！";
