@@ -671,9 +671,30 @@ class OrderController extends BaseController {
         $openid = I('post.openid');
         $order  = I('post.order');
         $weChat = new WechatAuth();
-        $weChat->getAccessToken();
+        $token = $this->tokenJudge();
+        $weChat->tokenWrite($token);
         $content = "支付成功！\n\n你的订单号为".$order."的订单已经成功支付，请等待跑腿哥接单！";
         $res = $weChat->sendText($openid,$content);
         $this->ajaxReturn($res);
+    }
+
+    private function tokenJudge () {
+        $res = M('token')->where("id = 1")->find();
+        $time = $res ['m_time'];
+        $now = time();
+
+        if (($now - $time) >= 3600) {
+            $weChat = new WechatAuth();
+            $data = $weChat->getAccessToken();
+            $token = $data ['access_token'];
+            $save = [
+                'token' => $token,
+                'm_time' => time()
+            ];
+            M('token')->where("id = 1")->save($save);
+        } else {
+            $token = $res ['token'];
+        }
+        return $token;
     }
 }

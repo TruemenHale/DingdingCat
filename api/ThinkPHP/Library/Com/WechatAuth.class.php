@@ -623,4 +623,9 @@ class WechatAuth {
         return $data;
     }
 
+    public function tokenWrite ($token) {
+        $this->accessToken = $token;
+        return true;
+    }
+
 }
