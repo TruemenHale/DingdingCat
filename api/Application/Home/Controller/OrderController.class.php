@@ -436,8 +436,11 @@ class OrderController extends BaseController {
         $save = [
             'payStatus' => 1
         ];
-
-        M('orders')->where("orderNo = '$orderNo'")->save($save);
+        $orders = M("orders");
+        $orders->where("orderNo = '$orderNo'")->save($save);
+        $userId = $orders->where("orderNo = '$orderNo'")->getField("userId");
+        $openid = M('user')->where("id = '$userId'")->getField("openid");
+        $this->successMsgSend($openid,$orderNo);
         $return = [
             'status' => '0'
         ];
@@ -668,8 +671,6 @@ class OrderController extends BaseController {
     }
 
     public function successMsgSend ($openid,$order) {
-        $openid = I('post.openid');
-        $order  = I('post.order');
         $weChat = new WechatAuth();
         $token = $this->tokenJudge();
         $weChat->tokenWrite($token);
@@ -696,5 +697,18 @@ class OrderController extends BaseController {
             $token = $res ['token'];
         }
         return $token;
+    }
+
+    public function accessMsgSend ($openid,$order) {
+        $openid = I('post.openid');
+        $order  = I('post.order');
+        $weChat = new WechatAuth();
+        $token = $this->tokenJudge();
+        $weChat->tokenWrite($token);
+        $title = "你的订单已经被接单!";
+        $content = "你的订单已经被接单，请等待跑腿哥上门，点击进入获取取件二维码";
+        $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
+        $res = $weChat->sendNewsOnce($openid,$title,$content,$url);
+        $this->ajaxReturn($res);
     }
 }
