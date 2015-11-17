@@ -105,6 +105,15 @@
   display: block;
   margin: 0 auto;
 }
+#header {
+  background: #46a6f7;
+  color: #ffffff;
+  text-shadow: none;
+  font-size: 18px;
+}
+#header .button-return {
+  margin-top: 5px;
+}
 .moneyInput {
   width: 30%;
   float: left;

@@ -9,3 +9,12 @@
 .orderLi span {
   font-size: 16px;
 }
+.header {
+  background: #46a6f7 !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
+  font-size: 18px;
+}
+.header .button-return {
+  margin-top: 5px;
+}
