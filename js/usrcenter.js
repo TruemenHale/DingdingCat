@@ -23,12 +23,15 @@ function orderList (phone,fn) {
                 alert("订单获取失败");
             } else {
                 if (send) {
+                    alert("send");
                     $("#send_list").tmpl(send).appendTo('#sendList');
                 }
                 if (buy) {
+                    alert("buy");
                     $("#buy_list").tmpl(buy).appendTo('#buyList');
                 }
                 if (all.length != 0) {
+                    alert("all");
                     $("#all_list").tmpl(response.all).appendTo('#allList');
                 }
                 fn();
