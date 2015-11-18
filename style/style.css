@@ -105,13 +105,13 @@
   display: block;
   margin: 0 auto;
 }
-#header {
-  background: #46a6f7;
-  color: #ffffff;
-  text-shadow: none;
+.header {
+  background: #46a6f7 !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
   font-size: 18px;
 }
-#header .button-return {
+.header .button-return {
   margin-top: 5px;
 }
 .moneyInput {
