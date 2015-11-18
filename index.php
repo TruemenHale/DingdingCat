@@ -53,7 +53,7 @@
 
 <!--代送页面-->
 <div data-role="page" id="daisong">
-    <div data-role="header"  data-position="fixed">
+    <div data-role="header" data-position="fixed" class="header">
         <h1>代送</h1>
     </div>
     <div role="main" class="ui-content">
