@@ -28,7 +28,7 @@ function orderList (phone,fn) {
                 if (buy) {
                     $("#buy_list").tmpl(buy).appendTo('#buyList');
                 }
-                if (all) {
+                if (all.length != 0) {
                     $("#all_list").tmpl(response.all).appendTo('#allList');
                 }
                 fn();
@@ -112,7 +112,6 @@ function orderInfo (orderNo) {
             $('#endTime').html(data.data.endTime);
             $('#status').html(data.data.status);
             $('#pay').html(data.data.pay);
-            alert(123);
             $.mobile.changePage('#orderInfo',{
                 transition:'none'
             });
