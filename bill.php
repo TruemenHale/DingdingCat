@@ -48,7 +48,7 @@ $signPackage = $jsapi->getSignPackage();
 	</head>
 	<body>
 		<div data-role="page" id="MyBill">
-			<div data-role="header" data-position="fixed">
+			<div data-role="header" data-position="fixed" class = "header">
 				<h1>我的发票</h1>
 			</div>
 			<div role="main" class="ui-content" id="page">
@@ -62,7 +62,7 @@ $signPackage = $jsapi->getSignPackage();
 			</div>
 		</div>
 		<div data-role="page" id="ApplyBill">
-			<div data-role="header" data-position="fixed">
+			<div data-role="header" data-position="fixed" class = "header">
 				<a data-transition="none" href="#MyBill" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
 				<h1>发票申请</h1>
 			</div>
