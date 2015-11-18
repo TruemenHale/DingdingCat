@@ -56,7 +56,7 @@ $signPackage = $jsapi->getSignPackage();
 </head>
 <body>
 <div data-role="page" id="usrcenter">
-	<div data-role="header" data-position="fixed">
+	<div data-role="header" data-position="fixed" class="header">
 		<h1>个人中心</h1>
 	</div>
 	<div role="main" class="ui-content">
@@ -83,8 +83,8 @@ $signPackage = $jsapi->getSignPackage();
 	</div>
 </div>
 <div data-role="page" id="Allorder">
-	<div data-role="header" data-position="fixed">
-		<a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
+	<div data-role="header" data-position="fixed" class="header">
+		<a class="button-return" data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
 		<h1>全部订单</h1>
 	</div>
 	<div data-role="navbar">
@@ -111,7 +111,7 @@ $signPackage = $jsapi->getSignPackage();
 	</ul>
 </div>
 <div data-role="page" id="Daisongorder">
-	<div data-role="header" data-position="fixed">
+	<div data-role="header" data-position="fixed" class="header">
 		<a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
 		<h1>全部订单</h1>
 	</div>
@@ -139,7 +139,7 @@ $signPackage = $jsapi->getSignPackage();
 	</ul>
 </div>
 <div data-role="page" id="Daigouorder">
-	<div data-role="header" data-position="fixed">
+	<div data-role="header" data-position="fixed" class="header">
 		<a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
 		<h1>全部订单</h1>
 	</div>
@@ -167,7 +167,7 @@ $signPackage = $jsapi->getSignPackage();
 	</ul>
 </div>
 <div data-role="page" id="orderInfo">
-	<div data-role="header" data-position="fixed">
+	<div data-role="header" data-position="fixed" class="header">
 		<a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
 		<h1>订单详情</h1>
 	</div>

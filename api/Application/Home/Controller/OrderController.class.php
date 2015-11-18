@@ -699,7 +699,7 @@ class OrderController extends BaseController {
         return $token;
     }
 
-    public function accessMsgSend ($openid,$order) {
+    public function accessMsgSend () {
         $openid = I('post.openid');
         $order  = I('post.order');
         $weChat = new WechatAuth();

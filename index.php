@@ -109,8 +109,8 @@
 
 <!--代送2页面-->
 <div data-role="page" id="daisong2">
-    <div data-role="header" data-position="fixed">
-        <a data-transition="none" href="#daisong" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
+    <div data-role="header" data-position="fixed" class="header">
+        <a class="button-return" data-transition="none" href="#daisong" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
         <h1>代送</h1>
     </div>
     <div role="main" class="ui-content">
@@ -164,7 +164,7 @@
 <!--代购页面-->
 
 <div data-role="page" id="daigou">
-    <div data-role="header" data-position="fixed">
+    <div data-role="header" data-position="fixed" class="header">
         <h1>代购</h1>
     </div>
     <div role="main" class="ui-content">
@@ -223,7 +223,7 @@
 </div>
 
 <div data-role="page" id="AddressGet">
-    <div data-role="header" data-position="fixed">
+    <div data-role="header" data-position="fixed" class="header">
         <h1 class="selectTitle">取货区域</h1>
     </div>
     <div role="main" class="ui-content">
@@ -242,7 +242,7 @@
 <!--详情页面-->
 
 <div data-role="page" id="xiangqing">
-    <div data-role="header" data-position="fixed">
+    <div data-role="header" data-position="fixed" class="header">
         <h1>最新订单</h1>
     </div>
     <div role="main" class="ui-content">
