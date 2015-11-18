@@ -216,7 +216,6 @@ $signPackage = $jsapi->getSignPackage();
 </div>
 </body>
 <script id="all_list" type="text/x-jquery-tmpl">
-<script id="all_list" type="text/x-jquery-tmpl">
 			<li class="orderClick">
 			  <a>
 					<h1 class="orderType" style="font-size: 25px">${type}</h1>
