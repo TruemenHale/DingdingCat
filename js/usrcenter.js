@@ -30,7 +30,6 @@ function orderList (phone,fn) {
                 }
                 if (all) {
                     $("#all_list").tmpl(response.all).appendTo('#allList');
-                    allList.listview("refresh");
                 }
                 fn();
             }
