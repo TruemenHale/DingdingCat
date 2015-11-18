@@ -28,7 +28,7 @@ function orderList (phone,fn) {
                 if (buy) {
                     $("#buy_list").tmpl(buy).appendTo('#buyList');
                 }
-                if (all.length != 0) {
+                if (all) {
                     $("#all_list").tmpl(all).appendTo('#allList');
                 }
                 fn();
