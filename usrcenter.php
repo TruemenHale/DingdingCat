@@ -216,20 +216,21 @@ $signPackage = $jsapi->getSignPackage();
 </div>
 </body>
 <script id="all_list" type="text/x-jquery-tmpl">
+<script id="all_list" type="text/x-jquery-tmpl">
 			<li class="orderClick">
-			  <a href="#orderInfo" class="orderClick">
+			  <a>
 					<h1 class="orderType" style="font-size: 25px">${type}</h1>
 					<p>订单号：<span class="orderNum">${orderNo}</span></p>
 					<p>下单时间：<span class="date">${orderTime}</span></p>
 					<p>寄件地址：<span class="fromWhere">${pickupAddr}</span></p>
 					<p>收件地址：<span class="toWhere">${sendAddr}</span></p>
 					<p class="ui-li-aside orderLi"><span class="Cost">${money}</span>￥<br><span class="PayState">${status}</span></p>
-        </a>
+                </a>
 			</li>
 </script>
 <script id="send_list" type="text/x-jquery-tmpl">
-			<li>
-			  <a href="#orderInfo">
+			<li class="orderClick">
+			  <a>
 					<h1 class="orderType" style="font-size: 25px">送</h1>
 					<p>订单号：<span class="orderNum">${orderNo}</span></p>
 					<p>下单时间：<span class="date">${orderTime}</span></p>
@@ -240,8 +241,8 @@ $signPackage = $jsapi->getSignPackage();
 			</li>
 </script>
 <script id="buy_list" type="text/x-jquery-tmpl">
-			<li>
-			  <a href="#orderInfo">
+			<li class="orderClick">
+			  <a>
 					<h1 class="orderType" style="font-size: 25px">购</h1>
 					<p>订单号：<span class="orderNum">${orderNo}</span></p>
 					<p>下单时间：<span class="date">${orderTime}</span></p>
