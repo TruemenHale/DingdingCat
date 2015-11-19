@@ -70,6 +70,7 @@ $(function(){
 		_data.invite = $('.invite').val();
 		_data.openid = openid;
 		_data.nickname = nickname;
+		_data.headimg = headImg;
 		$.post('./api/index.php?s=/Home/Account/register',_data,function(data){
 			if(data.status == 0){
 				alert('注册成功！将跳转至下单页面！');

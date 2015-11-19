@@ -41,6 +41,7 @@ class AccountController extends BaseController {
         $invite = I('post.invite');
         $openid = I('post.openid');
         $nickname = I('post.nickname');
+        $headImg = I('post.headimg');
 
         $res = $this->registerCheck($phone);
         if (!$res) {
@@ -60,15 +61,16 @@ class AccountController extends BaseController {
             $this->ajaxReturn($return);
         }
 
-        $header = $invite;
+        $referee = $invite;
 
         $save   = [
             'name'     => $name,
             'nickName' => $nickname,
             'phone'    => $phone,
-            'header'   => $header,
+            'referee'   => $referee,
             'regTime'  => date("Y-m-d H-i-s",time()),
-            'openid'   => $openid
+            'openid'   => $openid,
+            'header'   => $headImg
         ];
 
         M('user')->add($save);
