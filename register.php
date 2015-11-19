@@ -22,6 +22,8 @@
 	$res = curl_exec($ch);
 	curl_close($ch);
 	$json_obj = json_decode($res,true);
+	$access_token = $json_obj['access_token'];
+	$openid = $json_obj['openid'];
 	//根据openid和access_token查询用户信息
 	$get_info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
 	$info_json = file_get_contents($get_info_url);
@@ -29,8 +31,7 @@
 	$info_arr = (array)$info_res;
 	$nickname = $info_arr ['nickname'];
 	$headImg  = $info_arr ['headimgurl'];
-	$access_token = $json_obj['access_token'];
-	$openid = $json_obj['openid'];
+
 	$jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
 	$signPackage = $jsapi->getSignPackage();
 
