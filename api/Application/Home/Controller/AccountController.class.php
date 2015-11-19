@@ -38,7 +38,7 @@ class AccountController extends BaseController {
         $phone  = I('post.phone');
         $name   = I('post.name');
         $code   = I('post.code');
-        $invite = I('post.invite');
+        $invite = I('post.invite',"");
         $openid = I('post.openid');
         $nickname = I('post.nickname');
         $headImg = I('post.headimg');
@@ -67,7 +67,7 @@ class AccountController extends BaseController {
             'name'     => $name,
             'nickName' => $nickname,
             'phone'    => $phone,
-            'referee'   => $referee,
+            'referee'  => $referee,
             'regTime'  => date("Y-m-d H-i-s",time()),
             'openid'   => $openid,
             'header'   => $headImg
