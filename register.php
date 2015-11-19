@@ -49,10 +49,8 @@
 			var openid = "<?php echo $openid; ?>";
 			var nickname = "<?php echo $nickname; ?>";
 			var headImg = "<?php echo $headImg; ?>";
-			var token  = "<?php echo $access_token?>";
-			var code = "<?php echo $code?>";
-			alert(token);
-			alert(code);
+			alert(nickname);
+			alert(openid);
 		</script>
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
