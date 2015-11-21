@@ -2,13 +2,13 @@
 ini_set('date.timezone','Asia/Shanghai');
 require_once "jssdk/jssdk.php";
 
-$appid = "wxcb5b14c964fadb27";
-$secret = "7cfbf146c18280d071d6e97a15f0acb7";
+$appid = "wxa3363e46c74608f3";
+$secret = "52be407940dece37327465c1d211cfb4";
 
 if (isset($_GET['code'])){
 	$code = $_GET['code'];
 }else{
-	$url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fbill.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+	$url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa3363e46c74608f3&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fbill.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
 	header("Location:".$url);
 }
 
@@ -25,7 +25,7 @@ $json_obj = json_decode($res,true);
 //根据openid和access_token查询用户信息
 $access_token = $json_obj['access_token'];
 $openid = $json_obj['openid'];
-$jsapi = new JSSDK("wxcb5b14c964fadb27","7cfbf146c18280d071d6e97a15f0acb7");
+$jsapi = new JSSDK("wxa3363e46c74608f3","52be407940dece37327465c1d211cfb4");
 $signPackage = $jsapi->getSignPackage();
 
 ?>

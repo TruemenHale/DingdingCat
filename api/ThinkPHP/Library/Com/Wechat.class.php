@@ -57,13 +57,13 @@ class Wechat {
      * 微信APP_ID
      * @var string
      */
-    private static $appId = 'wx33717b4ef804de31';
+    private static $appId = 'wxa3363e46c74608f3';
 
     /**
      * 消息加密KEY
      * @var string
      */
-    private static $encodingAESKey = '62d1a73eb4c3c141ac0758970d12906e';
+    private static $encodingAESKey = 'DBUnTDAraqNf01yKXdeaY0WgN2ePY07OaAShVLmztUM';
 
     /**
      * @var string

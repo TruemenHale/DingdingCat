@@ -80,7 +80,7 @@ $(function () {
             var data = response.phone;
             if (status != 0) {
                 alert("你还没有注册，将自动跳转到注册页面！");
-                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcb5b14c964fadb27&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa3363e46c74608f3&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2fregister.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
             } else {
                 phone = data;
                 document.getElementById('name').innerText = response.name;

@@ -33,13 +33,13 @@ class WechatAuth {
      * 微信开发者申请的appID
      * @var string
      */
-    private $appId = 'wx33717b4ef804de31';
+    private $appId = 'wxa3363e46c74608f3';
 
     /**
      * 微信开发者申请的appSecret
      * @var string
      */
-    private $appSecret = '62d1a73eb4c3c141ac0758970d12906e';
+    private $appSecret = '52be407940dece37327465c1d211cfb4';
 
     /**
      * 获取到的access_token
