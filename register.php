@@ -85,7 +85,6 @@
 	</body>
 	<script>
 		wx.config({
-			debug: true,
 			appId: '<?php echo $signPackage["appId"];?>',
 			timestamp: <?php echo $signPackage["timestamp"];?>,
 			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
@@ -94,11 +93,6 @@
 				'hideAllNonBaseMenuItem'
 			] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 		});
-		wx.ready(function() {
-			alert(1);
-		})
-		wx.error(function(res) {
-			alert(res);
-		})
+		wx.hideAllNonBaseMenuItem();
 	</script>
 </html>

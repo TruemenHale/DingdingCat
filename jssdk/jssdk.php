@@ -47,27 +47,5 @@ class JSSDK {
     $ticket = "kgt8ON7yVITDhtdwci0qedetVwLPxbVUU9KEwLxvIH062aqrn5egEp-G7YxI_GE0dprv9KagQLkuq1rwoFU-kQ";
     return $ticket;
   }
-
-  private function getAccessToken() {
-    $url = "http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Api/getToken";
-    $output = file_get_contents($url);
-    $res = json_decode($output, TRUE);
-    $access_token = $res ['token'];
-    return $access_token;
-  }
-
-  private function httpGet($url) {
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 500);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-    curl_setopt($curl, CURLOPT_URL, $url);
-
-    $res = curl_exec($curl);
-    curl_close($curl);
-
-    return $res;
-  }
 }
 
