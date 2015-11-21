@@ -76,37 +76,37 @@ class WeixinController extends Controller {
             $news [0] = array (
                 'Title' => '个人中心',
                 'Description' => '点击进入个人中心',
-                'Url' => "http://wx.tyll.net.cn/DingdingCat/usrcenter.html?".$this->openid
+                'Url' => "http://wx.tyll.net.cn/DingdingCat/usrcenter.php"
             );
         } else if ($content == "Bill") {
             $news [0] = array (
                 'Title' => '发票申请',
                 'Description' => '点击进入申请发票',
-                'Url' => "http://wx.tyll.net.cn/DingdingCat/bill.html?".$this->openid
+                'Url' => "http://wx.tyll.net.cn/DingdingCat/bill.php"
             );
         } else if ($content == "Register") {
             $news [0] = array (
                 'Title' => '注册',
                 'Description' => '点击进入注册成为叮叮猫用户',
-                'Url' => "http://wx.tyll.net.cn/DingdingCat/register.html?".$this->openid
+                'Url' => "http://wx.tyll.net.cn/DingdingCat/register.php"
             );
         } else if ($content == "Order"){
             $news [0] = array (
                 'Title' => '下单',
                 'Description' => '点击进入进行下单',
-                'Url' => "http://wx.tyll.net.cn/DingdingCat/index.php?openid=".$this->openid
+                'Url' => "http://wx.tyll.net.cn/DingdingCat/index.php"
             );
         } else if ($content == "runnerApply") {
             $news [0] = array (
                 'Title' => '跑腿哥报名',
                 'Description' => '快来报名跑腿哥吧',
-                'Url' => "http://wx.tyll.net.cn/DingdingCat/runnerApply.html?".$this->openid
+                'Url' => "http://wx.tyll.net.cn/DingdingCat/runnerApply.php"
             );
         } else if ($content == "Suggestion") {
             $news [0] = array (
                 'Title' => '投诉建议',
                 'Description' => '点击进入发表建议，让我们变得更好',
-                'Url' => "http://wx.tyll.net.cn/DingdingCat/suggestion.html?".$this->openid
+                'Url' => "http://wx.tyll.net.cn/DingdingCat/suggestion.php"
             );
         }
         $this->wechat->replyNews($news);
