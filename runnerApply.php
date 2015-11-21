@@ -105,7 +105,9 @@
       'hideAllNonBaseMenuItem'
     ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
   });
-  wx.hideAllNonBaseMenuItem();
+  wx.ready(function() {
+    wx.hideAllNonBaseMenuItem();
+  });
 </script>
 </body>
 </html>
