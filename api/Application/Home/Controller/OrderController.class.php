@@ -707,6 +707,25 @@ class OrderController extends BaseController {
         $weChat->tokenWrite($token);
         $title = "你的订单已经被接单!";
         $content = "你的订单已经被接单，请等待跑腿哥上门，点击进入获取取件二维码";
+
+        $remark = "如有问题，请联系客服";
+
+        $send['first'] = [
+            "value" => "您好，您的订单已被接单，请耐心等待跑腿哥上门。。。",
+            "color" => "#173177"
+        ];
+        $send['keyword1'] = [
+            "value" => $order,
+            "color" => "#173177"
+        ];
+        $send['keyword2'] = [
+            "value" => time(),
+            "color" => "#173177"
+        ];
+        $send['remark'] = [
+            "value" => $remark,
+            "color" => "#173177"
+        ];
         $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
         $res = $weChat->sendNewsOnce($openid,$title,$content,$url);
         $this->ajaxReturn($res);

@@ -628,4 +628,15 @@ class WechatAuth {
         return true;
     }
 
+    public function sendTemplate($openid,$template,$content){
+        $data = [
+            "touser" => $openid,
+            "template_id" => $template,
+            "topcolor" => "#FF0000"
+        ];
+
+        $data['data'] = $content;
+
+        return $this->api('message/template/send',$data);
+    }
 }
