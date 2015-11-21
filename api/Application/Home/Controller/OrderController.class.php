@@ -705,9 +705,6 @@ class OrderController extends BaseController {
         $weChat = new WechatAuth();
         $token = $this->tokenJudge();
         $weChat->tokenWrite($token);
-        $title = "你的订单已经被接单!";
-        $content = "你的订单已经被接单，请等待跑腿哥上门，点击进入获取取件二维码";
-
         $remark = "如有问题，请联系客服";
         $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
         $send['first'] = [
@@ -726,10 +723,9 @@ class OrderController extends BaseController {
             "value" => $remark,
             "color" => "#173177"
         ];
-        $send['url'] = $url;
         $template_id = "lXVgtPiYy21dQ88efpZN6PDqefamoEXrJDPP8zovPXU";
 
-        $res = $weChat->sendTemplate($openid,$template_id,$send);
+        $res = $weChat->sendTemplate($openid,$template_id,$send,$url);
         $this->ajaxReturn($res);
     }
 }

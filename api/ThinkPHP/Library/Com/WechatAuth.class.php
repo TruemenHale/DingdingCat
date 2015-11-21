@@ -628,11 +628,12 @@ class WechatAuth {
         return true;
     }
 
-    public function sendTemplate($openid,$template,$content){
+    public function sendTemplate($openid,$template,$content,$url = null){
         $data = [
             "touser" => $openid,
             "template_id" => $template,
-            "topcolor" => "#FF0000"
+            "topcolor" => "#FF0000",
+            "url"     => $url
         ];
 
         $data['data'] = $content;
