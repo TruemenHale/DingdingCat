@@ -44,26 +44,7 @@ class JSSDK {
   }
 
   private function getJsApiTicket() {
-    // jsapi_ticket 应该全局存储与更新，以下代码以写入到文件中做示例
-    $data = json_decode(file_get_contents("jsapi_ticket.json"));
-    if ($data->expire_time < time()) {
-      $accessToken = $this->getAccessToken();
-      // 如果是企业号用以下 URL 获取 ticket
-      // $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$accessToken";
-      $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
-      $res = json_decode($this->httpGet($url));
-      $ticket = $res->ticket;
-      if ($ticket) {
-        $data->expire_time = time() + 7000;
-        $data->jsapi_ticket = $ticket;
-        $fp = fopen("jsapi_ticket.json", "w");
-        fwrite($fp, json_encode($data));
-        fclose($fp);
-      }
-    } else {
-      $ticket = $data->jsapi_ticket;
-    }
-
+    $ticket = "kgt8ON7yVITDhtdwci0qedetVwLPxbVUU9KEwLxvIH062aqrn5egEp-G7YxI_GE0dprv9KagQLkuq1rwoFU-kQ";
     return $ticket;
   }
 
