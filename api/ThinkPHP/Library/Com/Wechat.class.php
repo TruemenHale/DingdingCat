@@ -40,6 +40,7 @@ class Wechat {
     const MSG_EVENT_LOCATION    = 'LOCATION';
     const MSG_EVENT_CLICK       = 'CLICK';
     const MSG_EVENT_VIEW        = 'VIEW';
+    const MSG_EVENT_TEMPLATE    = 'TEMPLATESENDJOBFINISH';
 
     /**
      * 微信推送过来的数据

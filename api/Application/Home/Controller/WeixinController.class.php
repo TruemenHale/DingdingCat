@@ -52,6 +52,9 @@ class WeixinController extends Controller {
                     case Wechat::MSG_EVENT_SCAN:
                         $this->scan($this->eventKey);
                         break;
+                    case Wechat::MSG_EVENT_TEMPLATE:
+                        return ;
+                        break;
                     default:
                         $reply = "请按下方按钮进行相关操作";
                         $wechat->replyText($reply);
