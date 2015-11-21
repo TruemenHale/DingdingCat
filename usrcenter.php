@@ -260,11 +260,11 @@ $signPackage = $jsapi->getSignPackage();
 		nonceStr: '<?php echo $signPackage["nonceStr"];?>',
 		signature: '<?php echo $signPackage["signature"];?>',
 		jsApiList: [
-			'hideAllNonBaseMenuItem'
+			'hideOptionMenu'
 		] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 	});
 	wx.ready(function() {
-		wx.hideAllNonBaseMenuItem();
+		wx.hideOptionMenu();
 	});
 </script>
 </html>

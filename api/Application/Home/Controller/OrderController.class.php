@@ -705,7 +705,7 @@ class OrderController extends BaseController {
         $weChat = new WechatAuth();
         $token = $this->tokenJudge();
         $weChat->tokenWrite($token);
-        $remark = "如有问题，请联系客服";
+        $remark = "点击详情，获取取件二维码";
         $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
         $send['first'] = [
             "value" => "您好，您的订单已被接单，请耐心等待跑腿哥上门。。。",
