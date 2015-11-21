@@ -709,7 +709,7 @@ class OrderController extends BaseController {
         $content = "你的订单已经被接单，请等待跑腿哥上门，点击进入获取取件二维码";
 
         $remark = "如有问题，请联系客服";
-
+        $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
         $send['first'] = [
             "value" => "您好，您的订单已被接单，请耐心等待跑腿哥上门。。。",
             "color" => "#173177"
@@ -726,8 +726,10 @@ class OrderController extends BaseController {
             "value" => $remark,
             "color" => "#173177"
         ];
-        $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
-        $res = $weChat->sendNewsOnce($openid,$title,$content,$url);
+        $send['url'] = $url;
+        $template_id = "lXVgtPiYy21dQ88efpZN6PDqefamoEXrJDPP8zovPXU";
+
+        $res = $weChat->sendTemplate($openid,$template_id,$send);
         $this->ajaxReturn($res);
     }
 }
