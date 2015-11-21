@@ -719,7 +719,7 @@ class OrderController extends BaseController {
             "color" => "#173177"
         ];
         $send['keyword2'] = [
-            "value" => time(),
+            "value" => date("Y-m-d H-i-s",time()),
             "color" => "#173177"
         ];
         $send['remark'] = [
