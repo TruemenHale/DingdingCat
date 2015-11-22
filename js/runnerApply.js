@@ -74,8 +74,11 @@ $(function () {
         _data.trandsportType = $(".transport option:selected").val();
         $.post('./api/index.php?s=/Home/Account/runnerApply',_data,function(data){
             if (data) {
-                var status = data.status;
-                alert(status);
+                if (data.status == 0) {
+                    alert("恭喜你注册成功,请等待审批");
+                } else {
+                    alert(data.info);
+                }
             } else {
                 alert("报名失败!未连接到服务器！");
             }
