@@ -233,7 +233,7 @@ $(function(){
 		_data.recipientName = $('.geterName').val();
 		_data.recipientTel = $('.geterPhone').val();
 		_data.goodsDesc = $('.goodsNote').val();
-		_data.trandsportType = $(".transport option:selected").val();
+		_data.transportType = $(".transport option:selected").val();
 		_data.payType = $(".payWays option:selected").val();
 		_data.phone = phone;
 		JSON.stringify(_data);

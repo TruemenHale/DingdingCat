@@ -71,11 +71,12 @@ $(function () {
         _data.phone = $('.phoneNum').val();
         _data.idCardNo = $('.idCard').val();
         _data.code = $('.ConfirmCode').val();
-        _data.transportType = $(".transport").val();
+        _data.transportType = $(".transport option:selected").val();
         $.post('./api/index.php?s=/Home/Account/runnerApply',_data,function(data){
             if (data) {
                 if (data.status == 0) {
                     alert("恭喜你注册成功,请等待审批");
+                    alert(_data.transportType)
                 } else {
                     alert(data.info);
                 }
