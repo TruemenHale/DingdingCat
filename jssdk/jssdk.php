@@ -44,8 +44,49 @@ class JSSDK {
   }
 
   private function getJsApiTicket() {
-    $ticket = "kgt8ON7yVITDhtdwci0qedetVwLPxbVUU9KEwLxvIH062aqrn5egEp-G7YxI_GE0dprv9KagQLkuq1rwoFU-kQ";
+    // jsapi_ticket 应该全局存储与更新，以下代码以写入到文件中做示例
+    $data = json_decode(file_get_contents("jsapi_ticket.json"));
+    if ($data->expire_time < time()) {
+      $accessToken = $this->getAccessToken();
+      // 如果是企业号用以下 URL 获取 ticket
+      // $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$accessToken";
+      $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
+      $res = json_decode($this->httpGet($url));
+      $ticket = $res->ticket;
+      if ($ticket) {
+        $data->expire_time = time() + 7000;
+        $data->jsapi_ticket = $ticket;
+        $fp = fopen("jsapi_ticket.json", "w");
+        fwrite($fp, json_encode($data));
+        fclose($fp);
+      }
+    } else {
+      $ticket = $data->jsapi_ticket;
+    }
+
     return $ticket;
+  }
+
+  private function getAccessToken() {
+    $url = "http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Api/getToken";
+    $output = file_get_contents($url);
+    $res = json_decode($output, TRUE);
+    $access_token = $res ['token'];
+    return $access_token;
+  }
+
+  private function httpGet($url) {
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 500);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($curl, CURLOPT_URL, $url);
+
+    $res = curl_exec($curl);
+    curl_close($curl);
+
+    return $res;
   }
 }
 
