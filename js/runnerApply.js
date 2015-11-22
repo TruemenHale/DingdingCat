@@ -71,7 +71,7 @@ $(function () {
         _data.phone = $('.phoneNum').val();
         _data.idCardNo = $('.idCard').val();
         _data.code = $('.ConfirmCode').val();
-        _data.trandsportType = $(".transport option:selected").val();
+        _data.trandsportType = $(".transport").val();
         $.post('./api/index.php?s=/Home/Account/runnerApply',_data,function(data){
             if (data) {
                 if (data.status == 0) {
