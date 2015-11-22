@@ -330,6 +330,9 @@
     wx.ready(function() {
         wx.hideOptionMenu();
     });
+    wx.error(function(res) {
+        alert(res)
+    });
     $.mobile.loading('hide');
     wx.ready(function(){
         wx.getLocation({
