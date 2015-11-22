@@ -59,7 +59,7 @@
 	</head>
 	<body>
 		<div data-role="page" id="register">
-			<div data-role="header" data-position="fixed">
+			<div class="header" data-role="header" data-position="fixed">
 				<h1>注册</h1>
 			</div>
 			<div role="main" class="ui-content">

@@ -31,3 +31,9 @@
   text-align: center;
   border-radius: 3px;
 }
+.header {
+  background: #46a6f7 !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
+  font-size: 18px;
+}

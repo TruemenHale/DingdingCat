@@ -49,7 +49,7 @@
 </head>
 <body>
 <div data-role="page" id="register">
-  <div data-role="header" data-position="fixed">
+  <div class="header" data-role="header" data-position="fixed">
     <h1>跑腿哥报名</h1>
   </div>
   <div role="main" class="ui-content">
@@ -100,8 +100,6 @@
     nonceStr: '<?php echo $signPackage["nonceStr"];?>',
     signature: '<?php echo $signPackage["signature"];?>',
     jsApiList: [
-      'openLocation',
-      'getLocation',
       'hideOptionMenu'
     ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
   });

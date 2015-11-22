@@ -50,7 +50,7 @@ $signPackage = $jsapi->getSignPackage();
 
 <!--代送页面-->
 <div data-role="page" id="suggestion">
-  <div data-role="header" data-position="fixed">
+  <div class="header" data-role="header" data-position="fixed">
     <h1>建议</h1>
   </div>
   <div role="main" class="ui-content">
