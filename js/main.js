@@ -211,7 +211,7 @@ $(function(){
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
-					$('#buyMoney').val('0.01');
+					$('#buyMoney').val(money);
 					$('#buyOrder').val(orderNo);
 				}
 			} else {
@@ -243,7 +243,7 @@ $(function(){
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
-				$('#sendMoney').val('0.01');
+				$('#sendMoney').val(money);
 				$('#sendOrder').val(orderNo);
 				$(this).button('option','disabled',true);
 			} else{
