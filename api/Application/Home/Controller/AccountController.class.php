@@ -182,8 +182,15 @@ class AccountController extends BaseController {
     }
 
     public function runnerApply () {
-        $info = I('post.');
-        $res = $this->runnerCheck($info ['phone']);
+        $phone = I("post.phone");
+        $code  = I('post.code');
+        $name  = I('post.name');
+        $trans = I('post.transportType');
+        $idCardNo = I('post.idCardNo');
+        $pic1  = I('post.idCardPic1');
+        $pic2  = I('post.idCardPic2');
+
+        $res = $this->runnerCheck($phone);
         if (!$res) {
             $return = [
                 'status' => '-3',
@@ -192,7 +199,7 @@ class AccountController extends BaseController {
             $this->ajaxReturn($return);
         }
 
-        $res = $this->codeCheck($info ['phone'],$info ['code']);
+        $res = $this->codeCheck($phone,$code);
         if (!$res) {
             $return = [
                 'status' => '-2',
@@ -202,12 +209,12 @@ class AccountController extends BaseController {
         }
 
         $save = [
-            'name' => $info ['name'],
-            'phone'=> $info ['phone'],
-            'transportType' => $info ['transportType'],
-            'idCardNo' => $info ['idCardNo'],
-            'idCardPic1' => $this->imgTrans($info ['idCardPic1'],$info ['phone']),
-            'idCardPic2' => $this->imgTrans($info ['idCardPic2'],$info ['phone'],'back'),
+            'name' => $name,
+            'phone'=> $phone,
+            'transportType' => $trans,
+            'idCardNo' => $idCardNo,
+            'idCardPic1' => $this->imgTrans($pic1,$phone),
+            'idCardPic2' => $this->imgTrans($pic2,$phone,'back'),
             'regTime' => date("Y-m-d H-i-s",time())
         ];
         M('runner')->add($save);
