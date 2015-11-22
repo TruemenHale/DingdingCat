@@ -62,22 +62,6 @@ $(function () {
             document.cookie = "flag = "+500;
         }
     });
-    $('#idCardPic1').change(function (){
-        var f = $(this).val();
-        var reader = new FileReader();
-        reader.readAsDataURL(this.files[0]);
-        reader.onload = function (e) {
-            pic1 = e.target.result;
-        }
-    });
-    $('#idCardPic2').change(function (){
-        var f = $(this).val();
-        var reader = new FileReader();
-        reader.readAsDataURL(this.files[0]);
-        reader.onload = function (e) {
-            pic2 = e.target.result;
-        }
-    });
 
     $('.registerBtn').on('tap',function(){
         $.mobile.loading('show');
@@ -88,9 +72,7 @@ $(function () {
         _data.idCardNo = $('.idCard').val();
         _data.code = $('.ConfirmCode').val();
         _data.trandsportType = $(".transport option:selected").val();
-        _data.idCardPic1 = pic1;
-        _data.idCardPic2 = pic2;
-        $.post('./api/index.php?s=/Home/Order/buyAccept',_data,function(data){
+        $.post('./api/index.php?s=/Home/Account/runnerApply',_data,function(data){
             if (data) {
                 var status = data.status;
                 if (status != 0) {
