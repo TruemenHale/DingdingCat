@@ -211,7 +211,7 @@ $(function(){
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
-					$('#buyMoney').val(money);
+					$('#buyMoney').val('0.01');
 					$('#buyOrder').val(orderNo);
 				}
 			} else {
@@ -240,11 +240,10 @@ $(function(){
 		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/shipAccept',_data,function(data){
 			if(data.status == 0){
 				var orderNo = data.orderNo;
-				var payType = data.payType;
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
-				$('#sendMoney').val(money);
+				$('#sendMoney').val('0.01');
 				$('#sendOrder').val(orderNo);
 				$(this).button('option','disabled',true);
 			} else{
