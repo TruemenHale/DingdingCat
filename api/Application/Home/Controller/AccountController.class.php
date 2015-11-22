@@ -187,8 +187,6 @@ class AccountController extends BaseController {
         $name  = I('post.name');
         $trans = I('post.transportType');
         $idCardNo = I('post.idCardNo');
-        $pic1  = I('post.idCardPic1');
-        $pic2  = I('post.idCardPic2');
 
         $res = $this->runnerCheck($phone);
         if (!$res) {
@@ -213,8 +211,6 @@ class AccountController extends BaseController {
             'phone'=> $phone,
             'transportType' => $trans,
             'idCardNo' => $idCardNo,
-            'idCardPic1' => $this->imgTrans($pic1,$phone),
-            'idCardPic2' => $this->imgTrans($pic2,$phone,'back'),
             'regTime' => date("Y-m-d H-i-s",time())
         ];
         M('runner')->add($save);

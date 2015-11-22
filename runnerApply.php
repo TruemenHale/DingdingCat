@@ -62,18 +62,6 @@
       <input type="text" class="idCard" />
     </div>
     <div class="ui-field-contain">
-      <label>身份证正面：</label>
-      <input id="idcard_font" type="text" disabled/>
-      <input type="file" accept="image/png" name="fileField" id="idCardPic1" style="display: none" onchange="idcard_font.value=this.value"/>
-    </div>
-    <input type="button" value="点击从相册中选取图片" onclick="idCardPic1.click()"/>
-    <div class="ui-field-contain">
-      <label>身份证背面：</label>
-      <input id="idcard_back" type="text" disabled/>
-      <input type="file" accept="image/png" name="fileField" id="idCardPic2" style="display: none" onchange="idcard_back.value=this.value"/>
-    </div>
-    <input type="button" value="点击从相册中选取图片" onclick="idCardPic2.click()"/>
-    <div class="ui-field-contain">
       <label>交通工具：</label>
       <select class="transport" name="transportType" id="">
         <option value="1">摩托车</option>
