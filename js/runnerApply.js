@@ -75,11 +75,7 @@ $(function () {
         $.post('./api/index.php?s=/Home/Account/runnerApply',_data,function(data){
             if (data) {
                 var status = data.status;
-                if (status != 0) {
-                    alert('报名失败，可能是服务器出故障了');
-                } else {
-                    alert('报名成功，请等待审批');
-                }
+                alert(status);
             } else {
                 alert("报名失败!未连接到服务器！");
             }
