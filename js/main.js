@@ -59,7 +59,8 @@ setTimeout(function () {
 				document.getElementById('planTime').innerText = data.planTime;
 				document.getElementById('endTime').innerText = data.endTime;
 				document.getElementById('status').innerText = data.status;
-				document.getElementById('pay').innerText = data.pay;
+				document.getElementById('payType').innerText = data.payType;
+				document.getElementById('payStatus').innerText = data.payStatus;
 				if (data.isPay == 0) {
 					document.getElementById('newPay').style.display= "";
 					$('#newMoney').val(data.money);

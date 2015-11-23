@@ -254,7 +254,8 @@ class OrderController extends BaseController {
                     'endTime'   => $res ['endTime'],
                     'money'     => $res ['money'],
                     'status'    => $status,
-                    'pay'       => $payType."/".$payStatus,
+                    'payType'   => $payType,
+                    'payStatus' => $payStatus,
                     'isPay'     => $res ['payStatus']
                 ]
             ];
