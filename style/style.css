@@ -139,6 +139,7 @@
   float: right !important;
   width: 65% !important;
   text-align: left !important;
+  font-style: normal;
 }
 .icon-huoche:before {
   content: "\e647";
