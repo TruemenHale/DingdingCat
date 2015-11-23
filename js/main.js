@@ -60,15 +60,14 @@ setTimeout(function () {
 				document.getElementById('endTime').innerText = data.endTime;
 				document.getElementById('status').innerText = data.status;
 				document.getElementById('pay').innerText = data.pay;
-				alert (data.isPay);
-				/*if (data.isPay == 0) {
+				if (data.isPay == 0) {
 					alert(1);
 					document.getElementById('newPay').style.display= "";
 					$('#newMoney').val(data.money);
 					$('#newOrder').val(data.orderNo);
 				} else {
 					alert(2);
-				}*/
+				}
 			}
 		}
 	});
