@@ -66,6 +66,8 @@ setTimeout(function () {
 					document.getElementById('newPay').style.display= "";
 					$('#newMoney').val(data.money);
 					$('#newOrder').val(data.orderNo);
+				} else {
+					alert(2);
 				}
 			}
 		}
