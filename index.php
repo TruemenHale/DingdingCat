@@ -249,43 +249,62 @@
         <table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
             <thead>
             <tr>
-                <th style="text-align:left;">订单类型：</th>
-                <th style="text-align:left;">订单号：</th>
-                <th style="text-align:left;">下单时间：</th>
-                <th style="text-align:left;">收件人姓名：</th>
-                <th style="text-align:left;">收件人手机号：</th>
-                <th style="text-align:left;">取件地址：</th>
-                <th style="text-align:left;">送达地址：</th>
-                <th style="text-align:left;">全程距离：</th>
-                <th style="text-align:left;">跑腿哥ID：</th>
-                <th style="text-align:left;">抢单时间：</th>
-                <th style="text-align:left;">取件时间：</th>
-                <th style="text-align:left;">预计送达时间：</th>
-                <th style="text-align:left;">送达时间：</th>
-                <th style="text-align:left;">支付方式及支付状态：</th>
-                <th style="text-align:left;">订单状态：</th>
+                <th>订单类型：</th>
+                <th>订单号：</th>
+                <th>下单时间：</th>
+                <th>收件人姓名：</th>
+                <th>收件人手机号：</th>
+                <th>取件地址：</th>
+                <th>送达地址：</th>
+                <th>全程距离：</th>
+                <th>跑腿哥ID：</th>
+                <th>抢单时间：</th>
+                <th>取件时间：</th>
+                <th>预计送达时间：</th>
+                <th>送达时间：</th>
+                <th>支付方式：</th>
+                <th>支付状态：</th>
+                <th>订单状态：</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td id="type"></td>
-                <td id="orderNo"></td>
-                <td id="orderTime"></td>
-                <td id="name"></td>
-                <td id="tel"></td>
-                <td id="pickAddr"></td>
-                <td id="sendAddr"></td>
-                <td id="distance"></td>
-                <td id="runner"></td>
-                <td id="getTime"></td>
-                <td id="pickTime"></td>
-                <td id="planTime"></td>
-                <td id="endTime"></td>
-                <td id="pay"></td>
-                <td id="status"></td>
+                <td><i id="type"></i></td>
+                <td><i id="orderNo"></i></td>
+                <td><i id="orderTime"></i></td>
+                <td><i id="name"></i></td>
+                <td><i id="tel"></i></td>
+                <td><i id="pickAddr"></i></td>
+                <td><i id="sendAddr"></i></td>
+                <td><i id="distance"></i></td>
+                <td><i id="runner"></i></td>
+                <td><i id="getTime"></i></td>
+                <td><i id="pickTime"></i></td>
+                <td><i id="planTime"></i></td>
+                <td><i id="endTime"></i></td>
+                <td><i id="payType"></i></td>
+                <td><i id="payStatus"></i></td>
+                <td><i id="status"></i></td>
             </tr>
             </tbody>
         </table>
+        <div role="main" class="ui-content">
+            <table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
+                <thead>
+                <tr>
+
+                </tr>
+                </thead>
+
+            </table>
+            <div id="newPay" style="display:none;">
+                <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+                    <input type="hidden" name="money" id="newMoney" value="">
+                    <input type="hidden" name="orderNo" id="newOrder" value="">
+                    <input type="submit" id="newBtn" value="前去支付">
+                </form>
+            </div>
+        </div>
         <div id="newPay" style="display: none">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="newMoney" value="">
