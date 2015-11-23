@@ -62,7 +62,7 @@ setTimeout(function () {
 				document.getElementById('pay').innerText = data.pay;
 
 				if (data.isPay == 0) {
-					$('#newPay').style.display = "";
+					document.getElementById('newPay').style.display= "";
 					$('#newMoney').val(data.money);
 					$('#newOrder').val(data.orderNo);
 				}

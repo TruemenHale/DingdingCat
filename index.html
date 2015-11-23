@@ -184,7 +184,8 @@
 			</p>
 			<ul data-role="listview" class="addressList">
 			</ul>
-</div>
+	</div>
+	</div>
 <!--详情页面-->
 <div data-role="page" id="xiangqing">
 	<div data-role="header" data-position="fixed" class="header">
@@ -231,7 +232,13 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="button" value="支付" id="pay"/>
+		<div id="newPay" style="display:none;">
+			<form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+				<input type="hidden" name="money" id="newMoney" value="">
+				<input type="hidden" name="orderNo" id="newOrder" value="">
+				<input type="submit" id="newBtn" value="前去支付">
+			</form>
+		</div>
 	</div>
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
@@ -255,7 +262,6 @@
 		</div>
 	</div>
 </div>
-	</div>
 </body>
 <script id="place_list" type="text/x-jquery-tmpl">
     <li>
