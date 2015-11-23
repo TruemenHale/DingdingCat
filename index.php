@@ -286,6 +286,13 @@
             </tr>
             </tbody>
         </table>
+        <div id="orderPay" style="display:none;">
+            <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+                <input type="hidden" name="money" id="newMoney" value="">
+                <input type="hidden" name="orderNo" id="newOrder" value="">
+                <input type="submit" id="newBtn" value="前去支付">
+            </form>
+        </div>
     </div>
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar">
@@ -317,7 +324,6 @@
 </script>
 <script>
     wx.config({
-        debug:true,
         appId: '<?php echo $signPackage["appId"];?>',
         timestamp: <?php echo $signPackage["timestamp"];?>,
         nonceStr: '<?php echo $signPackage["nonceStr"];?>',

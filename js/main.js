@@ -61,6 +61,11 @@ setTimeout(function () {
 				document.getElementById('status').innerText = data.status;
 				document.getElementById('pay').innerText = data.pay;
 
+				if (data.isPay == 0) {
+					$('#newPay').style.display = "";
+					$('#newMoney').val(data.money);
+					$('#newOrder').val(data.orderNo);
+				}
 			}
 		}
 	});

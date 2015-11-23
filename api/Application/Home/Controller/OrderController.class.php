@@ -250,8 +250,10 @@ class OrderController extends BaseController {
                     'pickTime'  => $res ['visitTime'],
                     'planTime'  => $res ['planTime'],
                     'endTime'   => $res ['endTime'],
+                    'money'     => $res ['money'],
                     'status'    => $status,
-                    'pay'       => $payType."/".$payStatus
+                    'pay'       => $payType."/".$payStatus,
+                    'isPay'     => $res ['payStatus']
                 ]
             ];
             $this->ajaxReturn($return);
