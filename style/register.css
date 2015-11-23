@@ -19,6 +19,15 @@
   box-shadow: 0 0 5px #666 inset;
   height: 31px;
 }
+.ConfirmCodeBox .header {
+  background: #46a6f7 !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
+  font-size: 18px;
+}
+.ConfirmCodeBox .header .button-return {
+  margin-top: 5px;
+}
 .ConfirmCodeBox .ApplyBtn {
   display: block;
   width: 43%;
@@ -30,10 +39,4 @@
   color: #ffffff;
   text-align: center;
   border-radius: 3px;
-}
-.header {
-  background: #46a6f7 !important;
-  color: #ffffff !important;
-  text-shadow: none !important;
-  font-size: 18px;
 }

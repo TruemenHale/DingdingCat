@@ -49,7 +49,7 @@
 </head>
 <body>
 <div data-role="page" id="register">
-  <div class="header" data-role="header" data-position="fixed">
+  <div class="header" data-role="header" data-position="fixed" class = "header">
     <h1>跑腿哥报名</h1>
   </div>
   <div role="main" class="ui-content">
