@@ -7,7 +7,9 @@
  */
 
 namespace Home\Controller;
+use Com\WechatAuth;
 use Think\Controller;
+
 
 class ApiController extends Controller {
     public function getToken () {
