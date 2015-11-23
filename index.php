@@ -248,26 +248,26 @@
     <div role="main" class="ui-content">
         <table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
             <thead>
-            <tr style="width: 50%;text-align: left">
-                <th>订单类型：</th>
-                <th>订单号：</th>
-                <th>下单时间：</th>
-                <th>收件人姓名：</th>
-                <th>收件人手机号：</th>
-                <th>取件地址：</th>
-                <th>送达地址：</th>
-                <th>全程距离：</th>
-                <th>跑腿哥ID：</th>
-                <th>抢单时间：</th>
-                <th>取件时间：</th>
-                <th>预计送达时间：</th>
-                <th>送达时间：</th>
-                <th>支付方式及支付状态：</th>
-                <th>订单状态：</th>
+            <tr>
+                <th style="text-align:left;">订单类型：</th>
+                <th style="text-align:left;">订单号：</th>
+                <th style="text-align:left;">下单时间：</th>
+                <th style="text-align:left;">收件人姓名：</th>
+                <th style="text-align:left;">收件人手机号：</th>
+                <th style="text-align:left;">取件地址：</th>
+                <th style="text-align:left;">送达地址：</th>
+                <th style="text-align:left;">全程距离：</th>
+                <th style="text-align:left;">跑腿哥ID：</th>
+                <th style="text-align:left;">抢单时间：</th>
+                <th style="text-align:left;">取件时间：</th>
+                <th style="text-align:left;">预计送达时间：</th>
+                <th style="text-align:left;">送达时间：</th>
+                <th style="text-align:left;">支付方式及支付状态：</th>
+                <th style="text-align:left;">订单状态：</th>
             </tr>
             </thead>
             <tbody>
-            <tr style="width: auto;text-align: left">
+            <tr>
                 <td id="type"></td>
                 <td id="orderNo"></td>
                 <td id="orderTime"></td>
