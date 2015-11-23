@@ -56,17 +56,17 @@ $signPackage = $jsapi->getSignPackage();
   <div role="main" class="ui-content">
     <div class="ui-field-contain">
       <label>建议内容:</label>
-      <textarea style="resize: none;" data-role="none" name="" class="content" cols="24" rows="10"></textarea>
+      <textarea style="resize: none;" data-role="none" name="" class="content" cols="30" rows="10"></textarea>
     </div>
+    <div class="ui-field-contain">
+      <label>建议分类：</label>
+      <select class="type">
+        <option value="0">意见建议</option>
+        <option value="1">问题上报</option>
+      </select>
+    </div>
+    <input type="button" value="提交建议" class="sApply"/>
   </div>
-  <div class="ui-field-contain">
-    <label>建议分类：</label>
-    <select class="type">
-      <option value="0">意见建议</option>
-      <option value="1">问题上报</option>
-    </select>
-  </div>
-  <input type="button" value="提交建议" class="sApply"/>
 </div>
 </body>
 <script>
