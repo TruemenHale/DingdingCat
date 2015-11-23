@@ -237,6 +237,14 @@ class AccountController extends BaseController {
             $userId = session('userId');
         }
 
+        if (is_null($content)) {
+            $return = [
+                'status' => '-12312',
+                'info'   => '请填写内容'
+            ];
+            $this->ajaxReturn($return);
+        }
+
         $save = [
             'content' => $content,
             'userId'  => $userId,
