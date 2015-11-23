@@ -226,8 +226,10 @@ class OrderController extends BaseController {
             }
             if ($res ['payStatus'] == 0) {
                 $payStatus = "未支付";
-            } else {
+            } else if ($res ['payStatus'] == 1) {
                 $payStatus = "已支付";
+            } else {
+                $payStatus = "支付失败";
             }
             if ($info ['payType'] == 0) {
                 $payType = "微信支付";
@@ -433,7 +435,7 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
-    public function paySuccess () {
+    public function payStatus () {
         $orderNo = I('post.orderNo');
         $save = [
             'payStatus' => 1
