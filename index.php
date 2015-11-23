@@ -248,7 +248,7 @@
     <div role="main" class="ui-content">
         <table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
             <thead>
-            <tr>
+            <tr style="width: 50%;text-align: left">
                 <th>订单类型：</th>
                 <th>订单号：</th>
                 <th>下单时间：</th>
@@ -267,7 +267,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr style="width: auto;text-align: left">
                 <td id="type"></td>
                 <td id="orderNo"></td>
                 <td id="orderTime"></td>
