@@ -76,6 +76,7 @@ $(function () {
             if (data) {
                 if (data.status == 0) {
                     alert("恭喜你注册成功,请等待审批");
+
                 } else {
                     alert(data.info);
                 }
