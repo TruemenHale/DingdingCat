@@ -97,7 +97,7 @@ $(function(){
 				document.getElementById('endTime').innerText = data.endTime;
 				document.getElementById('status').innerText = data.status;
 				document.getElementById('pay').innerText = data.pay;
-				alert (data.isPay);
+				alert ('1');
 				/*if (data.isPay == 0) {
 				 alert(1);
 				 document.getElementById('newPay').style.display= "";
