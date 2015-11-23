@@ -31,48 +31,6 @@ setTimeout(function(){
 	});
 },100);
 
-setTimeout(function () {
-	$.ajax({
-		type : 'POST',
-		url  : './api/index.php?s=/Home/Order/orderInfo',
-		data : 'phone=' + phone,
-		dataType : 'json',
-		error: function (request) {
-			alert('获取失败')
-		} ,
-		success : function (response) {
-			var status = response.status;
-			var data = response.data;
-			if (status != 0) {
-			} else {
-				document.getElementById('type').innerText = data.type;
-				document.getElementById('orderNo').innerText = data.orderNo;
-				document.getElementById('orderTime').innerText = data.orderTime;
-				document.getElementById('name').innerText = data.name;
-				document.getElementById('tel').innerText = data.tel;
-				document.getElementById('pickAddr').innerText = data.pickAddr;
-				document.getElementById('sendAddr').innerText = data.sendAddr;
-				document.getElementById('distance').innerText = data.distance;
-				document.getElementById('runner').innerText = data.runner;
-				document.getElementById('getTime').innerText = data.getTime;
-				document.getElementById('pickTime').innerText = data.pickTime;
-				document.getElementById('planTime').innerText = data.planTime;
-				document.getElementById('endTime').innerText = data.endTime;
-				document.getElementById('status').innerText = data.status;
-				document.getElementById('pay').innerText = data.pay;
-				alert (data.isPay);
-				/*if (data.isPay == 0) {
-					alert(1);
-					document.getElementById('newPay').style.display= "";
-					$('#newMoney').val(data.money);
-					$('#newOrder').val(data.orderNo);
-				} else {
-					alert(2);
-				}*/
-			}
-		}
-	});
-},1000);
 
 $(document).on("pagebeforeshow","#daisong",function(){
 	$('#daisong').find('.daisong').addClass('ui-link ui-btn ui-btn-active');
@@ -110,6 +68,46 @@ $(function(){
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
+	});
+	$.ajax({
+		type : 'POST',
+		url  : './api/index.php?s=/Home/Order/orderInfo',
+		data : 'phone=' + phone,
+		dataType : 'json',
+		error: function (request) {
+			alert('获取失败')
+		} ,
+		success : function (response) {
+			var status = response.status;
+			var data = response.data;
+			if (status != 0) {
+			} else {
+				document.getElementById('type').innerText = data.type;
+				document.getElementById('orderNo').innerText = data.orderNo;
+				document.getElementById('orderTime').innerText = data.orderTime;
+				document.getElementById('name').innerText = data.name;
+				document.getElementById('tel').innerText = data.tel;
+				document.getElementById('pickAddr').innerText = data.pickAddr;
+				document.getElementById('sendAddr').innerText = data.sendAddr;
+				document.getElementById('distance').innerText = data.distance;
+				document.getElementById('runner').innerText = data.runner;
+				document.getElementById('getTime').innerText = data.getTime;
+				document.getElementById('pickTime').innerText = data.pickTime;
+				document.getElementById('planTime').innerText = data.planTime;
+				document.getElementById('endTime').innerText = data.endTime;
+				document.getElementById('status').innerText = data.status;
+				document.getElementById('pay').innerText = data.pay;
+				alert (data.isPay);
+				/*if (data.isPay == 0) {
+				 alert(1);
+				 document.getElementById('newPay').style.display= "";
+				 $('#newMoney').val(data.money);
+				 $('#newOrder').val(data.orderNo);
+				 } else {
+				 alert(2);
+				 }*/
+			}
+		}
 	});
 	$('.cancel').on('tap',function(){
 		if(From == '.getAddress' || From == '.endAddress'){
