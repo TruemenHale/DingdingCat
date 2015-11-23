@@ -286,7 +286,7 @@
             </tr>
             </tbody>
         </table>
-        <div id="newPay">
+        <div id="newPay" style="display: none">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="newMoney" value="">
                 <input type="hidden" name="orderNo" id="newOrder" value="">
