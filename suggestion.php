@@ -56,7 +56,7 @@ $signPackage = $jsapi->getSignPackage();
   <div role="main" class="ui-content">
     <div class="ui-field-contain">
       <label>建议内容:</label>
-      <textarea style="resize: none;" data-role="none" name="" class="content" cols="30" rows="10"></textarea>
+      <textarea style="resize: none;" data-role="none" name="" class="content" cols="40" rows="10"></textarea>
     </div>
     <div class="ui-field-contain">
       <label>建议分类：</label>
