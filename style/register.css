@@ -14,8 +14,9 @@
 .ConfirmCodeBox .ConfirmCode {
   width: 48%;
   padding: 2px 8px;
-  border: black;
+  border: none;
   border-radius: 3px;
+  -webkit-appearance: none;
   box-shadow: 0 0 5px #666 inset;
   height: 31px;
 }
