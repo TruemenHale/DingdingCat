@@ -266,21 +266,6 @@ class OrderController extends BaseController {
 
     }
 
-    public function payJudge () {
-        $phone = I('post.phone');
-        if ($phone != session('phone')) {
-            $return = [
-                'status' => '-10',
-                'info'   => 'Error'
-            ];
-            $this->ajaxReturn($return);
-        } else {
-            $userId = session('userId');
-        }
-        $res = M('orders')->where("userId = '$userId'")->order('orderTime desc')->find();
-
-    }
-
     public function getMoney () {
         $pickupAddr = I('post.pickupAddr');
         $sendAddr   = I('post.sendAddr');

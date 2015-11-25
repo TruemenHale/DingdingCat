@@ -51,7 +51,7 @@ class PayNotifyCallBack extends WxPayNotify
 	}
 
 	final private function payReturn ($orderNo) {
-		$url = "http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/paySuccess";
+		$url = "http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/payStatus";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_URL, $url);
