@@ -34,17 +34,7 @@ class OrderController extends BaseController {
             $this->ajaxReturn($return);
         }
 
-        if ($info ['weight'] < 5) {
-            $save ['weight'] = 0;
-        } else if ($info ['weight'] < 10) {
-            $save ['weight'] = 1;
-        } else if ($info ['weight'] < 15) {
-            $save ['weight'] = 2;
-        } else if ($info ['weight'] < 20) {
-            $save ['weight'] = 3;
-        } else {
-            $save ['weight'] = 4;
-        }
+        $save ['weight'] = $info ['weight'];
         $money = $this->moneyCal($info['pickupAddr'],$info['sendAddr'],$info ['weight']);
         $lt1 = session("location1");
         $lt2 = session("location2");
