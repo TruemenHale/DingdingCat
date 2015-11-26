@@ -46,6 +46,12 @@ class OrderController extends BaseController {
             $save ['weight'] = 4;
         }
         $money = $this->moneyCal($info['pickupAddr'],$info['sendAddr'],$info ['weight']);
+        $lt1 = session("location1");
+        $lt2 = session("location2");
+        $save ['startLongitude'] = $lt1 ['lng'];
+        $save ['endLongitude'] = $lt2 ['lng'];
+        $save ['startLatitude'] = $lt1 ['lat'];
+        $save ['endLatitude'] = $lt2 ['lat'];
         $save ['money']    = $money;
         $save ['distance'] = number_format($this->distance($info['pickupAddr'],$info['sendAddr']) / 1000,1);
         $save ['pickupAddr'] = $info ['pickupAddr'].$info ['GdetAddr'];
@@ -583,7 +589,9 @@ class OrderController extends BaseController {
      */
     private function distance ($location1,$location2) {
         $location1 = $this->locationToLal($location1);
+        session("location1",$location1);
         $location2 = $this->locationToLal($location2);
+        session("location2",$location2);
 
         $distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);
 
