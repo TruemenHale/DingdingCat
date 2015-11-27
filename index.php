@@ -158,7 +158,6 @@
             </form>
         </div>
         <input type="button" id="apply" value="提交订单"/>
-
     </div>
 </div>
 <!--代购页面-->

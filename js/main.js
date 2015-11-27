@@ -252,11 +252,11 @@ $(function(){
 				document.getElementById('daisongPay').style.display= "";
 				$('#sendMoney').val(money);
 				$('#sendOrder').val(orderNo);
-				$(this).button('option','disabled',true);
 			} else{
 				if (data.status == -100) {
 					alert(data.info);
 				}
+				$(this).button('option','disabled',false)
 			}
 			$(this).button('option','disabled',false);
 		});
