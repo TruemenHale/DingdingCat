@@ -35,4 +35,24 @@ class BaseController extends Controller {
         $this->_cacheHeader();
         $this->ajaxReturn($data);
     }
+
+    protected function tokenJudge () {
+        $res = M('token')->where("id = 1")->find();
+        $time = $res ['m_time'];
+        $now = time();
+
+        if (($now - $time) >= 3600) {
+            $weChat = new WechatAuth();
+            $data = $weChat->getAccessToken();
+            $token = $data ['access_token'];
+            $save = [
+                'token' => $token,
+                'm_time' => time()
+            ];
+            M('token')->where("id = 1")->save($save);
+        } else {
+            $token = $res ['token'];
+        }
+        return $token;
+    }
 }

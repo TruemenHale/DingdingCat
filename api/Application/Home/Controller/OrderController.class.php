@@ -598,12 +598,18 @@ class OrderController extends BaseController {
                 $status = "已抢单";
                 break;
             case "2":
-                $status = "已取件";
+                $status = "已致电寄件人";
                 break;
             case "3":
-                $status = "已收件";
+                $status = "已取件";
                 break;
             case "4":
+                $status = "正在运送途中";
+                break;
+            case "5":
+                $status = "已收件";
+                break;
+            case "6":
                 $status = "已取消";
                 break;
             default:
