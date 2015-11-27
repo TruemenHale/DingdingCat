@@ -198,7 +198,6 @@ $(function(){
 	});
 	$('.dgApply').on('tap',function(){
 		$.mobile.loading('show');
-		$(this).button('option','disabled',true);
 		var _data = {};
 		_data.sendAddr = $('.dgAddress').val();
 		_data.sendDet = $('sendDet').val();
@@ -213,22 +212,20 @@ $(function(){
 				var money = data.money;
 				if (status != 0) {
 					alert('下单失败，可能是服务器出故障了');
-					$(this).button('option','disabled',false)
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
 					$('#buyMoney').val(money);
 					$('#buyOrder').val(orderNo);
+					$('.dgApply').button('option','disabled',true);
 				}
 			} else {
 				alert("下单失败!");
-				$(this).button('option','disabled',false)
 			}
 			$.mobile.loading('hide');
 		});
 	});
 	$('#apply').on('tap',function(){
-		$(this).button('option','disabled',true);
 		_data = null;
 		var _data = {};
 		_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
@@ -252,13 +249,12 @@ $(function(){
 				document.getElementById('daisongPay').style.display= "";
 				$('#sendMoney').val(money);
 				$('#sendOrder').val(orderNo);
+				$('#apply').button('option','disabled',true);
 			} else{
 				if (data.status == -100) {
 					alert(data.info);
 				}
-				$(this).button('option','disabled',false)
 			}
-			$(this).button('option','disabled',false);
 		});
 	});
 });
