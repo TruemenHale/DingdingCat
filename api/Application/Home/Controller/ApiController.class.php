@@ -65,7 +65,7 @@ class ApiController extends BaseController {
         $this->ajaxReturn($res);
     }
 
-    public function getGoodMsgSend () {
+    public function finishMsgSend () {
         $openid = I('post.openid');
         $order  = I('post.order');
         $weChat = new WechatAuth();
