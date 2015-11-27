@@ -66,7 +66,8 @@ class OrderController extends BaseController {
             'status'    => 0,
             'binCode'   => '111',
             'sendId'    => $sendId,
-            'money'     => $money
+            'money'     => $money,
+            'revenue'   => $this->revenue($money)
         ];
         M('orders')->add($order);
 
@@ -715,5 +716,14 @@ class OrderController extends BaseController {
 
         $res = $weChat->sendTemplate($openid,$template_id,$send,$url);
         $this->ajaxReturn($res);
+    }
+
+    private function revenue ($money) {
+        $db = M("sysconf");
+        $tax = $db->where("syskey = 'tax'")->getField("val");
+        $pct = $db->where("syskey = 'pct'")->getField("val");
+        $revenue = ($money - $tax) * $pct;
+        $revenue = number_format($revenue,".","");
+        return $revenue;
     }
 }
