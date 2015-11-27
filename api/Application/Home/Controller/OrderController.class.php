@@ -722,7 +722,7 @@ class OrderController extends BaseController {
         $db = M("sysconf");
         $tax = $db->where("syskey = 'tax'")->getField("val");
         $pct = $db->where("syskey = 'pct'")->getField("val");
-        $revenue = ($money - $tax) * $pct;
+        $revenue = ($money - $money * $pct - $tax);
         $revenue = number_format($revenue,2,".","");
         return $revenue;
     }
