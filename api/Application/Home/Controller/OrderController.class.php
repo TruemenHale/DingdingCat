@@ -680,26 +680,6 @@ class OrderController extends BaseController {
         $this->ajaxReturn($res);
     }
 
-    private function tokenJudge () {
-        $res = M('token')->where("id = 1")->find();
-        $time = $res ['m_time'];
-        $now = time();
-
-        if (($now - $time) >= 3600) {
-            $weChat = new WechatAuth();
-            $data = $weChat->getAccessToken();
-            $token = $data ['access_token'];
-            $save = [
-                'token' => $token,
-                'm_time' => time()
-            ];
-            M('token')->where("id = 1")->save($save);
-        } else {
-            $token = $res ['token'];
-        }
-        return $token;
-    }
-
     public function accessMsgSend () {
         $openid = I('post.openid');
         $order  = I('post.order');
