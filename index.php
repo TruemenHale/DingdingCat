@@ -259,6 +259,7 @@
                 <th>跑腿哥ID：</th>
                 <th>抢单时间：</th>
                 <th>取件时间：</th>
+                <!--<th>预计送达时间：</th>-->
                 <th>送达时间：</th>
                 <th>支付方式：</th>
                 <th>支付状态：</th>
@@ -278,6 +279,7 @@
                 <td><i id="runner"></i></td>
                 <td><i id="getTime"></i></td>
                 <td><i id="pickTime"></i></td>
+                <!--<td><i id="planTime"></i></td>-->
                 <td><i id="endTime"></i></td>
                 <td><i id="payType"></i></td>
                 <td><i id="payStatus"></i></td>
