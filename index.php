@@ -150,15 +150,15 @@
                 <option value="1">现金</option>
             </select>
         </div>
-
-        <input type="button" id="apply" value="提交订单"/>
         <div id="daisongPay" style="display:none">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="sendMoney" value="">
                 <input type="hidden" name="orderNo" id="sendOrder" value="">
-                <input type="submit" id="wxpayBtn" value="前去支付">
+                <input type="submit" class="background:" id="wxpayBtn" value="前去支付">
             </form>
         </div>
+        <input type="button" id="apply" value="提交订单"/>
+
     </div>
 </div>
 <!--代购页面-->

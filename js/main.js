@@ -213,6 +213,7 @@ $(function(){
 				var money = data.money;
 				if (status != 0) {
 					alert('下单失败，可能是服务器出故障了');
+					$(this).button('option','disabled',false)
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
@@ -221,6 +222,7 @@ $(function(){
 				}
 			} else {
 				alert("下单失败!");
+				$(this).button('option','disabled',false)
 			}
 			$.mobile.loading('hide');
 		});
