@@ -126,12 +126,20 @@ class AccountController extends BaseController {
             $this->ajaxReturn($return);
         }
 
+        if ($money == null || $addr == null) {
+            $return = [
+                'status' => '-100',
+                'info'   => '请完整填写上述内容'
+            ];
+            $this->ajaxReturn($return);
+        }
+
         $res = $this->checkBalance($phone,$money);
 
         if (!$res) {
             $return = [
                 'status' => '-7',
-                'info'   => 'Error'
+                'info'   => '请填写正确金额'
             ];
             $this->ajaxReturn($return);
         }

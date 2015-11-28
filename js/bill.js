@@ -47,10 +47,10 @@ $(function () {
 			},
 			success : function (response) {
 				var status = response.status;
-				if (status >= 0) {
+				if (status == 0) {
 					alert('发票申请成功请等候收件！');
 				} else {
-					alert('发票申请失败，请正确填写申请金额！');
+					alert(response.info);
 				}
 			}
 		});

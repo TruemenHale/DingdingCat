@@ -111,7 +111,8 @@ function orderInfo (orderNo) {
             $('#planTime').html(data.data.planTime);
             $('#endTime').html(data.data.endTime);
             $('#status').html(data.data.status);
-            $('#pay').html(data.data.pay);
+            $('#payType').html(data.data.payType);
+            $('#payStatus').html(data.data.payStatus);
             $.mobile.changePage('#orderInfo',{
                 transition:'none'
             });
