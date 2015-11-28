@@ -108,8 +108,25 @@ class WeixinController extends Controller {
                 'Description' => '点击进入发表建议，让我们变得更好',
                 'Url' => "http://wx.tyll.net.cn/DingdingCat/suggestion.php"
             );
+        } else {
+            $this->dynamicReply($content);
         }
         $this->wechat->replyNews($news);
+    }
+
+    private function dynamicReply ($content) {
+        $map = [
+            'keyWord' => $content
+        ];
+        $res = M('reply')->where($map)->find();
+
+        if ($res) {
+            $reply = $res ['reply'];
+        } else {
+            $reply = "请按下方按钮进行相关操作";
+        }
+
+        $this->wechat->replyText($reply);
     }
 
     private function scan ($key) {

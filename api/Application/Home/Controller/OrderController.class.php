@@ -113,6 +113,9 @@ class OrderController extends BaseController {
             $save ['recipientName'] = session("userNick");
         }
         $save ['sendAddr'] = $info ['sendAddr'].$info ['sendDet'];
+        $location = $this->locationToLal($info ['sendAddr']);
+        $save ['longitude'] = $location ['lng'];
+        $save ['latitude']  = $location ['lat'];
         M('purchase')->add($save);
 
         $sendId = M('purchase')->getLastInsID();
@@ -121,6 +124,7 @@ class OrderController extends BaseController {
         $string = new \Org\Util\String();
         $randNum = $string->randString(8,1);
         $orderNo = "B".time().$randNum;
+
 
         $order = [
             'orderNo'   => $orderNo,
@@ -150,7 +154,7 @@ class OrderController extends BaseController {
 
         $trans = $this->lalTrans($lng,$lat);
 
-        $url ="http://api.map.baidu.com/geocoder/v2/?ak=AqFXx3FQKGme9bkLhrW60i02&output=json&location=".$trans['lat'].",".$trans['lng'];
+        $url ="http://api.map.baidu.com/geocoder/v2/?ak=k2ynBN7eZTDr5ymYwnTj7IXm&output=json&location=".$trans['lat'].",".$trans['lng'];
         $json = file_get_contents($url);
         $output = json_decode($json,true);
         $location = $output['result']['formatted_address'];
@@ -444,7 +448,7 @@ class OrderController extends BaseController {
         header("Access-Control-Allow-Origin: *");
         $keyword = I("post.keyword");
 
-        $str = "http://api.map.baidu.com/place/v2/suggestion?query=$keyword&region=132&output=json&ak=AqFXx3FQKGme9bkLhrW60i02";
+        $str = "http://api.map.baidu.com/place/v2/suggestion?query=$keyword&region=132&output=json&ak=k2ynBN7eZTDr5ymYwnTj7IXm";
 
         $json = file_get_contents($str);
         $output = json_decode($json,true);
@@ -534,7 +538,7 @@ class OrderController extends BaseController {
      * @return array
      */
     private function locationToLal ($location) {
-        $url = "http://api.map.baidu.com/geocoder/v2/?ak=AqFXx3FQKGme9bkLhrW60i02&output=json&city=重庆市&address=".$location;
+        $url = "http://api.map.baidu.com/geocoder/v2/?ak=k2ynBN7eZTDr5ymYwnTj7IXm&output=json&city=重庆市&address=".$location;
 
         $json = file_get_contents($url);
         $output = json_decode($json,true);
