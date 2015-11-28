@@ -10,7 +10,7 @@ namespace Home\Controller;
 use Com\WechatAuth;
 use Think\Controller;
 
-class ApiController extends BaseController {
+class ApiController extends Controller {
     private function getToken () {
         $res = M('token')->where("id = 1")->find();
         $time = $res ['m_time'];
@@ -113,5 +113,25 @@ class ApiController extends BaseController {
 
         $res = $weChat->sendTemplate($openid,$template_id,$send);
         $this->ajaxReturn($res);
+    }
+
+    protected function tokenJudge () {
+        $res = M('token')->where("id = 1")->find();
+        $time = $res ['m_time'];
+        $now = time();
+
+        if (($now - $time) >= 3600) {
+            $weChat = new WechatAuth();
+            $data = $weChat->getAccessToken();
+            $token = $data ['access_token'];
+            $save = [
+                'token' => $token,
+                'm_time' => time()
+            ];
+            M('token')->where("id = 1")->save($save);
+        } else {
+            $token = $res ['token'];
+        }
+        return $token;
     }
 }
