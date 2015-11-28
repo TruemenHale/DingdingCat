@@ -98,6 +98,7 @@ $(function () {
 function orderInfo (orderNo) {
     $.post('./api/index.php?s=/Home/Order/orderInfo','phone=' + phone + '&orderNo=' + orderNo,function(data){
         if(data.status == 0){
+            $('#thead').display = true;
             $('#type').html(data.data.type);
             $('#orderNo').html(data.data.orderNo);
             $('#orderTime').html(data.data.orderTime);
