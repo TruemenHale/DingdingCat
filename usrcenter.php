@@ -174,7 +174,7 @@ $signPackage = $jsapi->getSignPackage();
 	<div role="main" class="ui-content">
 		<table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
 			<thead>
-			<tr>
+			<tr id="tHead">
 				<th>订单类型：</th>
 				<th>订单号：</th>
 				<th>下单时间：</th>
