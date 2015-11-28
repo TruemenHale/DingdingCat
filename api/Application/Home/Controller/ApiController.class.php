@@ -31,7 +31,7 @@ class ApiController extends BaseController {
         return $token;
     }
 
-    private function getJsTicket () {
+    public function getJsTicket () {
         $res = M('token')->where("id = 2")->find();
         $time = $res ['m_time'];
         $now = time();
