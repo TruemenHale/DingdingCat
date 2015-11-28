@@ -96,23 +96,10 @@ $(function () {
 });
 
 function orderInfo (orderNo) {
+    $("#tHead").html("");
     $.post('./api/index.php?s=/Home/Order/orderInfo','phone=' + phone + '&orderNo=' + orderNo,function(data){
         if(data.status == 0){
-            $('#tHead').html("").append("<th>订单类型：</th>
-                <th>订单号：</th>
-            <th>下单时间：</th>
-            <th>收件人姓名：</th>
-            <th>收件人手机：</th>
-            <th>取件地址：</th>
-            <th>送达地址：</th>
-            <th>全程距离：</th>
-            <th>跑腿哥ID：</th>
-            <th>抢单时间：</th>
-            <th>取件时间：</th>
-            <th>送达时间：</th>
-            <th>支付方式：</th>
-            <th>支付状态：</th>
-            <th>订单状态：</th>");
+            $("#t_list").tmpl(all).appendTo('#thead');
             $('#type').html(data.data.type);
             $('#orderNo').html(data.data.orderNo);
             $('#orderTime').html(data.data.orderTime);
