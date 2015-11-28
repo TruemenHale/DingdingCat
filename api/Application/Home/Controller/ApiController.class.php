@@ -11,7 +11,7 @@ use Com\WechatAuth;
 use Think\Controller;
 
 class ApiController extends BaseController {
-    public function getToken () {
+    private function getToken () {
         $res = M('token')->where("id = 1")->find();
         $time = $res ['m_time'];
         $now = time();
@@ -25,6 +25,27 @@ class ApiController extends BaseController {
                 'm_time' => time()
             ];
             M('token')->where("id = 1")->save($save);
+        } else {
+            $token = $res ['token'];
+        }
+        return $token;
+    }
+
+    private function getJsTicket () {
+        $res = M('token')->where("id = 2")->find();
+        $time = $res ['m_time'];
+        $now = time();
+
+        if (($now - $time) >= 3600) {
+            $access_token = $this->getToken();
+            $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$access_token";
+            $res = json_decode(file_get_contents($url));
+            $token = $res->ticket;
+            $save = [
+                'token' => $token,
+                'm_time' => time()
+            ];
+            M('token')->where("id = 2")->save($save);
         } else {
             $token = $res ['token'];
         }

@@ -9,8 +9,7 @@ class JSSDK {
   }
 
   public function getSignPackage() {
-    /*$jsapiTicket = $this->getJsApiTicket();*/
-    $jsapiTicket = "kgt8ON7yVITDhtdwci0qedetVwLPxbVUU9KEwLxvIH2EMU9A6-U4sNOxl6z2AMReJp69xc-kXyiyTR-DDXd0dQ";
+    $jsapiTicket = $this->getJsApiTicket();
     // 注意 URL 一定要动态获取，不能 hardcode.
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -67,7 +66,7 @@ class JSSDK {
     return $ticket;
   }
 
-  private function getAccessToken() {
+  private function getJsTicket() {
     $url = "http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Api/getToken";
     $output = file_get_contents($url);
     $res = json_decode($output, TRUE);
