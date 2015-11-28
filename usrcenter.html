@@ -8,14 +8,14 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
   <script>
-    var openid = "okH4Gs9Tlz0klXoRYjLA8oMcuwKM";
+    var openid = "oZ3vTvmRCKjtDwPxGI3x7zuu1HZQ";
+    var nickname = "123"
   </script>
   <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="./js/jquery.tmpl.min.js"></script>
   <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <link rel="stylesheet" href="style/usrcenter.css"/>
   <script src="./js/usrcenter.js"></script>
-
+  <script src="./js/jquery.tmpl.min.js"></script>
 </head>
 <body>
 <div data-role="page" id="usrcenter">
@@ -74,7 +74,7 @@
   </ul>
 </div>
 <div data-role="page" id="Daisongorder">
-  <div data-role="header" data-position="fixed">
+  <div data-role="header" data-position="fixed" class="header">
     <a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
     <h1>全部订单</h1>
   </div>
@@ -102,7 +102,7 @@
   </ul>
 </div>
 <div data-role="page" id="Daigouorder">
-  <div data-role="header" data-position="fixed">
+  <div data-role="header" data-position="fixed" class="header">
     <a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
     <h1>全部订单</h1>
   </div>
@@ -126,10 +126,11 @@
     </ul>
   </div>
   <ul data-inset="true" data-role="listview" id="buyList" style="color: #333">
+
   </ul>
 </div>
 <div data-role="page" id="orderInfo">
-  <div data-role="header" data-position="fixed">
+  <div data-role="header" data-position="fixed" class="header">
     <a data-transition="none" href="#usrcenter" data-role="button" data-inline="true" data-icon="back" data-iconpos="notext"></a>
     <h1>订单详情</h1>
   </div>
@@ -141,39 +142,46 @@
         <th>订单号：</th>
         <th>下单时间：</th>
         <th>收件人姓名：</th>
-        <th>收件人手机号：</th>
+        <th>收件人手机：</th>
         <th>取件地址：</th>
         <th>送达地址：</th>
         <th>全程距离：</th>
         <th>跑腿哥ID：</th>
         <th>抢单时间：</th>
         <th>取件时间：</th>
-        <th>预计送达时间：</th>
         <th>送达时间：</th>
-        <th>支付方式及支付状态：</th>
+        <th>支付方式：</th>
+        <th>支付状态：</th>
         <th>订单状态：</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td id="type"></td>
-        <td id="orderNo"></td>
-        <td id="orderTime"></td>
-        <td id="orderInfo_name"></td>
-        <td id="tel"></td>
-        <td id="pickAddr"></td>
-        <td id="sendAddr"></td>
-        <td id="distance"></td>
-        <td id="runner"></td>
-        <td id="getTime"></td>
-        <td id="pickTime"></td>
-        <td id="planTime"></td>
-        <td id="endTime"></td>
-        <td id="pay"></td>
-        <td id="status"></td>
+        <td><i id="type"></i></td>
+        <td><i id="orderNo"></i></td>
+        <td><i id="orderTime"></i></td>
+        <td><i id="name"></i></td>
+        <td><i id="tel"></i></td>
+        <td><i id="pickAddr"></i></td>
+        <td><i id="sendAddr"></i></td>
+        <td><i id="distance"></i></td>
+        <td><i id="runner"></i></td>
+        <td><i id="getTime"></i></td>
+        <td><i id="pickTime"></i></td>
+        <td><i id="endTime"></i></td>
+        <td><i id="payType"></i></td>
+        <td><i id="payStatus"></i></td>
+        <td><i id="status"></i></td>
       </tr>
       </tbody>
     </table>
+    <div id="newPay" style="display: none">
+      <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+        <input type="hidden" name="money" id="newMoney" value="">
+        <input type="hidden" name="orderNo" id="newOrder" value="">
+        <input type="submit" id="newBtn" value="前去支付">
+      </form>
+    </div>
   </div>
 </div>
 </body>
@@ -217,4 +225,3 @@
 </script>
 
 </html>
-

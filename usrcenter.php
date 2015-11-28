@@ -194,21 +194,21 @@ $signPackage = $jsapi->getSignPackage();
 			</thead>
 			<tbody>
 			<tr>
-				<td id="type"></td>
-				<td id="orderNo"></td>
-				<td id="orderTime"></td>
-				<td id="orderInfo_name"></td>
-				<td id="tel"></td>
-				<td id="pickAddr"></td>
-				<td id="sendAddr"></td>
-				<td id="distance"></td>
-				<td id="runner"></td>
-				<td id="getTime"></td>
-				<td id="pickTime"></td>
-				<td id="endTime"></td>
-				<td id="payType"></td>
-				<td id="payStatus"></td>
-				<td id="status"></td>
+				<td><i id="type"></i></td>
+				<td><i id="orderNo"></i></td>
+				<td><i id="orderTime"></i></td>
+				<td><i id="name"></i></td>
+				<td><i id="tel"></i></td>
+				<td><i id="pickAddr"></i></td>
+				<td><i id="sendAddr"></i></td>
+				<td><i id="distance"></i></td>
+				<td><i id="runner"></i></td>
+				<td><i id="getTime"></i></td>
+				<td><i id="pickTime"></i></td>
+				<td><i id="endTime"></i></td>
+				<td><i id="payType"></i></td>
+				<td><i id="payStatus"></i></td>
+				<td><i id="status"></i></td>
 			</tr>
 			</tbody>
 		</table>
