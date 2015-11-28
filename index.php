@@ -157,7 +157,7 @@
                 <input type="submit" style="background: orangered;" id="wxpayBtn" value="前去支付">
             </form>
         </div>
-        <input type="button" style="background-color: #ff6e72" id="apply" value="提交订单"/>
+        <input type="button" style="background-color: #56b0e0" id="apply" value="提交订单"/>
     </div>
 </div>
 <!--代购页面-->
@@ -188,7 +188,7 @@
             <input class="dgPay moneyInput" type="text" data-role="none"/>
             <span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
         </div>
-        <input type="button" style="background-color: #ff6e72" value="提交订单" id="dgApply" class="dgApply"/>
+        <input type="button" style="background-color: #56b0e0" value="提交订单" id="dgApply" class="dgApply"/>
         <div id="daigouPay" style="display:none;">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="buyMoney" value="">
@@ -252,7 +252,7 @@
                 <th>订单号：</th>
                 <th>下单时间：</th>
                 <th>收件人姓名：</th>
-                <th>收件人手机号：</th>
+                <th>收件人手机：</th>
                 <th>取件地址：</th>
                 <th>送达地址：</th>
                 <th>全程距离：</th>

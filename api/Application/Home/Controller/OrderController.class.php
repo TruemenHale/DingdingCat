@@ -135,7 +135,8 @@ class OrderController extends BaseController {
             'status'    => 0,
             'binCode'   => '111',
             'sendId'    => $sendId,
-            'money'     => $info ['runnerFee']
+            'money'     => $info ['runnerFee'],
+            'revenue'   => $this->revenue($info ['runnerFee'])
         ];
         M('orders')->add($order);
 
