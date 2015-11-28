@@ -113,6 +113,13 @@ function orderInfo (orderNo) {
             $('#status').html(data.data.status);
             $('#payType').html(data.data.payType);
             $('#payStatus').html(data.data.payStatus);
+            if (data.isPay == 0) {
+                document.getElementById('newPay').style.display= "";
+                $('#newMoney').val(data.money);
+                $('#newOrder').val(data.orderNo);
+            } else {
+                document.getElementById('newPay').style.display = "none";
+            }
             $.mobile.changePage('#orderInfo',{
                 transition:'none'
             });
