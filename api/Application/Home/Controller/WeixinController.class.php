@@ -64,8 +64,8 @@ class WeixinController extends Controller {
             case Wechat::MSG_TYPE_TEXT:
                 $this->msgReply($this->content);
                 break;
-            default:
-                $reply = "请按下方按钮进行相关操作";
+            default:      //TODO 留空，可扩展
+                $reply = "暂时不支持文字以外的回复";
                 $wechat->replyText($reply);
                 break;
         }
@@ -114,6 +114,10 @@ class WeixinController extends Controller {
         $this->wechat->replyNews($news);
     }
 
+    /**
+     * @param $content
+     * 动态回复
+     */
     private function dynamicReply ($content) {
         $map = [
             'keyWord' => $content
@@ -121,7 +125,26 @@ class WeixinController extends Controller {
         $res = M('reply')->where($map)->find();
 
         if ($res) {
-            $reply = $res ['reply'];
+            if ($res ['replyType'] == 1) {
+                $reply = $res ['textReply'];
+                $this->wechat->replyText($reply);
+            } else {
+                if ($res ['newsPicUrl']) {
+                    $news [0] = array (
+                        'Title' => $res ['newsTitle'],
+                        'Description' => $res ['newsDescription'],
+                        'PicUrl' => $res ['newsPicUrl'],
+                        'Url' => $res ['newsUrl']
+                    );
+                } else {
+                    $news [0] = array (
+                        'Title' => $res ['newsTitle'],
+                        'Description' => $res ['newsDescription'],
+                        'Url' => $res ['newsUrl']
+                    );
+                }
+                $this->wechat->replyNews($news);
+            }
         } else {
             $reply = "请按下方按钮进行相关操作";
         }
@@ -133,6 +156,10 @@ class WeixinController extends Controller {
 
     }
 
+    /**
+     * @param $data
+     * 数据格式化，赋值到全局变量，方便调用
+     */
     private function MsgFormat ($data) {
         $this->msgType = $data['MsgType'];
         $this->content = $data['Content'];
@@ -141,6 +168,10 @@ class WeixinController extends Controller {
         $this->eventKey= $data['EventKey'];
     }
 
+    /**
+     * @param int $type
+     * 用于粉丝统计
+     */
     private function subNum ($type = 1) {
         $date = date("Y-m-d",time());
         $wechat = M('wechat');
