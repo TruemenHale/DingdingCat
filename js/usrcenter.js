@@ -115,8 +115,8 @@ function orderInfo (orderNo) {
             $('#payStatus').html(data.data.payStatus);
             if (data.data.isPay == 0) {
                 document.getElementById('newPay').style.display= "";
-                $('#newMoney').val(data.money);
-                $('#newOrder').val(data.orderNo);
+                $('#newMoney').val(data.data.money);
+                $('#newOrder').val(data.data.orderNo);
             } else {
                 document.getElementById('newPay').style.display = "none";
             }
