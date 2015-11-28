@@ -56,7 +56,6 @@ setTimeout(function () {
 				document.getElementById('runner').innerText = data.runner;
 				document.getElementById('getTime').innerText = data.getTime;
 				document.getElementById('pickTime').innerText = data.pickTime;
-				document.getElementById('planTime').innerText = data.planTime;
 				document.getElementById('endTime').innerText = data.endTime;
 				document.getElementById('status').innerText = data.status;
 				document.getElementById('payType').innerText = data.payType;
