@@ -174,8 +174,22 @@ $signPackage = $jsapi->getSignPackage();
 	<div role="main" class="ui-content">
 		<table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
 			<thead>
-			<tr id="tHead">
-
+			<tr>
+				<th>订单类型：</th>
+				<th>订单号：</th>
+				<th>下单时间：</th>
+				<th>收件人姓名：</th>
+				<th>收件人手机：</th>
+				<th>取件地址：</th>
+				<th>送达地址：</th>
+				<th>全程距离：</th>
+				<th>跑腿哥ID：</th>
+				<th>抢单时间：</th>
+				<th>取件时间：</th>
+				<th>送达时间：</th>
+				<th>支付方式：</th>
+				<th>支付状态：</th>
+				<th>订单状态：</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -242,23 +256,6 @@ $signPackage = $jsapi->getSignPackage();
 					<p class="ui-li-aside orderLi"><span class="Cost">${money}</span>￥<br><span class="PayState">${status}</span></p>
 				</a>
 			</li>
-</script>
-<script id="t_list" type="text/x-jquery-tmpl">
-	<th>订单类型：</th>
-	<th>订单号：</th>
-	<th>下单时间：</th>
-	<th>收件人姓名：</th>
-	<th>收件人手机：</th>
-	<th>取件地址：</th>
-	<th>送达地址：</th>
-	<th>全程距离：</th>
-	<th>跑腿哥ID：</th>
-	<th>抢单时间：</th>
-	<th>取件时间：</th>
-	<th>送达时间：</th>
-	<th>支付方式：</th>
-	<th>支付状态：</th>
-	<th>订单状态：</th>
 </script>
 <script id="addr_list" type="text/x-jquery-tmpl">
 	<li class="ui-li-static ui-body-inherit ui-first-child">${addr}</li>

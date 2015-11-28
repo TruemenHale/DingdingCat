@@ -96,10 +96,8 @@ $(function () {
 });
 
 function orderInfo (orderNo) {
-    $("#tHead").html("");
     $.post('./api/index.php?s=/Home/Order/orderInfo','phone=' + phone + '&orderNo=' + orderNo,function(data){
         if(data.status == 0){
-            $("#t_list").tmpl(all).appendTo('#thead');
             $('#type').html(data.data.type);
             $('#orderNo').html(data.data.orderNo);
             $('#orderTime').html(data.data.orderTime);
