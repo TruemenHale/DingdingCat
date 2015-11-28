@@ -62,7 +62,7 @@ class AccountController extends BaseController {
         }
 
         $referee = $invite;
-
+        $this->referee($referee);
         $save   = [
             'name'     => $name,
             'nickName' => $nickname,
@@ -372,15 +372,14 @@ class AccountController extends BaseController {
         }
     }
 
-    private function imgTrans ($base64,$phone,$type = 'font') {
-        $filePath = "Public/runner/";
-        $fileName = $phone.$type;
+    private function referee ($runnerId) {
+        $money = M('sysconf')->where("syskey = 'referee'")->getField("val");
+        $res = M('runner')->where("id = '$runnerId'")->find();
 
-        $base64 = preg_replace('/data:.*;base64,/i','',$base64);
-        $base64 = str_replace(" ","+",$base64);
-        $img_code = base64_decode($base64);
-        $file   = $filePath.$fileName.".png";
-        file_put_contents($file,$img_code);
-        return $file;
+        if ($res) {
+            $save ['accountSum'] = $res ['accountSum'] + $money;
+            M('runner')->where("id = '$runnerId'")->save($save);
+        }
+        return true;
     }
 }
