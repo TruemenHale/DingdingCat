@@ -285,23 +285,7 @@
             </tr>
             </tbody>
         </table>
-        <div role="main" class="ui-content">
-            <table data-role="table" data-inset="true" data-mode="reflow" class="ui-responsive table-stroke info-list">
-                <thead>
-                <tr>
 
-                </tr>
-                </thead>
-
-            </table>
-            <div id="newPay" style="display:none;">
-                <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
-                    <input type="hidden" name="money" id="newMoney" value="">
-                    <input type="hidden" name="orderNo" id="newOrder" value="">
-                    <input type="submit" id="newBtn" value="前去支付">
-                </form>
-            </div>
-        </div>
         <div id="newPay" style="display: none">
             <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="newMoney" value="">
