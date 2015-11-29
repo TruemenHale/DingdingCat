@@ -127,7 +127,7 @@ class AccountController extends BaseController {
             $this->ajaxReturn($return);
         }
 
-        if ($money == null || $addr == null) {
+        if ($head == null || $money == null || $addr == null) {
             $return = [
                 'status' => '-100',
                 'info'   => '请完整填写上述内容'
