@@ -382,6 +382,10 @@ class AccountController extends BaseController {
         if ($diff < 0) {
             return false;
         } else {
+            $save = [
+                'invoiceUsed' => $res ['invoiceUsed'] + $money
+            ];
+            M('user')->where("phone = '$phone'")->save($save);
             return $res ['id'];
         }
     }
