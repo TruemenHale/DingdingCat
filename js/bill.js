@@ -37,6 +37,7 @@ $(function () {
 		_data.phone = phone;
 		_data.money = $('.ApplyNum').val();
 		_data.addr  = $('.getAddress').val();
+		_data.head  = $('.head').val();
 		$.ajax({
 			type : 'POST',
 			url  : './api/index.php?s=/Home/Account/applyBill',
