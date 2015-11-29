@@ -68,6 +68,10 @@ $signPackage = $jsapi->getSignPackage();
 			</div>
 			<div role="main" class="ui-content" id="mainpage">
 				<div class="ui-field-contain">
+					<label>发票抬头：</label>
+					<input class="head" type="text"/>
+				</div>
+				<div class="ui-field-contain">
 					<label>申请金额：</label>
 					<input class="ApplyNum" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" type="text"/>
 				</div>
@@ -76,7 +80,7 @@ $signPackage = $jsapi->getSignPackage();
 					<input class="getAddress"  type="text"/>
 				</div>
 				<div class="ui-field-contain">
-					<input class="getAddress" type="button" value="提交"/>
+					<input class="apply" type="button" value="提交"/>
 				</div>
 			</div>
 		</div>

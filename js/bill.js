@@ -32,7 +32,7 @@ setTimeout(function(){
 },100);
 
 $(function () {
-	$('.getAddress').on('tap',function(){
+	$('.apply').on('tap',function(){
 		var _data = {};
 		_data.phone = phone;
 		_data.money = $('.ApplyNum').val();

@@ -117,6 +117,7 @@ class AccountController extends BaseController {
         $phone = I('post.phone');
         $money = I('post.money');
         $addr  = I('post.addr');
+        $head  = I('post.head');
 
         if ($phone != session('phone')) {
             $return = [
@@ -147,6 +148,7 @@ class AccountController extends BaseController {
         $save = [
             'userid'    => $res,
             'applyTime' => date("Y-m-d H-i-s",time()),
+            'head'      => $head,
             'money'     => $money,
             'addr'      => $addr,
             'status'    => '0'
