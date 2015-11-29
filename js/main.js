@@ -63,7 +63,7 @@ setTimeout(function () {
 				document.getElementById('payStatus').innerText = data.payStatus;
 				if (data.isPay == 0) {
 					document.getElementById('newPay').style.display= "";
-					document.getElementById('newForm').action="./wxpay/example/jsapi.php?time="+url;
+					document.getElementById('newForm').action="./wxpay/example/jsapi.php#time="+url;
 					$('#newMoney').val(data.money);
 					$('#newOrder').val(data.orderNo);
 				}
@@ -217,7 +217,7 @@ $(function(){
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
-					document.getElementById('dgForm').action="./wxpay/example/jsapi.php?time="+url;
+					document.getElementById('dgForm').action="./wxpay/example/jsapi.php#time="+url;
 					$('#buyMoney').val(money);
 					$('#buyOrder').val(orderNo);
 					$('.dgApply').button('option','disabled',true);
@@ -251,7 +251,7 @@ $(function(){
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
-				document.getElementById('dsForm').action="./wxpay/example/jsapi.php?time="+url;
+				document.dsFrom.action="./wxpay/example/jsapi.php#time="+url;
 				$('#sendMoney').val(money);
 				$('#sendOrder').val(orderNo);
 				$('#apply').button('option','disabled',true);
