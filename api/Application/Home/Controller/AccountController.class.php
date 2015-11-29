@@ -377,7 +377,7 @@ class AccountController extends BaseController {
 
         $res = M('user')->where("phone = '$phone'")->find();
 
-        $diff = $res ['invoiceUnuse'] - $money;
+        $diff = ($res ['invoiceTotal'] - $res ['invoiceUsed']) - $money;
 
         if ($diff < 0) {
             return false;
