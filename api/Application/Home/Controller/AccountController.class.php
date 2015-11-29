@@ -371,6 +371,10 @@ class AccountController extends BaseController {
      * 判断是否可以开出支票
      */
     private function checkBalance ($phone,$money) {
+        if ($money == 0) {
+            return false;
+        }
+
         $res = M('user')->where("phone = '$phone'")->find();
 
         $diff = $res ['invoiceUnuse'] - $money;
