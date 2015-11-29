@@ -151,7 +151,7 @@
             </select>
         </div>
         <div id="daisongPay" style="display:none">
-            <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+            <form id="dsFrom" action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="sendMoney" value="">
                 <input type="hidden" name="orderNo" id="sendOrder" value="">
                 <input type="submit" style="background: orangered;" id="wxpayBtn" value="前去支付">
@@ -190,7 +190,7 @@
         </div>
         <input type="button" style="background-color: #56b0e0" value="提交订单" id="dgApply" class="dgApply"/>
         <div id="daigouPay" style="display:none;">
-            <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+            <form id="dgForm" action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="buyMoney" value="">
                 <input type="hidden" name="orderNo" id="buyOrder" value="">
                 <input type="submit" id="wxpayBtn" value="前去支付">
@@ -286,7 +286,7 @@
             </tbody>
         </table>
         <div id="newPay" style="display: none">
-            <form action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
+            <form id="newForm" action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="newMoney" value="">
                 <input type="hidden" name="orderNo" id="newOrder" value="">
                 <input type="submit" id="newBtn" value="前去支付">

@@ -43,6 +43,7 @@ setTimeout(function () {
 		success : function (response) {
 			var status = response.status;
 			var data = response.data;
+			var url  = Date.parse(new Date());
 			if (status != 0) {
 			} else {
 				document.getElementById('type').innerText = data.type;
@@ -62,6 +63,7 @@ setTimeout(function () {
 				document.getElementById('payStatus').innerText = data.payStatus;
 				if (data.isPay == 0) {
 					document.getElementById('newPay').style.display= "";
+					document.getElementById('newForm').action="./wxpay/example/jsapi.php?"+url;
 					$('#newMoney').val(data.money);
 					$('#newOrder').val(data.orderNo);
 				}
@@ -209,11 +211,13 @@ $(function(){
 				var status = data.status;
 				var orderNo = data.orderNo;
 				var money = data.money;
+				var url = Date.parse(new Date());
 				if (status != 0) {
 					alert('下单失败，可能是服务器出故障了');
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
+					document.getElementById('dgForm').action="./wxpay/example/jsapi.php?"+url;
 					$('#buyMoney').val(money);
 					$('#buyOrder').val(orderNo);
 					$('.dgApply').button('option','disabled',true);
@@ -226,6 +230,7 @@ $(function(){
 	});
 	$('#apply').on('tap',function(){
 		_data = null;
+		var url = Date.parse(new Date());
 		var _data = {};
 		_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 		_data.GdetAddr = $(".GetdetAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
@@ -246,6 +251,7 @@ $(function(){
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
+				document.getElementById('dsForm').action="./wxpay/example/jsapi.php?"+url;
 				$('#sendMoney').val(money);
 				$('#sendOrder').val(orderNo);
 				$('#apply').button('option','disabled',true);
