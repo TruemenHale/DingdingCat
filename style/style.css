@@ -8,7 +8,7 @@
   text-decoration: none;
 }
 .removeiPhone {
-  -webkit-appearance: none;
+  -webkit-appearance: none !important;
 }
 .info-list * {
   font-size: 16px;
