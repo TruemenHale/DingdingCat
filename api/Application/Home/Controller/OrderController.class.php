@@ -70,7 +70,8 @@ class OrderController extends BaseController {
             'revenue'   => $this->revenue($money)
         ];
         M('orders')->add($order);
-
+        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$lt1['lng']."/".$lt1['lat'];
+        file_get_contents($url);
         $return = [
             'status' => '0',
             'info'   => 'success',
