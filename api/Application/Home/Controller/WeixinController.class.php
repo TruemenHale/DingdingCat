@@ -145,11 +145,8 @@ class WeixinController extends Controller {
                 }
                 $this->wechat->replyNews($news);
             }
-        } else {
-            return null;
         }
-
-        $this->wechat->replyText($reply);
+        return ;
     }
 
     private function scan ($key) {
