@@ -74,7 +74,7 @@
             <label>物品重量：</label>
             <div class="numBox">
                 <a class="minus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="minus" data-iconpos="notext"></a>
-                <input type="text" name="weight" data-role="none" class="KgNum" value="1">
+                <input type="text" name="weight" data-role="none" class="KgNum removeiPhone" value="1">
                 <a class="plus" data-transition="none" href="" data-role="button" data-inline="true" data-icon="plus" data-iconpos="notext"></a>
                 <span style="margin-left:3px">Kg</span>
             </div>
@@ -162,7 +162,7 @@
         </div>
         <div class="ui-field-contain">
             <label>商品描述：</label>
-			<textarea style="resize: none;" data-role="none" name="" class="dgDescribe" cols="25" rows="10"></textarea>
+			<textarea style="resize: none;" data-role="none" name="" class="dgDescribe removeiPhone" cols="25" rows="10"></textarea>
         </div>
         <div class="ui-field-contain">
             <label>商品最高价格上限：</label>
@@ -213,13 +213,12 @@
     </div>
     <div role="main" class="ui-content">
         <p class="addressLine">
-            <input type="text" data-role="none" class="AddressInput">
+            <input type="text" placeholder="选取提示的尽可能准确的地址" data-role="none" class="AddressInput removeiPhone">
             <a class="cancel">
                 取消
             </a>
         </p>
         <ul data-role="listview" class="addressList">
-
         </ul>
     </div>
 </div>
