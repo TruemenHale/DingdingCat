@@ -153,6 +153,7 @@ class Wechat {
         $content = call_user_func(array(self, $type), $content);
         if($type == self::MSG_TYPE_TEXT || $type == self::MSG_TYPE_NEWS){
             $data = array_merge($data, $content);
+        } else if ($type == "customThrough"){
         } else {
             $data[ucfirst($type)] = $content;
         }
@@ -482,5 +483,9 @@ class Wechat {
         $sign  = array(self::$token, $timestamp, $nonce, $encrypt);
         sort($sign, SORT_STRING);
         return sha1(implode($sign));
+    }
+
+    public function customThrough () {
+        return $this->response("","transfer_customer_service");
     }
 }

@@ -31,7 +31,7 @@ class WeixinController extends Controller {
             $this->Msg($wechat);
         }
 
-        return ;
+        $this->wechat->customThrough();
     }
 
     private function Msg ($wechat) {
