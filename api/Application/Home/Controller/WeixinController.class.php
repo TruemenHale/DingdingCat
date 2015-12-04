@@ -112,6 +112,7 @@ class WeixinController extends Controller {
             $this->dynamicReply($content);
         }
         $this->wechat->replyNews($news);
+        return ;
     }
 
     /**
