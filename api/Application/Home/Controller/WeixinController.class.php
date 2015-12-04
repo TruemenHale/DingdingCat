@@ -110,9 +110,9 @@ class WeixinController extends Controller {
             );
         } else {
             $this->dynamicReply($content);
+            return ;
         }
         $this->wechat->replyNews($news);
-        return ;
     }
 
     /**
