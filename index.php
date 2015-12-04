@@ -116,11 +116,11 @@
     <div role="main" class="ui-content">
         <div class="ui-field-contain">
             <label>收件人姓名：</label>
-            <input class="geterName" type="text" name="recipientName" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" />
+            <input class="geterName" type="text" name="recipientName"/>
         </div>
         <div class="ui-field-contain">
             <label>收件人电话：</label>
-            <input class="geterPhone" type="text" name="recipientTel" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" />
+            <input class="geterPhone" type="text" name="recipientTel"/>
         </div>
         <div class="ui-field-contain">
             <label>货物描述：</label>
