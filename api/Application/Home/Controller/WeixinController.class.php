@@ -110,7 +110,7 @@ class WeixinController extends Controller {
             );
         } else {
             $this->dynamicReply($content);
-            return ;
+            return "";
         }
         $this->wechat->replyNews($news);
     }
@@ -147,7 +147,7 @@ class WeixinController extends Controller {
                 $this->wechat->replyNews($news);
             }
         }
-        return ;
+        return "";
     }
 
     private function scan ($key) {
