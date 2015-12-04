@@ -136,20 +136,6 @@
                 <option value="4">地铁</option>
             </select>
         </div>
-        <div class="ui-field-contain">
-            <label>取件时间：</label>
-            <select class="getTime" name="pickupTime" id="">
-                <option>马上代送</option>
-                <option>预约其他时间</option>
-            </select>
-        </div>
-        <div class="ui-field-contain">
-            <label>付款方式：</label>
-            <select class="payWays" name="payType" id="">
-                <option value="0">微信支付</option>
-                <option value="1">现金</option>
-            </select>
-        </div>
         <div id="daisongPay" style="display:none">
             <form id="dsFrom" action="./wxpay/example/jsapi.php" method="post" data-ajax="false">
                 <input type="hidden" name="money" id="sendMoney" value="">

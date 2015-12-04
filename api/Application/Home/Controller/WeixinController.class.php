@@ -146,7 +146,7 @@ class WeixinController extends Controller {
                 $this->wechat->replyNews($news);
             }
         } else {
-            $reply = "请按下方按钮进行相关操作";
+            return ;
         }
 
         $this->wechat->replyText($reply);

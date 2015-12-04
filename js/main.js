@@ -236,13 +236,13 @@ $(function(){
 		_data.GdetAddr = $(".GetdetAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 		_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 		_data.EdetAddr = $(".EnddetAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-		_data.pickupTime = $(".getTime option:selected").text();
+		_data.pickupTime = "0";
 		_data.weight = parseFloat(KgNum.val());
 		_data.recipientName = $('.geterName').val();
 		_data.recipientTel = $('.geterPhone').val();
 		_data.goodsDesc = $('.goodsNote').val();
 		_data.transportType = $(".transport option:selected").val();
-		_data.payType = $(".payWays option:selected").val();
+		_data.payType = "0";
 		_data.phone = phone;
 		JSON.stringify(_data);
 		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/shipAccept',_data,function(data){
