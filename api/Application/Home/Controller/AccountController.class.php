@@ -23,10 +23,7 @@ class AccountController extends BaseController {
         }
 
         $code = $this->makeCode($phone);
-        $message = "你的验证码为$code,有效期10分钟";
-
-        $url = "http://211.149.212.171:8001/MWGate/wmgw.asmx/MongateCsSpSendSmsNew?userId=MT0016&password=963147&pszMobis=$phone&pszMsg=$message&iMobiCount=1&pszSubPort=*&RptFlag=1";
-        file_get_contents($url);
+        $this->smsSend($phone,$code);
 
         $return = [
             'status' => '0'
@@ -34,10 +31,10 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
-    public function smsSend () {
+    public function smsSend ($phone,$code) {
 
-        $account = "mt4777";
-        $password = "892357";
+        $account = "mt4777";//TODO 会变
+        $password = "892357";//TODO 会变
 
         $time = microtime();
         $time = explode(" ",$time);
@@ -45,8 +42,8 @@ class AccountController extends BaseController {
         $time = number_format($time * 1000,0,".","");
         $timestamp = $time;
         $access_token = md5($timestamp.$password);
-        $receive = "18883862521";
-        $smscontent = "test";
+        $receive = $phone;
+        $smscontent = "你的验证码为$code,有效期10分钟";
         $str = "account=$account&timestamp=$timestamp&access_token=$access_token&receiver=$receive&smscontent=$smscontent&extcode=0";
         $url = "http://121.42.11.93:8001/interface/sendSms";
         $ch = curl_init();
@@ -61,7 +58,7 @@ class AccountController extends BaseController {
         $output = curl_exec($ch);
         curl_close($ch);
         $res = json_decode($output, TRUE);
-        if ($res['status'] == '0') {
+        if ($res['res_code'] == '0') {
             return true;
         } else {
             return false;
