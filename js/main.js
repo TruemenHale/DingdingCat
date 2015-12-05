@@ -217,7 +217,6 @@ $(function(){
 				} else {
 					alert('下单成功，请确认支付支付');
 					document.getElementById('daigouPay').style.display= "";
-					document.getElementById('dgForm').action="./wxpay/example/jsapi.php#time="+url;
 					$('#buyMoney').val(money);
 					$('#buyOrder').val(orderNo);
 					$('.dgApply').button('option','disabled',true);
@@ -251,7 +250,6 @@ $(function(){
 				var money = data.money;
 				alert('下单成功，请确认支付支付');
 				document.getElementById('daisongPay').style.display= "";
-				document.dsFrom.action="./wxpay/example/jsapi.php#time="+url;
 				$('#sendMoney').val(money);
 				$('#sendOrder').val(orderNo);
 				$('#apply').button('option','disabled',true);
