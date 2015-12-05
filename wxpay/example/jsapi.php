@@ -6,6 +6,8 @@ require_once "WxPay.JsApiPay.php";
 
 //ini_set("display_errors", "On");
 //error_reporting(E_ALL | E_STRICT);
+$logHandler= new CLogFileHandler("../logs/".date('Y-m-d').'.log');
+$log = Log::Init($logHandler, 15);
 session_start();
 if(isset($_POST['money'])){
 	$money = strip_tags(trim($_POST['money']));
@@ -44,7 +46,7 @@ $input->SetOut_trade_no($orderNo);
 $input->SetTotal_fee($money*100);//*100
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
-$input->SetGoods_tag("test");
+$input->SetGoods_tag("叮叮猫跑腿");
 $input->SetNotify_url('http://wx.tyll.net.cn/DingdingCat/wxpay/example/notify.php');
 $input->SetTrade_type("JSAPI");
 $input->SetOpenid($openId);
