@@ -109,7 +109,7 @@ class WeixinController extends Controller {
                 'Url' => "http://wx.tyll.net.cn/DingdingCat/suggestion.php"
             );
         } else if ($content == "openid") {
-            $this->wechat->response("text",$this->openid);
+            $this->wechat->replyText($this->openid);
         } else {
             $this->dynamicReply($content);
             return "";
