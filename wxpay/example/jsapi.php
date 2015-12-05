@@ -6,8 +6,6 @@ require_once "WxPay.JsApiPay.php";
 
 //ini_set("display_errors", "On");
 //error_reporting(E_ALL | E_STRICT);
-$logHandler= new CLogFileHandler("../logs/".date('Y-m-d').'.log');
-$log = Log::Init($logHandler, 15);
 session_start();
 if(isset($_POST['money'])){
 	$money = strip_tags(trim($_POST['money']));
