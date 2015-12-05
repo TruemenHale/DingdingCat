@@ -108,6 +108,8 @@ class WeixinController extends Controller {
                 'Description' => '点击进入发表建议，让我们变得更好',
                 'Url' => "http://wx.tyll.net.cn/DingdingCat/suggestion.php"
             );
+        } else if ($content == "openid") {
+            $this->wechat->response("text",$this->openid);
         } else {
             $this->dynamicReply($content);
             return "";
