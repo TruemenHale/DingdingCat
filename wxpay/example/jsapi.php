@@ -7,8 +7,10 @@ require_once "WxPay.JsApiPay.php";
 //ini_set("display_errors", "On");
 //error_reporting(E_ALL | E_STRICT);
 session_start();
+
 if(isset($_POST['money'])){
 	$money = strip_tags(trim($_POST['money']));
+	$_SESSION['money'] = $money;
 	if(!is_numeric($money)) {
 		echo '数据错误';
 		return;
@@ -23,6 +25,7 @@ if (!isset($_SESSION['money'])) {
 
 if(isset($_POST['orderNo'])){
 	$orderNo = $_POST['orderNo'];
+	$_SESSION['orderNo'] = $orderNo;
 } elseif (!isset($_POST['orderNo']) && !isset($_SESSION['orderNo'])) {
 	header('location: http://wx.tyll.net.cn/DingdingCat/');
 }
