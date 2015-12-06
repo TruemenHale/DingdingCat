@@ -50,8 +50,7 @@ $input->SetTrade_type("JSAPI");
 $input->SetOpenid($openId);
 $order = WxPayApi::unifiedOrder($input);
 $jsApiParameters = $tools->GetJsApiParameters($order);
-unset($_SESSION['money']);
-unset($_SESSION['orderNo']);
+
 //获取共享收货地址js函数参数
 //$editAddress = $tools->GetEditAddressParameters();
 
