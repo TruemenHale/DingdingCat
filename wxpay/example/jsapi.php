@@ -16,7 +16,7 @@ if(isset($_POST['money'])){
 		return;
 	}
 } elseif (!isset($_POST['money']) && !isset($_SESSION['money'])) {
-	header('location: http://wx.tyll.net.cn/ChildrensFund/');
+	header('location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa3363e46c74608f3&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2findex.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
 }
 
 if (!isset($_SESSION['money'])) {
@@ -27,7 +27,7 @@ if(isset($_POST['orderNo'])){
 	$orderNo = $_POST['orderNo'];
 	$_SESSION['orderNo'] = $orderNo;
 } elseif (!isset($_POST['orderNo']) && !isset($_SESSION['orderNo'])) {
-	header('location: http://wx.tyll.net.cn/DingdingCat/');
+	header('location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa3363e46c74608f3&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2findex.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
 }
 
 if (!isset($_SESSION['orderNo'])) {
