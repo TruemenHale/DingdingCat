@@ -62,13 +62,13 @@
             <input class="getAddress" id="getAddress" type="text"/><br/>
             <span class="clearAdd">清除定位区域</span>
             <label>详细地址：</label>
-            <input class="GetdetAddress" type="text"/>
+            <input class="GetdetAddress" type="text" placeholder="请补充楼号、小区等详细信息"/>
         </div>
         <div class="ui-field-contain">
             <label>选择送达区域：</label>
             <input class="endAddress" id="endAddress" type="text"/><br/>
             <label>详细地址：</label>
-            <input class="EnddetAddress" type="text"/>
+            <input class="EnddetAddress" type="text" placeholder="请补充楼号、小区等详细信息"/>
         </div>
         <div class="ui-field-contain">
             <label>物品重量：</label>
@@ -158,7 +158,7 @@
             <input class="dgAddress" type="text"/><br/>
             <span class="clearAdd">清除定位区域</span>
             <label>详细地址：</label>
-            <input class="sendDet" type="text"/>
+            <input class="sendDet" type="text" placeholder="请补充楼号、小区等详细信息"/>
         </div>
         <div class="ui-field-contain">
             <label>商品描述：</label>
