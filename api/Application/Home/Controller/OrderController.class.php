@@ -70,8 +70,6 @@ class OrderController extends BaseController {
             'revenue'   => $this->revenue($money)
         ];
         M('orders')->add($order);
-        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$lt1['lng']."/".$lt1['lat'];
-        file_get_contents($url);
         $return = [
             'status' => '0',
             'info'   => 'success',
@@ -440,6 +438,7 @@ class OrderController extends BaseController {
         $userId = $orders->where("orderNo = '$orderNo'")->getField("userId");
         $openid = M('user')->where("id = '$userId'")->getField("openid");
         $this->successMsgSend($openid,$orderNo);
+        $this->runnerMsgSend($orderNo);
         $return = [
             'status' => '0'
         ];
@@ -723,5 +722,23 @@ class OrderController extends BaseController {
         $revenue = ($money - $money * $pct - $tax);
         $revenue = number_format($revenue,2,".","");
         return $revenue;
+    }
+
+    private function runnerMsgSend ($order) {
+        $res = M('orders')->where("orderNo = '$order'")->find();
+
+        $sendId = $res ['sendId'];
+        if ($res ['type'] == "0") {
+            $info = M('send')->where("id = '$sendId'")->find();
+            $addr = $info ['pickupAddr'];
+        } else {
+            $info = M('purchase')->where("id = '$sendId'")->find();
+            $addr = $info ['sendAddr'];
+        }
+
+        $location = $this->locationToLal($addr);
+        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat'];
+        file_get_contents($url);
+        return true;
     }
 }
