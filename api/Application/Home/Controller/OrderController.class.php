@@ -52,10 +52,10 @@ class OrderController extends BaseController {
         $randNum = $string->randString(8,1);
         $orderNo = "S".time().$randNum;
 
-        $coupon = session("couponNo");
+        /*$coupon = session("couponNo");
         if ($coupon) {
             $this->useCoupon($orderNo);
-        }
+        }*/
 
         $order = [
             'orderNo'   => $orderNo,
@@ -565,22 +565,31 @@ class OrderController extends BaseController {
 
         $db = M('money');
 
-        $money = $db->where("type = 'start'")->getField("money");
-        $km = $db->where("type = 'km'")->getField("money");
-        $kg = $db->where("type = 'kg'")->getField("money");
-        if ($distance > 5000) {
-            $a = floor($distance / 5000);
+        $res = $db->select();
+        $money   = $res [0]['money'];
+        $km      = $res [1]['money'];
+        $kg      = $res [2]['money'];
+        $perkm   = $res [3]['money'];
+        $perkg   = $res [4]['money'];
+        $startkm = $res [5]['money'];
+        $startkg = $res [6]['money'];
+
+        $a = ceil($distance / 1000);
+        if ($a > $startkm) {
+            $a = ceil($a - $startkm);
+            $a = ceil($a / $perkm);
             $money += ($a * $km);
         }
 
         $km = sprintf("%.2f",$distance/1000);
         session("km",$km);
 
-        if ($weight > 5) {
-            $b = ceil($weight - 5) ;
+        if ($weight > $startkg) {
+            $b = ceil($weight - $startkg) ;
+            $b = ceil($b / $perkg);
             $money += ($b * $kg);
         }
-        $money = $this->coupon($money);
+        //$money = $this->coupon($money);
         return $money;
     }
 
