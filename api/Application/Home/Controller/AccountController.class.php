@@ -226,6 +226,7 @@ class AccountController extends BaseController {
         $phone = I("post.phone");
         $code  = I('post.code');
         $name  = I('post.name');
+        $head  = I('post.head');
         $trans = I('post.transportType');
         $idCardNo = I('post.idCardNo');
 
@@ -252,7 +253,8 @@ class AccountController extends BaseController {
             'phone'=> $phone,
             'transportType' => $trans,
             'idCardNo' => $idCardNo,
-            'regTime' => date("Y-m-d H-i-s",time())
+            'regTime' => date("Y-m-d H-i-s",time()),
+            'header' => $head
         ];
         M('runner')->add($save);
 

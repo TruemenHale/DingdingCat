@@ -71,6 +71,7 @@ $(function () {
         _data.phone = $('.phoneNum').val();
         _data.idCardNo = $('.idCard').val();
         _data.code = $('.ConfirmCode').val();
+        _data.head = headImg;
         _data.transportType = $(".transport option:selected").val();
         $.post('./api/index.php?s=/Home/Account/runnerApply',_data,function(data){
             if (data) {
