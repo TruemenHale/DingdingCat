@@ -72,7 +72,7 @@ class AccountController extends BaseController {
 
     public function smsSendTest () {
         $account = "mt6724";
-        $password = "1e44n8";
+        $password = "le44n8";
 
         $code = "123456";
         $phone = "18883862521";
