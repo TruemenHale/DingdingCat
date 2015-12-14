@@ -33,8 +33,8 @@ class AccountController extends BaseController {
 
     public function smsSend ($phone,$code) {
 
-        $account = "mt4777";//TODO 会变
-        $password = "892357";//TODO 会变
+        $account = "mt6724";
+        $password = "1e44n8";
 
         $time = microtime();
         $time = explode(" ",$time);
