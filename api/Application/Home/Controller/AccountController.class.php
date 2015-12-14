@@ -103,7 +103,7 @@ class AccountController extends BaseController {
         $output = curl_exec($ch);
         curl_close($ch);
         $res = json_decode($output, TRUE);
-        return $res;
+        echo $res;
     }
 
     public function register () {
