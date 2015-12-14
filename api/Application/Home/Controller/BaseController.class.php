@@ -8,6 +8,7 @@
 
 namespace Home\Controller;
 use Think\Controller;
+use Com\WechatAuth;
 
 class BaseController extends Controller {
     public function _initialize()
@@ -32,7 +33,6 @@ class BaseController extends Controller {
             'info' => 'Not Found',
             'version' => '1.0'
         );
-        $this->_cacheHeader();
         $this->ajaxReturn($data);
     }
 
