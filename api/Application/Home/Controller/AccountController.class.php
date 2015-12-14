@@ -103,11 +103,7 @@ class AccountController extends BaseController {
         $output = curl_exec($ch);
         curl_close($ch);
         $res = json_decode($output, TRUE);
-        if ($res['res_code'] == '0') {
-            return true;
-        } else {
-            return false;
-        }
+        return $res;
     }
 
     public function register () {
