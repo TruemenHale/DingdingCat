@@ -67,37 +67,6 @@ class AccountController extends BaseController {
         }
     }
 
-    public function smsSendTest () {
-        $account = "mt6724";
-        $password = "le44n8";
-
-        $code = "123456";
-        $phone = "18883862521";
-        $time = microtime();
-        $time = explode(" ",$time);
-        $time = $time [1] + $time [0];
-        $time = number_format($time * 1000,0,".","");
-        $timestamp = $time;
-        $access_token = md5($timestamp.$password);
-        $receive = $phone;
-        $smscontent = "你的验证码为$code,有效期10分钟";
-        $str = "account=$account&timestamp=$timestamp&access_token=$access_token&receiver=$receive&smscontent=$smscontent&extcode=0";
-        $url = "http://121.42.11.93:8001/interface/sendSms";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-        // post数据
-        curl_setopt($ch, CURLOPT_POST, 1);
-        // post的变量
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $str);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        $res = json_decode($output, TRUE);
-        echo $output;
-    }
-
     public function register () {
         $phone  = I('post.phone');
         $name   = I('post.name');
