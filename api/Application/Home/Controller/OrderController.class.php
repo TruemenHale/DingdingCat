@@ -12,6 +12,9 @@ use Think\Controller;
 use Think\Model;
 
 class OrderController extends BaseController {
+    /**
+     * 代送订单
+     */
     public function shipAccept () {
         $info = I('post.');
         $phone = $info ['phone'];
@@ -81,7 +84,7 @@ class OrderController extends BaseController {
     }
 
     /**
-     *
+     *代购订单
      */
     public function buyAccept () {
         $info = I('post.');
@@ -148,6 +151,9 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * 通过经纬度转换为地点
+     */
     public function locationTrans () {
         $lng = I('post.lng');
         $lat = I('post.lat');
@@ -273,6 +279,9 @@ class OrderController extends BaseController {
 
     }
 
+    /**
+     * 计算代送价格
+     */
     public function getMoney () {
         $pickupAddr = I('post.pickupAddr');
         $sendAddr   = I('post.sendAddr');
@@ -289,6 +298,9 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * 用户订单列表
+     */
     public function orderList () {
         $phone = I('post.phone');
         if ($phone != session('phone')) {
@@ -372,6 +384,9 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * 用户最后使用过的地址
+     */
     public function commonAddr () {
         $phone = I('post.phone');
         if ($phone != session('phone')) {
@@ -428,6 +443,10 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * 微信支付返回支付状态的判定
+     * post发起在wxpay/example/notify.php
+     */
     public function payStatus () {
         $orderNo = I('post.orderNo');
         $save = [
@@ -445,6 +464,9 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**\
+     * 地点建议，通过input输入获取相应建议地点
+     */
     public function placeSuggestion () {
         header("Access-Control-Allow-Origin: *");
         $keyword = I("post.keyword");
@@ -472,6 +494,9 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * 正在配送的订单
+     */
     public function sendNowOrder () {
         $openid = I('openid');
         $Info = M('user')->where("openid = '$openid'")->find();
@@ -517,6 +542,14 @@ class OrderController extends BaseController {
         return array('lng'=>$lng,'lat'=>$lat);
     }
 
+    /**
+     * @param $lat1
+     * @param $lng1
+     * @param $lat2
+     * @param $lng2
+     * @return float
+     * 根据经纬度获取两点间距离
+     */
     private function getDistance($lat1, $lng1, $lat2, $lng2)
     {
         $earthRadius = 6367000; //approximate radius of earth in meters
@@ -537,6 +570,7 @@ class OrderController extends BaseController {
     /**
      * @param $location
      * @return array
+     * 地点转经纬度
      */
     private function locationToLal ($location) {
         $url = "http://api.map.baidu.com/geocoder/v2/?ak=k2ynBN7eZTDr5ymYwnTj7IXm&output=json&city=重庆市&address=".$location;
@@ -557,6 +591,7 @@ class OrderController extends BaseController {
      * @param $location2
      * @param $weight
      * @return float
+     * 价格计算器
      */
     private function moneyCal ($location1,$location2,$weight) {
         $money = null;
@@ -569,15 +604,19 @@ class OrderController extends BaseController {
         $money   = $res [0]['money'];
         $km      = $res [1]['money'];
         $kg      = $res [2]['money'];
-        $perkm   = $res [3]['money'];
-        $perkg   = $res [4]['money'];
+        $unitkm   = $res [3]['money'];
+        $unitkg   = $res [4]['money'];
         $startkm = $res [5]['money'];
         $startkg = $res [6]['money'];
-
+        /**
+         * 不超过起始距离($startkm)和起始重量($startkg)的价格为$money
+         * 超过其实距离后每单位距离($unitkm)价格为($km)
+         * 重量计算同距离
+         */
         $a = ceil($distance / 1000);
         if ($a > $startkm) {
             $a = ceil($a - $startkm);
-            $a = ceil($a / $perkm);
+            $a = ceil($a / $unitkm);
             $money += ($a * $km);
         }
 
@@ -586,7 +625,7 @@ class OrderController extends BaseController {
 
         if ($weight > $startkg) {
             $b = ceil($weight - $startkg) ;
-            $b = ceil($b / $perkg);
+            $b = ceil($b / $unitkg);
             $money += ($b * $kg);
         }
         //$money = $this->coupon($money);
@@ -594,9 +633,10 @@ class OrderController extends BaseController {
     }
 
     /**
-     * @param $location1
-     * @param $location2
+     * @param string $location1
+     * @param string $location2
      * @return float
+     * 获取两地点距离
      */
     private function distance ($location1,$location2) {
         $location1 = $this->locationToLal($location1);
@@ -609,6 +649,11 @@ class OrderController extends BaseController {
         return $distance;
     }
 
+    /**
+     * @param $status[订单状态]
+     * @return string
+     * 订单状态判定
+     */
     private function statusJudge ($status) {
         switch ($status) {
             case "0":
@@ -662,6 +707,10 @@ class OrderController extends BaseController {
         return $money;
     }
 
+    /**
+     * @return int [0|1]
+     * 获取用户最新订单
+     */
     private function newJudge () {
         $user = session("userId");
         $res = M('orders')->where("userId = '$user'")->find();
@@ -685,6 +734,10 @@ class OrderController extends BaseController {
         M('usecoupon')->where("customerId = '$user' AND couponNo = '$couponNo'")->save($save);
     }
 
+    /**
+     * @param $openid
+     * @param $order [订单号]
+     */
     public function successMsgSend ($openid,$order) {
         $weChat = new WechatAuth();
         $token = $this->tokenJudge();
@@ -694,6 +747,9 @@ class OrderController extends BaseController {
         $this->ajaxReturn($res);
     }
 
+    /**
+     * 订单接单后微信模板消息发送
+     */
     public function accessMsgSend () {
         $openid = I('post.openid');
         $order  = I('post.order');
@@ -724,6 +780,11 @@ class OrderController extends BaseController {
         $this->ajaxReturn($res);
     }
 
+    /**
+     * @param int|string $money
+     * @return string
+     * 通过订单价格计算跑腿哥收入
+     */
     private function revenue ($money) {
         $db = M("sysconf");
         $tax = $db->where("syskey = 'tax'")->getField("val");
@@ -733,6 +794,11 @@ class OrderController extends BaseController {
         return $revenue;
     }
 
+    /**
+     * @param $order
+     * @return bool
+     * 订单支付成功后向跑腿哥发短信
+     */
     private function runnerMsgSend ($order) {
         $res = M('orders')->where("orderNo = '$order'")->find();
 

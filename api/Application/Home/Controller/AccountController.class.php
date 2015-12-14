@@ -10,6 +10,9 @@ namespace Home\Controller;
 use Think\Controller;
 
 class AccountController extends BaseController {
+    /**
+     * register&runner code send
+     */
     public function codeSend () {
         $phone = I('post.phone');
 
@@ -33,6 +36,12 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * @param $phone
+     * @param $code
+     * @return bool
+     * send sms to register&runner phone
+     */
     public function smsSend ($phone,$code) {
 
         $account = "mt6724";
@@ -67,6 +76,9 @@ class AccountController extends BaseController {
         }
     }
 
+    /**
+     * register interface
+     */
     public function register () {
         $phone  = I('post.phone');
         $name   = I('post.name');
@@ -114,7 +126,9 @@ class AccountController extends BaseController {
         ];
         $this->ajaxReturn($return);
     }
-
+    /*
+     * get bill Information
+     */
     public function billInfo () {
         $openid = I('post.openid');
 
@@ -146,6 +160,9 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * user apply bill interface
+     */
     public function applyBill () {
         $phone = I('post.phone');
         $money = I('post.money');
@@ -195,6 +212,9 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * openid convert to user
+     */
     public function openidToUser () {
         $openid = I('post.openid');
 
@@ -224,6 +244,9 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**、
+     * runner register
+     */
     public function runnerApply () {
         $phone = I("post.phone");
         $code  = I('post.code');
@@ -267,6 +290,9 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    /**
+     * suggestion interface
+     */
     public function suggestionApply () {
         $phone = I('post.phone');
         $content = I('post.content');
@@ -381,6 +407,11 @@ class AccountController extends BaseController {
         return $code;
     }
 
+    /**
+     * @param $phone
+     * @return bool
+     * judge user exist
+     */
     private function registerCheck ($phone) {
         $res = M('user')->where("phone = '$phone'")->find();
         if ($res) {
@@ -390,6 +421,11 @@ class AccountController extends BaseController {
         }
     }
 
+    /**
+     * @param $phone
+     * @return bool
+     * judge runner exist
+     */
     private function runnerCheck ($phone) {
         $res = M('runner')->where("phone = '$phone'")->find();
         if ($res) {

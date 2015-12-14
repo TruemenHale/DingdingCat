@@ -36,6 +36,11 @@ class BaseController extends Controller {
         $this->ajaxReturn($data);
     }
 
+    /**
+     * @return array|mixed
+     * @throws \Exception
+     * Judge weChat access_token
+     */
     protected function tokenJudge () {
         $res = M('token')->where("id = 1")->find();
         $time = $res ['m_time'];
