@@ -71,11 +71,9 @@ class AccountController extends BaseController {
     }
 
     public function smsSendTest () {
-        /*$account = "mt6724";
-        $password = "1e44n8";*/ //TODO 新地址
+        $account = "mt6724";
+        $password = "1e44n8";
 
-        $account = "mt4777";
-        $password = "892357";
         $code = "123456";
         $phone = "18883862521";
         $time = microtime();
