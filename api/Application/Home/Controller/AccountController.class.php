@@ -23,11 +23,19 @@ class AccountController extends BaseController {
         }
 
         $code = $this->makeCode($phone);
-        $this->smsSend($phone,$code);
+        $smsRes = $this->smsSend($phone,$code);
 
-        $return = [
-            'status' => '0'
-        ];
+        if(!$smsRes) {
+            $return = [
+                'status' => '-1'
+            ];
+        } else {
+            $return = [
+                'status' => '0'
+            ];
+        }
+
+
         $this->ajaxReturn($return);
     }
 
