@@ -90,7 +90,7 @@ $(function(){
 	oTitle = $('.selectTitle');
 	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		history();
+		//history();
 		oTitle.html('取件区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -98,7 +98,7 @@ $(function(){
 	});
 	endAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		history();
+		//history();
 		oTitle.html('收件区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -106,7 +106,7 @@ $(function(){
 	});
 	sendAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		history();
+		//history();
 		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -296,6 +296,7 @@ function money () {
 	}
 }
 
+/*
 function history () {
 	var _data = {};
 	_data.phone = phone;
@@ -307,4 +308,4 @@ function history () {
 			alert(data.info);
 		}
 	});
-}
+}*/
