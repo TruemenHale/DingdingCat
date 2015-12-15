@@ -9,6 +9,7 @@
 namespace Home\Controller;
 use Com\WechatAuth;
 use Think\Controller;
+use Think\Exception;
 use Think\Model;
 
 class OrderController extends BaseController {
@@ -874,20 +875,33 @@ class OrderController extends BaseController {
 
     public function runnerTest () {
         $order = I("post.orderNo");
-        $res = M('orders')->where("orderNo = '$order'")->find();
-
-        $sendId = $res ['sendId'];
-        if ($res ['type'] == "0") {
-            $info = M('send')->where("id = '$sendId'")->find();
-            $addr = $info ['pickupAddr'];
-        } else {
-            $info = M('purchase')->where("id = '$sendId'")->find();
-            $addr = $info ['sendAddr'];
+        try {
+            $res = M('orders')->where("orderNo = '$order'")->find();
+        } catch(\Exception $e) {
+            return "First Error";
         }
 
-        $location = $this->locationToLal($addr);
-        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
-        file_get_contents($url);
+        try {
+            $sendId = $res ['sendId'];
+            if ($res ['type'] == "0") {
+                $info = M('send')->where("id = '$sendId'")->find();
+                $addr = $info ['pickupAddr'];
+            } else {
+                $info = M('purchase')->where("id = '$sendId'")->find();
+                $addr = $info ['sendAddr'];
+            }
+        } catch(\Exception $e) {
+            return "Second Error";
+        }
+
+
+        try {
+            $location = $this->locationToLal($addr);
+            $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
+            file_get_contents($url);
+        } catch (\Exception $e) {
+            return "Third Error";
+        }
         return true;
     }
 }
