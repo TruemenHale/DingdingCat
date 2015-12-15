@@ -310,7 +310,7 @@
 </script>
 <script id="history_list" type="text/x-jquery-tmpl">
     <li>
-        <p class="add-area">${addr}</p>
+        <p class="add-name">${addr}</p>
     </li>
 </script>
 <script>
