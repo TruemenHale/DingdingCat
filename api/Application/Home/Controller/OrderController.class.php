@@ -794,13 +794,13 @@ class OrderController extends BaseController {
      * @param $openid
      * @param $order [订单号]
      */
-    public function successMsgSend ($openid,$order) {
+    private function successMsgSend ($openid,$order) {
         $weChat = new WechatAuth();
         $token = $this->tokenJudge();
         $weChat->tokenWrite($token);
         $content = "支付成功！\n\n你的订单号为".$order."的订单已经成功支付，请等待跑腿哥接单！";
-        $res = $weChat->sendText($openid,$content);
-        $this->ajaxReturn($res);
+        $weChat->sendText($openid,$content);
+        return true;
     }
 
     /**
@@ -871,37 +871,5 @@ class OrderController extends BaseController {
         $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
         file_get_contents($url);
         return true;
-    }
-
-    public function runnerTest () {
-        $order = I("post.orderNo");
-        try {
-            $res = M('orders')->where("orderNo = '$order'")->find();
-        } catch(\Exception $e) {
-            return "First Error";
-        }
-
-        try {
-            $sendId = $res ['sendId'];
-            if ($res ['type'] == "0") {
-                $info = M('send')->where("id = '$sendId'")->find();
-                $addr = $info ['pickupAddr'];
-            } else {
-                $info = M('purchase')->where("id = '$sendId'")->find();
-                $addr = $info ['sendAddr'];
-            }
-        } catch(\Exception $e) {
-            return "Second Error";
-        }
-
-
-        try {
-            $location = $this->locationToLal($addr);
-            $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
-            $res =file_get_contents($url);
-        } catch (\Exception $e) {
-            return "Third Error";
-        }
-        echo $res;
     }
 }
