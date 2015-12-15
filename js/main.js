@@ -90,6 +90,7 @@ $(function(){
 	oTitle = $('.selectTitle');
 	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
+		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
 		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
@@ -107,6 +108,7 @@ $(function(){
 	});
 	endAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
+		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
 		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
@@ -124,6 +126,7 @@ $(function(){
 	});
 	sendAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
+		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
 		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
