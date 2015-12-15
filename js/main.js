@@ -93,7 +93,7 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-		$.post('http://localhost/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
 				$('#history_list').tmpl(data.list).appendTo(".addressList");
@@ -139,7 +139,7 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-		$.post('http://localhost/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
 				$('#history_list').tmpl(data.list).appendTo(".addressList");
@@ -185,7 +185,7 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-		$.post('http://localhost/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+		$.post('http://wx.tyll.net.cn/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
 				$('#history_list').tmpl(data.list).appendTo(".addressList");
