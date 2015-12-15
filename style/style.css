@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   font-size: 14px;
-  font-family: "Microsoft Yahei";
+  font-family: "Microsoft Yahei" !important;
 }
 * a {
   text-decoration: none;
@@ -20,16 +20,31 @@
 .clearAdd {
   display: block;
   margin: 2px auto;
-  padding: 10px 15px;
-  width: 45%;
+  padding: 5.6px 10px;
+  width: 25%;
   text-align: center;
-  background: #ffffff;
   box-shadow: inset 0 0 4px #c0c0c0;
   border-radius: 3px;
-  background: orange;
+  background: #46a6f7;
+  line-height: 20px ;
   text-shadow: none;
   color: #ffffff;
-  font-size: 15px;
+  float: right;
+  height: 19.8px;
+  font-size: 10px;
+}
+.getAddress {
+  float: left;
+  width: 60%;
+  height: 19.8px;
+  padding: 5.6px;
+  box-shadow: inset 0 0 3px #c0c0c0;
+  border: none;
+  border-radius: 5px;
+}
+.GPS-box {
+  width: 100%;
+  overflow: hidden;
 }
 #AddressGet .addressList {
   width: 98%;
