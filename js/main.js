@@ -90,7 +90,16 @@ $(function(){
 	oTitle = $('.selectTitle');
 	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		//history();
+		var _data = {};
+		_data.phone = phone;
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+			if(data.status == 0){
+				oList.html("");
+				$('#place_list').tmpl(data.list).appendTo(".addressList");
+			}else{
+				alert(data.info);
+			}
+		});
 		oTitle.html('取件区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -98,7 +107,16 @@ $(function(){
 	});
 	endAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		//history();
+		var _data = {};
+		_data.phone = phone;
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+			if(data.status == 0){
+				oList.html("");
+				$('#place_list').tmpl(data.list).appendTo(".addressList");
+			}else{
+				alert(data.info);
+			}
+		});
 		oTitle.html('收件区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -106,7 +124,16 @@ $(function(){
 	});
 	sendAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
-		//history();
+		var _data = {};
+		_data.phone = phone;
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+			if(data.status == 0){
+				oList.html("");
+				$('#place_list').tmpl(data.list).appendTo(".addressList");
+			}else{
+				alert(data.info);
+			}
+		});
 		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -296,16 +323,3 @@ function money () {
 	}
 }
 
-/*
-function history () {
-	var _data = {};
-	_data.phone = phone;
-	$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
-		if(data.status == 0){
-			oList.html("");
-			$('#place_list').tmpl(data.list).appendTo(".addressList");
-		}else{
-			alert(data.info);
-		}
-	});
-}*/
