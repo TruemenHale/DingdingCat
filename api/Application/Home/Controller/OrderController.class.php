@@ -898,10 +898,10 @@ class OrderController extends BaseController {
         try {
             $location = $this->locationToLal($addr);
             $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
-            file_get_contents($url);
+            $res =file_get_contents($url);
         } catch (\Exception $e) {
             return "Third Error";
         }
-        return true;
+        return $res;
     }
 }
