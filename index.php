@@ -59,8 +59,9 @@
     <div role="main" class="ui-content">
         <div class="ui-field-contain" style="margin-top: 14px">
             <label>选择寄件区域：</label>
-            <input class="getAddress" id="getAddress" type="text"/><br/>
-            <span class="clearAdd">清除定位区域</span>
+            <div class="GPS-box">
+            				<input class="getAddress" data-role="none" id="getAddress" type="text"/><span class="clearAdd">清除定位区域</span>
+            </div>
             <label>详细地址：</label>
             <input class="GetdetAddress" type="text" placeholder="请补充楼号、小区等详细信息"/>
         </div>
@@ -155,8 +156,9 @@
     <div role="main" class="ui-content">
         <div class="ui-field-contain">
             <label>选择送货区域：</label>
-            <input class="dgAddress" type="text"/><br/>
-            <span class="clearAdd">清除定位区域</span>
+            <div class="GPS-box">
+            				<input class="getAddress" data-role="none" id="getAddress" type="text"/><span class="clearAdd">清除定位区域</span>
+            </div>
             <label>详细地址：</label>
             <input class="sendDet" type="text" placeholder="请补充楼号、小区等详细信息"/>
         </div>
