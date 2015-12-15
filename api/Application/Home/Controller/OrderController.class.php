@@ -875,33 +875,26 @@ class OrderController extends BaseController {
 
     public function runnerTest () {
         $order = I("post.orderNo");
-        try {
-            $res = M('orders')->where("orderNo = '$order'")->find();
-        } catch(\Exception $e) {
-            return "First Error";
+        echo 1;
+        $res = M('orders')->where("orderNo = '$order'")->find();
+        echo 2;
+        $sendId = $res ['sendId'];
+        echo 3;
+        if ($res ['type'] == "0") {
+            $info = M('send')->where("id = '$sendId'")->find();
+            $addr = $info ['pickupAddr'];
+        } else {
+            $info = M('purchase')->where("id = '$sendId'")->find();
+            $addr = $info ['sendAddr'];
         }
+        echo 4;
 
-        try {
-            $sendId = $res ['sendId'];
-            if ($res ['type'] == "0") {
-                $info = M('send')->where("id = '$sendId'")->find();
-                $addr = $info ['pickupAddr'];
-            } else {
-                $info = M('purchase')->where("id = '$sendId'")->find();
-                $addr = $info ['sendAddr'];
-            }
-        } catch(\Exception $e) {
-            return "Second Error";
-        }
+        $location = $this->locationToLal($addr);
+        echo 5;
+        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
+        file_get_contents($url);
+        echo 6;
 
-
-        try {
-            $location = $this->locationToLal($addr);
-            $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
-            file_get_contents($url);
-        } catch (\Exception $e) {
-            return "Third Error";
-        }
         return true;
     }
 }
