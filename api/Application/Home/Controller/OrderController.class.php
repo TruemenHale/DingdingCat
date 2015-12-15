@@ -871,4 +871,23 @@ class OrderController extends BaseController {
         file_get_contents($url);
         return true;
     }
+
+    public function runnerTest () {
+        $order = I("post.orderNo");
+        $res = M('orders')->where("orderNo = '$order'")->find();
+
+        $sendId = $res ['sendId'];
+        if ($res ['type'] == "0") {
+            $info = M('send')->where("id = '$sendId'")->find();
+            $addr = $info ['pickupAddr'];
+        } else {
+            $info = M('purchase')->where("id = '$sendId'")->find();
+            $addr = $info ['sendAddr'];
+        }
+
+        $location = $this->locationToLal($addr);
+        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
+        file_get_contents($url);
+        return true;
+    }
 }
