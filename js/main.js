@@ -93,10 +93,38 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+		$.post('http://localhost/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
-				$('#place_list').tmpl(data.list).appendTo(".addressList");
+				$('#history_list').tmpl(data.list).appendTo(".addressList");
+				oList.find('li').on('click',function(){
+					if(From == '.getAddress'){
+						getToken = true;
+						sendToken = false;
+					}else if(From == '.endAddress'){
+						endToken = true;
+						sendToken = false;
+					}else{
+						sendToken = true;
+					}
+					var y = $(this).find('.add-name').html();
+					$(From).val(y);
+					oList.html("");
+					if(endToken && getToken && !sendToken){
+						money();
+					}
+					if(From == '.getAddress' || From == '.endAddress'){
+						$.mobile.changePage('#daisong',{
+							transition:'none'
+						});
+					}else{
+						console.log(1);
+						$.mobile.changePage('#daigou',{
+							transition:'none'
+						});
+					}
+				});
+				$('.addressList').listview('refresh');
 			}else{
 				alert(data.info);
 			}
@@ -111,10 +139,38 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+		$.post('http://localhost/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
-				$('#place_list').tmpl(data.list).appendTo(".addressList");
+				$('#history_list').tmpl(data.list).appendTo(".addressList");
+				oList.find('li').on('click',function(){
+					if(From == '.getAddress'){
+						getToken = true;
+						sendToken = false;
+					}else if(From == '.endAddress'){
+						endToken = true;
+						sendToken = false;
+					}else{
+						sendToken = true;
+					}
+					var y = $(this).find('.add-name').html();
+					$(From).val(y);
+					oList.html("");
+					if(endToken && getToken && !sendToken){
+						money();
+					}
+					if(From == '.getAddress' || From == '.endAddress'){
+						$.mobile.changePage('#daisong',{
+							transition:'none'
+						});
+					}else{
+						console.log(1);
+						$.mobile.changePage('#daigou',{
+							transition:'none'
+						});
+					}
+				});
+				$('.addressList').listview('refresh');
 			}else{
 				alert(data.info);
 			}
@@ -129,10 +185,38 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+		$.post('http://localhost/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
-				$('#place_list').tmpl(data.list).appendTo(".addressList");
+				$('#history_list').tmpl(data.list).appendTo(".addressList");
+				oList.find('li').on('click',function(){
+					if(From == '.getAddress'){
+						getToken = true;
+						sendToken = false;
+					}else if(From == '.endAddress'){
+						endToken = true;
+						sendToken = false;
+					}else{
+						sendToken = true;
+					}
+					var y = $(this).find('.add-name').html();
+					$(From).val(y);
+					oList.html("");
+					if(endToken && getToken && !sendToken){
+						money();
+					}
+					if(From == '.getAddress' || From == '.endAddress'){
+						$.mobile.changePage('#daisong',{
+							transition:'none'
+						});
+					}else{
+						console.log(1);
+						$.mobile.changePage('#daigou',{
+							transition:'none'
+						});
+					}
+				});
+				$('.addressList').listview('refresh');
 			}else{
 				alert(data.info);
 			}

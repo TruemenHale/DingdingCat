@@ -46,7 +46,7 @@
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.tmpl.min.js"></script>
-    <script src="js/main.js?v=111"></script>
+    <script src="js/main.js?v=112"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 </head>
 <body>
@@ -306,6 +306,11 @@
     <li>
         <p class="add-name">${name}</p>
         <p class="add-area">${area}</p>
+    </li>
+</script>
+<script id="history_list" type="text/x-jquery-tmpl">
+    <li>
+        <p class="add-area">${addr}</p>
     </li>
 </script>
 <script>

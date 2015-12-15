@@ -454,7 +454,6 @@ class OrderController extends BaseController {
         } else {
             $userId = session('userId');
         }
-
         $send = M('orders')
             ->field("orders.orderTime,send.sendAddr")
             ->where("orders.userId = '$userId' AND type = 0")
