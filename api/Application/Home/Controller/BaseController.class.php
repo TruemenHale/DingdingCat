@@ -11,7 +11,7 @@ use Think\Controller;
 use Com\WechatAuth;
 
 class BaseController extends Controller {
-    /*public function _initialize()
+    public function _initialize()
     {
         if (!$this->checkMethodPost()) {
             $data = array(
@@ -34,7 +34,7 @@ class BaseController extends Controller {
             'version' => '1.0'
         );
         $this->ajaxReturn($data);
-    }*/
+    }
 
     /**
      * @return array|mixed
