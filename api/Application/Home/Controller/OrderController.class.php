@@ -902,6 +902,6 @@ class OrderController extends BaseController {
         } catch (\Exception $e) {
             return "Third Error";
         }
-        return $res;
+        echo $res;
     }
 }
