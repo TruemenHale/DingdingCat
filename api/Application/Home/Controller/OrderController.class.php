@@ -873,8 +873,7 @@ class OrderController extends BaseController {
         return true;
     }
 
-    public function runnerTest () {
-        $order = I("post.orderNo");
+    public function runnerTest ($order) {
         echo 1;
         $res = M('orders')->where("orderNo = '$order'")->find();
         echo 2;
