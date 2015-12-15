@@ -443,6 +443,62 @@ class OrderController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    public function historyAddr () {
+        $phone = I('post.phone');
+        if ($phone != session('phone')) {
+            $return = [
+                'status' => '-10',
+                'info'   => 'Error'
+            ];
+            $this->ajaxReturn($return);
+        } else {
+            $userId = session('userId');
+        }
+
+        $send = M('orders')
+            ->field("orders.orderTime,send.sendAddr")
+            ->where("orders.userId = '$userId' AND type = 0")
+            ->join("send ON send.id = orders.sendId")
+            ->order('orderTime desc')
+            ->select();
+
+        $buy = M('orders')
+            ->field("orders.orderTime,purchase.sendAddr")
+            ->where("orders.userId = '$userId' AND type = 1")
+            ->join("purchase ON purchase.id = orders.sendId")
+            ->order('orderTime desc')
+            ->select();
+        $i = 0;
+        foreach ($send as $var) {
+            $list [$i] = [
+                'addr' => $var ['sendAddr'],
+                'time' => $var ['orderTime']
+            ];
+            $i++;
+        }
+        foreach ($buy as $var) {
+            $list [$i] = [
+                'addr' => $var ['sendAddr'],
+                'time' => $var ['orderTime']
+            ];
+            $i++;
+        }
+
+        foreach ($list as $var) {
+            $time[$i] = $var ['time'];
+        }
+
+        array_multisort($time,SORT_DESC,$list);
+
+        $list = array_slice($list,0,10);
+
+        $return = [
+            'status' => '0',
+            'list'   => $list
+        ];
+        $this->ajaxReturn($return);
+    }
+
     /**
      * 微信支付返回支付状态的判定
      * post发起在wxpay/example/notify.php
