@@ -868,7 +868,7 @@ class OrderController extends BaseController {
         }
 
         $location = $this->locationToLal($addr);
-        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat'];
+        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
         file_get_contents($url);
         return true;
     }
