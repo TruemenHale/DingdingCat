@@ -460,6 +460,7 @@ class OrderController extends BaseController {
             ->where("orders.userId = '$userId' AND type = 0")
             ->join("send ON send.id = orders.sendId")
             ->order('orderTime desc')
+            ->group("sendAddr")
             ->select();
 
         $buy = M('orders')
@@ -467,6 +468,7 @@ class OrderController extends BaseController {
             ->where("orders.userId = '$userId' AND type = 1")
             ->join("purchase ON purchase.id = orders.sendId")
             ->order('orderTime desc')
+            ->group("sendAddr")
             ->select();
         $i = 0;
         foreach ($send as $var) {
@@ -492,22 +494,6 @@ class OrderController extends BaseController {
         array_multisort($time,SORT_DESC,$list);
 
         $list = array_slice($list,0,10);
-
-        $i = 0;
-        foreach ($list as $var) {
-            $addr [$i] = $var ['addr'];
-            $i++;
-        }
-        $addr = array_unique($addr);
-        $addr = array_slice($addr,0,10);
-        $i = 0;
-        foreach ($addr as $value) {
-            $list [$i] = [
-                'addr' => $value
-            ];
-            $i++;
-        }
-
 
 
         $return = [
