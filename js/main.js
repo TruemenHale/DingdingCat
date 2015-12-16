@@ -170,12 +170,13 @@ $(function(){
 		From = '.'+$(this).attr('class');
 		var oList = $('.addressList');
 		var _data = {};
+		alert(1);
 		_data.phone = phone;
 		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
-		$.post('http://wx.tyll.net.cn/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
 				$('#history_list').tmpl(data.list).appendTo(".addressList");
