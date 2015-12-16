@@ -495,19 +495,24 @@ class OrderController extends BaseController {
 
         $i = 0;
         foreach ($list as $var) {
-            $addr [$i] = [
-                'addr' => $var ['addr']
+            $addr [$i] = $var ['addr'];
+            $i++;
+        }
+        $addr = array_unique($addr);
+        $addr = array_slice($addr,0,10);
+        $i = 0;
+        foreach ($addr as $value) {
+            $list [$i] = [
+                'addr' => $value
             ];
             $i++;
         }
 
 
-        $addr = array_unique($addr);
-        $addr = array_slice($addr,0,10);
 
         $return = [
             'status' => '0',
-            'list'   => $addr
+            'list'   => $list
         ];
         $this->ajaxReturn($return);
     }
