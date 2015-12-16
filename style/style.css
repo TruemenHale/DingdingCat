@@ -32,7 +32,7 @@
   height: 19.8px;
   font-size: 10px;
 }
-.getAddress {
+.getAddress .sendAddress {
   float: left;
   width: 68%;
   -webkit-appearance: none !important;

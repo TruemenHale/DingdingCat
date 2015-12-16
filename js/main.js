@@ -86,7 +86,7 @@ $(function(){
 	var KgNum = $('.KgNum');
 	var getAdd = $('.getAddress');
 	var endAdd = $('.endAddress');
-	var sendAdd = $('.dgAddress');
+	var sendAdd = $('.sendAddress');
 	oTitle = $('.selectTitle');
 	getAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
@@ -96,6 +96,35 @@ $(function(){
 		oTitle.html('取件区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
+		});
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+			if(data.status == 0){
+				oList.html("");
+				$('#history_list').tmpl(data.list).appendTo(".addressList");
+				oList.find('li').on('click',function(){
+					if(From == '.getAddress'){
+						getToken = true;
+						sendToken = false;
+					}else if(From == '.endAddress'){
+						endToken = true;
+						sendToken = false;
+					}else{
+						sendToken = true;
+					}
+					var y = $(this).find('.add-name').html();
+					$(From).val(y);
+					oList.html("");
+					if(endToken && getToken && !sendToken){
+						money();
+					}
+					$.mobile.changePage('#daisong',{
+						transition:'none'
+					});
+				});
+				$('.addressList').listview('refresh');
+			}else{
+				alert(data.info);
+			}
 		});
 	});
 	endAdd.on('tap',function(){
@@ -107,6 +136,35 @@ $(function(){
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
 		});
+		$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+			if(data.status == 0){
+				oList.html("");
+				$('#history_list').tmpl(data.list).appendTo(".addressList");
+				oList.find('li').on('click',function(){
+					if(From == '.getAddress'){
+						getToken = true;
+						sendToken = false;
+					}else if(From == '.endAddress'){
+						endToken = true;
+						sendToken = false;
+					}else{
+						sendToken = true;
+					}
+					var y = $(this).find('.add-name').html();
+					$(From).val(y);
+					oList.html("");
+					if(endToken && getToken && !sendToken){
+						money();
+					}
+					$.mobile.changePage('#daisong',{
+						transition:'none'
+					});
+				});
+				$('.addressList').listview('refresh');
+			}else{
+				alert(data.info);
+			}
+		});
 	});
 	sendAdd.on('tap',function(){
 		From = '.'+$(this).attr('class');
@@ -116,6 +174,35 @@ $(function(){
 		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
+		});
+		$.post('http://wx.tyll.net.cn/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
+			if(data.status == 0){
+				oList.html("");
+				$('#history_list').tmpl(data.list).appendTo(".addressList");
+				oList.find('li').on('click',function(){
+					if(From == '.getAddress'){
+						getToken = true;
+						sendToken = false;
+					}else if(From == '.endAddress'){
+						endToken = true;
+						sendToken = false;
+					}else{
+						sendToken = true;
+					}
+					var y = $(this).find('.add-name').html();
+					$(From).val(y);
+					oList.html("");
+					if(endToken && getToken && !sendToken){
+						money();
+					}
+					$.mobile.changePage('#daigou',{
+						transition:'none'
+					});
+				});
+				$('.addressList').listview('refresh');
+			}else{
+				alert(data.info);
+			}
 		});
 	});
 	$('.cancel').on('tap',function(){
@@ -159,7 +246,6 @@ $(function(){
 		var oInput = $('.AddressInput');
 		var oList = $('.addressList');
 		var data = "";
-		alert(From);
 		var timer = setInterval(function(){
 			if(x == $('.AddressInput').val()){
 				return false;
@@ -210,7 +296,7 @@ $(function(){
 	$('.dgApply').on('tap',function(){
 		$.mobile.loading('show');
 		var _data = {};
-		_data.sendAddr = $('.dgAddress').val();
+		_data.sendAddr = $('.sendAddress').val();
 		_data.sendDet = $('sendDet').val();
 		_data.goodsDesc = $('.dgDescribe').val();
 		_data.priceLimit = $('.dgCost').val();

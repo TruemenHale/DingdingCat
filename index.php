@@ -46,7 +46,7 @@
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.tmpl.min.js"></script>
-    <script src="js/main.js?v=114"></script>
+    <script src="js/main.js?v=116"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 </head>
 <body>
@@ -157,7 +157,7 @@
         <div class="ui-field-contain">
             <label>选择送货区域：</label>
             <div class="GPS-box">
-            				<input class="getAddress" data-role="none" id="getAddress" type="text"/><span class="clearAdd">清除GPS</span>
+            				<input class="sendAddress" data-role="none" id="sendAddress" type="text"/><span class="clearAdd">清除GPS</span>
             </div>
             <label>详细地址：</label>
             <input class="sendDet" type="text" placeholder="请补充楼号、小区等详细信息"/>
