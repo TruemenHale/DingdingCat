@@ -38,7 +38,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="stylesheet" href="style/style.css"/>
+    <link rel="stylesheet" href="style/style.css?v=1"/>
     <link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"/>
     <script>
         var openid = "<?php echo $openid; ?>";
@@ -157,7 +157,8 @@
         <div class="ui-field-contain">
             <label>选择送货区域：</label>
             <div class="GPS-box">
-            				<input class="sendAddress" data-role="none" id="sendAddress" type="text"/><span class="clearAdd">清除GPS</span>
+                <input class="sendAddress" data-role="none" id="sendAddress" type="text"/>
+                <span class="clearAdd">清除GPS</span>
             </div>
             <label>详细地址：</label>
             <input class="sendDet" type="text" placeholder="请补充楼号、小区等详细信息"/>
