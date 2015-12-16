@@ -483,18 +483,31 @@ class OrderController extends BaseController {
             ];
             $i++;
         }
-
+        $i = 0;
         foreach ($list as $var) {
             $time[$i] = $var ['time'];
+            $i++;
         }
 
         array_multisort($time,SORT_DESC,$list);
 
         $list = array_slice($list,0,10);
 
+        $i = 0;
+        foreach ($list as $var) {
+            $addr [$i] = [
+                'addr' => $var ['addr']
+            ];
+            $i++;
+        }
+
+
+        $addr = array_unique($addr);
+        $addr = array_slice($addr,0,10);
+
         $return = [
             'status' => '0',
-            'list'   => $list
+            'list'   => $addr
         ];
         $this->ajaxReturn($return);
     }
