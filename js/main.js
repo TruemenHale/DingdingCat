@@ -170,7 +170,6 @@ $(function(){
 		From = '.'+$(this).attr('class');
 		var oList = $('.addressList');
 		var _data = {};
-		alert(1);
 		_data.phone = phone;
 		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
