@@ -159,6 +159,7 @@ $(function(){
 		var oInput = $('.AddressInput');
 		var oList = $('.addressList');
 		var data = "";
+		alert(From);
 		var timer = setInterval(function(){
 			if(x == $('.AddressInput').val()){
 				return false;
