@@ -866,13 +866,15 @@ class OrderController extends BaseController {
         if ($res ['type'] == "0") {
             $info = M('send')->where("id = '$sendId'")->find();
             $addr = $info ['pickupAddr'];
+            $type = 0;
         } else {
             $info = M('purchase')->where("id = '$sendId'")->find();
             $addr = $info ['sendAddr'];
+            $type = 1;
         }
 
         $location = $this->locationToLal($addr);
-        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
+        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/".$order."/".$type;
         file_get_contents($url);
         return true;
     }
