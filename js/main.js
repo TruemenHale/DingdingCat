@@ -100,6 +100,9 @@ $(function(){
 		setTimeout(function () {
 			$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 				if(data.status == 0){
+					if (!data.list) {
+						return 0;
+					}
 					oList.html("");
 					$('#history_list').tmpl(data.list).appendTo(".addressList");
 					oList.find('li').on('click',function(){
@@ -142,6 +145,9 @@ $(function(){
 		setTimeout(function () {
 			$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 				if(data.status == 0){
+					if (!data.list) {
+						return 0;
+					}
 					oList.html("");
 					$('#history_list').tmpl(data.list).appendTo(".addressList");
 					oList.find('li').on('click',function(){
@@ -184,6 +190,9 @@ $(function(){
 		setTimeout(function () {
 			$.post('http://wx.tyll.net.cn/DingdingCat/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 				if(data.status == 0){
+					if (!data.list) {
+						return 0;
+					}
 					oList.html("");
 					$('#history_list').tmpl(data.list).appendTo(".addressList");
 					oList.find('li').on('click',function(){
