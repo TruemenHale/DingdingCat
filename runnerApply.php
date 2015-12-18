@@ -73,7 +73,8 @@
         <option value="1">摩托车</option>
         <option value="2">面包车</option>
         <option value="3">小轿车</option>
-        <option value="4">地铁</option>
+        <option value="4">公交地铁</option>
+        <option value="5">三轮车</option>
       </select>
     </div>
     <div class="ui-field-contain">
