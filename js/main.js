@@ -242,18 +242,13 @@ $(function(){
 		}
 		else{
 			KgNum.val(a);
-			if (a>=5) {
-				money();
-			}
-
+			money();
 		}
 	});
 	$('.plus').on('tap',function(){
 		var a = parseFloat(KgNum.val())+1;
 		KgNum.val(a);
-		if (a>=5) {
-			money()
-		}
+		money();
 	});
 	$('.clearAdd').on('tap',function(){
 		getAdd.val("");
