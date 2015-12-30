@@ -699,13 +699,18 @@ class OrderController extends BaseController {
      * 获取两地点距离
      */
     private function distance ($location1,$location2) {
-        $location1 = $this->locationToLal($location1);
+        //第一版，通过公式计算
+        /*$location1 = $this->locationToLal($location1);
         session("location1",$location1);
         $location2 = $this->locationToLal($location2);
         session("location2",$location2);
 
-        $distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);
+        $distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);*/
 
+        $url = "http://api.map.baidu.com/direction/v1?mode=walking&origin=$location1&destination=$location2&region=重庆&output=json&ak=k2ynBN7eZTDr5ymYwnTj7IXm";
+        $json = file_get_contents($url);
+        $output = json_decode($json,true);
+        $distance = $output ['result'] ['routes'] [0] ['distance'];
         return $distance;
     }
 
