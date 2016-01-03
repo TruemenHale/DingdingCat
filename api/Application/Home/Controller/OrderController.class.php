@@ -714,8 +714,9 @@ class OrderController extends BaseController {
         $output = json_decode($json,true);
 
         if ($output ['type'] == 1) {
-            $newLocation = $output ['result'] ['origin'] ['content'] [0] ['name'];
-            $url = "http://api.map.baidu.com/direction/v1?mode=walking&origin=$newLocation&destination=$location2&region=重庆&output=json&ak=k2ynBN7eZTDr5ymYwnTj7IXm";
+            $origin = $output ['result'] ['origin'] ['content'] [0] ['location'] ['lat'].",".$output ['result'] ['origin'] ['content'] [0] ['location'] ['lng'];
+            $destination = $output ['result'] ['destination'] ['content'] [0] ['location'] ['lat'].",".$output ['result'] ['destination'] ['content'] [0] ['location'] ['lng'];
+            $url = "http://api.map.baidu.com/direction/v1?mode=walking&origin=$origin&destination=$destination&region=重庆&output=json&ak=k2ynBN7eZTDr5ymYwnTj7IXm";
             $json = file_get_contents($url);
             $output = json_decode($json,true);
         }
