@@ -340,10 +340,10 @@ $(function(){
 		_data = null;
 		var url = Date.parse(new Date());
 		var _data = {};
-		_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-		_data.GdetAddr = $(".GetdetAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-		_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-		_data.EdetAddr = $(".EnddetAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+		_data.pickupAddr = $(".getAddress").val();
+		_data.GdetAddr = $(".GetdetAddress").val();
+		_data.sendAddr = $(".endAddress").val();
+		_data.EdetAddr = $(".EnddetAddress").val();
 		_data.pickupTime = "0";
 		_data.weight = parseFloat(KgNum.val());
 		_data.recipientName = $('.geterName').val();
@@ -375,8 +375,8 @@ function money () {
 	_data = null;
 	var KgNum = $('.KgNum');
 	var _data = {};
-	_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
-	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
+	_data.pickupAddr = $(".getAddress").val();
+	_data.sendAddr = $(".endAddress").val();
 	_data.weight = parseFloat(KgNum.val());
 	if (_data.pickupAddr != "" && _data.sendAddr != "") {
 
