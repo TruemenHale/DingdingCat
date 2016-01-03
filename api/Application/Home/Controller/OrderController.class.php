@@ -698,9 +698,9 @@ class OrderController extends BaseController {
      * @return float
      * 获取两地点距离
      */
-    public function distance () {
-        $location1 = "和睦路号";
-        $location2 = "重庆市渝北区恒大华府";
+    private function distance ($location1,$location2) {
+        /*$location1 = "和睦路号";
+        $location2 = "重庆市渝北区恒大华府";*/
         //第一版，通过公式计算
         /*$location1 = $this->locationToLal($location1);
         session("location1",$location1);
