@@ -375,7 +375,7 @@ function money () {
 	_data = null;
 	var KgNum = $('.KgNum');
 	var _data = {};
-	_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/gi,"");
+	_data.pickupAddr = $(".getAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.sendAddr = $(".endAddress").val().replace(/[^\u4e00-\u9fa5]/gi,"");
 	_data.weight = parseFloat(KgNum.val());
 	if (_data.pickupAddr != "" && _data.sendAddr != "") {
