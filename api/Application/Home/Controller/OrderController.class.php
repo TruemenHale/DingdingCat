@@ -721,7 +721,6 @@ class OrderController extends BaseController {
         }
 
         $distance = $output ['result'] ['routes'] [0] ['distance'];
-        var_dump($distance);
         return $distance;
     }
 
