@@ -460,6 +460,7 @@ class OrderController extends BaseController {
             ->where("orders.userId = '$userId' AND type = 0")
             ->join("send ON send.id = orders.sendId")
             ->order('orderTime desc')
+            ->group("sendAddr")
             ->select();
 
         $buy = M('orders')
@@ -467,6 +468,7 @@ class OrderController extends BaseController {
             ->where("orders.userId = '$userId' AND type = 1")
             ->join("purchase ON purchase.id = orders.sendId")
             ->order('orderTime desc')
+            ->group("sendAddr")
             ->select();
         $i = 0;
         foreach ($send as $var) {
@@ -483,14 +485,16 @@ class OrderController extends BaseController {
             ];
             $i++;
         }
-
+        $i = 0;
         foreach ($list as $var) {
             $time[$i] = $var ['time'];
+            $i++;
         }
 
         array_multisort($time,SORT_DESC,$list);
 
         $list = array_slice($list,0,10);
+
 
         $return = [
             'status' => '0',
@@ -695,13 +699,27 @@ class OrderController extends BaseController {
      * 获取两地点距离
      */
     private function distance ($location1,$location2) {
-        $location1 = $this->locationToLal($location1);
-        session("location1",$location1);
-        $location2 = $this->locationToLal($location2);
-        session("location2",$location2);
+        //第一版，通过公式计算
+        $loc1 = $this->locationToLal($location1);
+        session("location1",$loc1);
+        $loc2 = $this->locationToLal($location2);
+        session("location2",$loc2);
 
-        $distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);
+        //$distance = $this->getDistance($location1['lat'],$location1['lng'],$location2['lat'],$location2['lng']);
 
+        $url = "http://api.map.baidu.com/direction/v1?mode=walking&origin=$location1&destination=$location2&region=重庆&output=json&ak=k2ynBN7eZTDr5ymYwnTj7IXm";
+        $json = file_get_contents($url);
+        $output = json_decode($json,true);
+
+        if ($output ['type'] == 1) {
+            $origin = $output ['result'] ['origin'] ['content'] [0] ['location'] ['lat'].",".$output ['result'] ['origin'] ['content'] [0] ['location'] ['lng'];
+            $destination = $output ['result'] ['destination'] ['content'] [0] ['location'] ['lat'].",".$output ['result'] ['destination'] ['content'] [0] ['location'] ['lng'];
+            $url = "http://api.map.baidu.com/direction/v1?mode=walking&origin=$origin&destination=$destination&region=重庆&output=json&ak=k2ynBN7eZTDr5ymYwnTj7IXm";
+            $json = file_get_contents($url);
+            $output = json_decode($json,true);
+        }
+
+        $distance = $output ['result'] ['routes'] [0] ['distance'];
         return $distance;
     }
 
@@ -862,13 +880,15 @@ class OrderController extends BaseController {
         if ($res ['type'] == "0") {
             $info = M('send')->where("id = '$sendId'")->find();
             $addr = $info ['pickupAddr'];
+            $type = 0;
         } else {
             $info = M('purchase')->where("id = '$sendId'")->find();
             $addr = $info ['sendAddr'];
+            $type = 1;
         }
 
         $location = $this->locationToLal($addr);
-        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/";
+        $url = "http://kdj.tyll.net.cn:8080/dingdingmao/runner/push/".$location['lng']."/".$location['lat']."/".$order."/".$type;
         file_get_contents($url);
         return true;
     }

@@ -42,6 +42,16 @@
   border: none;
   border-radius: 5px;
 }
+.sendAddress {
+  float: left;
+  width: 68%;
+  -webkit-appearance: none !important;
+  height: 19.8px;
+  padding: 5.6px;
+  box-shadow: inset 0 0 5px #c0c0c0;
+  border: none;
+  border-radius: 5px;
+}
 .GPS-box {
   width: 100%;
   overflow: hidden;
