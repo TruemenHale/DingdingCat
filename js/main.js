@@ -183,21 +183,7 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-<<<<<<< HEAD
-		$.post('http://wx.tyll.net.cn/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
-			if(data.status == 0){
-				oList.html("");
-				$('#history_list').tmpl(data.list).appendTo(".addressList");
-				oList.find('li').on('click',function(){
-					if(From == '.getAddress'){
-						getToken = true;
-						sendToken = false;
-					}else if(From == '.endAddress'){
-						endToken = true;
-						sendToken = false;
-					}else{
-						sendToken = true;
-=======
+
 		oTitle.html('送达区域');
 		$.mobile.changePage('#AddressGet',{
 			transition:'none'
@@ -207,7 +193,6 @@ $(function(){
 				if(data.status == 0){
 					if (!data.list) {
 						return 0;
->>>>>>> bb90c982dfbca456458d8bb16b3c17f40f540a84
 					}
 					oList.html("");
 					$('#history_list').tmpl(data.list).appendTo(".addressList");
