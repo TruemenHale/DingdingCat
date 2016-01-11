@@ -184,7 +184,6 @@ $(function(){
 		var oList = $('.addressList');
 		var _data = {};
 		_data.phone = phone;
-		alert(From);
 		$.post('http://wx.tyll.net.cn/api/index.php?s=/Home/Order/historyAddr',_data,function(data){
 			if(data.status == 0){
 				oList.html("");
