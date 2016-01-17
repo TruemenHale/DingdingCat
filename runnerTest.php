@@ -92,7 +92,7 @@ $signPackage = $jsapi->getSignPackage();
                 <input class="ConfirmCode" type="text" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
-            <input class="registerBtn" type="button" value="确认"/>
+            <input type="submit" value="确认"/>
         </div>
     </form>
 </div>
