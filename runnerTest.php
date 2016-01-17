@@ -109,7 +109,7 @@ $signPackage = $jsapi->getSignPackage();
         wx.hideOptionMenu();
     });
     $('#idCardPic1').on('tap',function () {
-        $('#img_upload').on('tap');
+        $('#img_upload').onclick();
     })
 </script>
 </body>
