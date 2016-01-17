@@ -38,9 +38,9 @@ $signPackage = $jsapi->getSignPackage();
     });
     wx.ready(function(){
         wx.hideOptionMenu();
+        setTimeout(function(){
+            wx.closeWindow();
+        },3000);
     });
-    setTimeout(function(){
-        wx.closeWindow();
-    },3000);
 </script>
 </html>

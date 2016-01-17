@@ -1,6 +1,4 @@
 
-var pic1 = "";
-var pic2 = "";
 function getCookie(name)
 {
     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
@@ -33,7 +31,7 @@ $(function () {
         var _this = $(this);
         if(getCookie("flag") == "true"||!getCookie("flag")){
             document.cookie = "flag = true";
-            document.cookie = "time = "+5;
+            document.cookie = "time = "+120;
             if($('#phoneNum').val().length != 11){
                 alert('请输入正确的手机号！');
                 return;
@@ -61,30 +59,5 @@ $(function () {
             },1000);
             document.cookie = "flag = "+500;
         }
-    });
-
-    $('.registerBtn').on('tap',function(){
-        $.mobile.loading('show');
-        $(this).button('option','disabled',true);
-        var _data = {};
-        _data.name = $('.usrName').val();
-        _data.phone = $('.phoneNum').val();
-        _data.idCardNo = $('.idCard').val();
-        _data.code = $('.ConfirmCode').val();
-        _data.head = headImg;
-        _data.transportType = $(".transport option:selected").val();
-        $.post('./api/index.php?s=/Home/Account/runnerApply',_data,function(data){
-            if (data) {
-                if (data.status == 0) {
-                    alert("恭喜你注册成功,请等待审批");
-
-                } else {
-                    alert(data.info);
-                }
-            } else {
-                alert("报名失败!未连接到服务器！");
-            }
-            $.mobile.loading('hide');
-        });
     });
 });

@@ -83,8 +83,7 @@ $jsApiParameters = $tools->GetJsApiParameters($order);
 					alert('支付好像出了小问题, 请稍后再试T^T');
 //					alert(res.err_msg);
 				} else {
-					alert('支付成功~');
-					window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa3363e46c74608f3&redirect_uri=http%3a%2f%2fwx.tyll.net.cn%2fDingdingCat%2findex.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+					window.location.href='http://wx.tyll.net.cn/DingdingCat/paySuccess.php';
 				}
 			}
 		);
