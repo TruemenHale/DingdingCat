@@ -84,7 +84,7 @@ $signPackage = $jsapi->getSignPackage();
             </div>
             <div class="ConfirmCodeBox">
                 <input class="ConfirmCode" type="text" name="add-reportName" id="display" placeholder="请上传身份证正面" value=""/>
-                <button class="ImgBtn" type="button"  onclick="img_upload.click()">选择图片</button>
+                <div class="ImgBtn" onclick="img_upload.click()">选择图片</div>
                 <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="display.value=this.value">
 
             </div>
