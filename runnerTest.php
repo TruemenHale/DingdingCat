@@ -70,7 +70,7 @@ $signPackage = $jsapi->getSignPackage();
             </div>
             <div class="ui-field-contain">
                 <label>身份证正面照片：</label>
-                <input type="text" name="idCardPic1" id="idCardPic1" value=""/>
+                <input type="text" name="idCardPic1" id="idCardPic1" placeholder="点击上传" value=""/>
                 <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
             </div>
             <div class="ui-field-contain">
