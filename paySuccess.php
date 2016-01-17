@@ -11,6 +11,7 @@ $signPackage = $jsapi->getSignPackage();
     <title>叮叮猫</title>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 </head>
 <body>
 <div class="container-fluid">
