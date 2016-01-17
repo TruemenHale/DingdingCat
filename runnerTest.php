@@ -69,8 +69,9 @@ $signPackage = $jsapi->getSignPackage();
                 <input type="text" class="idCard" />
             </div>
             <div class="ui-field-contain">
-                <label>身份证正面照片：</label>
-                <input type="text" name="idCardPic1" id="idCardPic1" placeholder="点击上传" value=""/>
+                <label>身份证正面：</label>
+                <input type="text" name="idCardPic1" id="idCardPic1" value=""/>
+                <button type="button"  onclick="img_upload.click()">选择图片</button>
                 <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
             </div>
             <div class="ui-field-contain">
@@ -108,9 +109,6 @@ $signPackage = $jsapi->getSignPackage();
     wx.ready(function() {
         wx.hideOptionMenu();
     });
-    $('#idCardPic1').on('tap',function () {
-        $('#img_upload').onclick();
-    })
 </script>
 </body>
 </html>
