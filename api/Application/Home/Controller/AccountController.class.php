@@ -295,13 +295,13 @@ class AccountController extends BaseController {
         var_dump($post);
         if (!empty($_FILES)) {
             $res = array();
-            for ($i = 0;$i < count($FILES ['idCardPic'] ['name']) ;$i++) {
+            for ($i = 0;$i < count($_FILES ['idCardPic'] ['name']) ;$i++) {
                 $file = array();
-                $file ['name'] = $FILES ['idCardPic'] ['name'] [$i];
-                $file ['tmp_name'] = $FILES ['idCardPic'] ['tmp_name'] [$i];
+                $file ['name'] = $_FILES ['idCardPic'] ['name'] [$i];
+                $file ['tmp_name'] = $_FILES ['idCardPic'] ['tmp_name'] [$i];
                 $file ['type'] = $_FILES['file']['type'] [$i];
-                $file ['error'] = $FILES ['idCardPic'] ['error'] [$i];
-                $file ['size'] = $FILES ['idCardPic'] ['size'] [$i];
+                $file ['error'] = $_FILES ['idCardPic'] ['error'] [$i];
+                $file ['size'] = $_FILES ['idCardPic'] ['size'] [$i];
                 $res [] = $this->upImg($file,$post ['phoneNum']);
             }
             dump($res);
