@@ -58,15 +58,15 @@ $signPackage = $jsapi->getSignPackage();
     <div class="header" data-role="header" data-position="fixed" class = "header">
         <h1>跑腿哥报名</h1>
     </div>
-    <form action="./api/index.php?s=/Home/Account/runnerTest" method="post" data-ajax="false">
+    <form action="./api/index.php?s=/Home/Account/runnerTest" method="post" enctype="multipart/form-data" data-ajax="false">
         <div role="main" class="ui-content">
             <div class="ui-field-contain">
                 <label>姓名：</label>
-                <input class="usrName" type="text"/>
+                <input class="usrName" name="userName" type="text"/>
             </div>
             <div class="ui-field-contain">
                 <label>身份证号：</label>
-                <input type="text" class="idCard" />
+                <input type="text" name="idCardNo" class="idCard" />
             </div>
             <div class="ui-field-contain">
                 <label>身份证正面：</label>
@@ -85,10 +85,10 @@ $signPackage = $jsapi->getSignPackage();
             </div>
             <div class="ui-field-contain">
                 <label>手机号：</label>
-                <input type="text" id="phoneNum" class="phoneNum" value="" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" />
+                <input type="text" id="phoneNum" name="phoneNum" class="phoneNum" value="" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" />
             </div>
             <div class="ConfirmCodeBox">
-                <input class="ConfirmCode" type="text" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
+                <input class="ConfirmCode" type="text" name="code" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
             <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
