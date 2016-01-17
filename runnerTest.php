@@ -52,20 +52,6 @@ $signPackage = $jsapi->getSignPackage();
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/runnerApply.js"></script>
     <link rel="stylesheet" href="style/register.css"/>
-    <style>
-        .ConfirmCodeBox .ImgBtn {
-            display: block;
-            width: 43%;
-            font-size: 13px;
-            height: 100%;
-            float: right;
-            line-height: 35px;
-            background: red;
-            color: #ffffff;
-            text-align: center;
-            border-radius: 3px;
-        }
-    </style>
 </head>
 <body>
 <div data-role="page" id="register">
@@ -82,9 +68,11 @@ $signPackage = $jsapi->getSignPackage();
                 <label>身份证号：</label>
                 <input type="text" class="idCard" />
             </div>
-            <div class="ConfirmCodeBox">
-                <input class="ConfirmCode" type="text" name="add-reportName" placeholder="请上传身份证正面" value="" disabled/>
-                <div class="ImgBtn" onclick="img_upload.click()">选择图片</div>
+            <div class="ui-field-contain">
+                <labe>身份证正面照片：</labe>
+                <input type="text" name="add-reportName" id="display" value=""/>
+                <button type="button"  onclick="img_upload.click()">选择图片</button>
+                <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="display.value=this.value">
             </div>
             <div class="ui-field-contain">
                 <label>交通工具：</label>
@@ -105,7 +93,6 @@ $signPackage = $jsapi->getSignPackage();
                 <div class="ApplyBtn">获取验证码</div>
             </div>
             <input type="submit" value="确认"/>
-            <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="display.value=this.value">
         </div>
     </form>
 </div>
