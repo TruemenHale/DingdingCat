@@ -29,8 +29,11 @@
             </div>
 
             <button type="button" onclick="img_upload1.click()">选择身份证正面照片</button>
+            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none">
             <button type="button" onclick="img_upload2.click()">选择身份证背面照片</button>
+            <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none">
             <button type="button" onclick="img_upload3.click()">选择手持身份证照片</button>
+            <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none">
             <div class="ui-field-contain">
                 <label>交通工具：</label>
                 <select class="transport" name="transportType" id="">
@@ -49,9 +52,6 @@
                 <input class="ConfirmCode" type="text" name="code" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
-            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none">
-            <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none">
-            <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none">
             <input type="submit" value="确认"/>
         </div>
     </form>
