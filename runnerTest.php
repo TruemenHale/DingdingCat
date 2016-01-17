@@ -52,6 +52,20 @@ $signPackage = $jsapi->getSignPackage();
     <script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/runnerApply.js"></script>
     <link rel="stylesheet" href="style/register.css"/>
+    <style>
+        .ConfirmCodeBox .ImgBtn {
+            display: block;
+            width: 43%;
+            font-size: 13px;
+            height: 100%;
+            float: right;
+            line-height: 35px;
+            background: red;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 <body>
 <div data-role="page" id="register">
@@ -62,15 +76,15 @@ $signPackage = $jsapi->getSignPackage();
         <div role="main" class="ui-content">
             <div class="ui-field-contain">
                 <label>姓名：</label>
-                <input class="usrName" type="text" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" />
+                <input class="usrName" type="text"/>
             </div>
             <div class="ui-field-contain">
                 <label>身份证号：</label>
                 <input type="text" class="idCard" />
             </div>
-            <div class="ui-field-contain">
-                <input type="text" name="add-reportName" id="display" placeholder="" value=""/>
-                <button type="button"  onclick="img_upload.click()">选择图片</button>
+            <div class="ConfirmCodeBox">
+                <input type="text" name="add-reportName" id="display" placeholder="请上传身份证正面" value=""/>
+                <button class="ImgBtn" type="button"  onclick="img_upload.click()">选择图片</button>
                 <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="display.value=this.value">
 
             </div>
