@@ -101,9 +101,9 @@ $signPackage = $jsapi->getSignPackage();
                 <input class="ConfirmCode" type="text" name="code" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
-            <input id="img_upload1" name="idCardPic1" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
-            <input id="img_upload2" name="idCardPic2" type="file" multiple="true" style="display: none" onchange="idCardPic2.value=this.value">
-            <input id="img_upload3" name="idCardPic3" type="file" multiple="true" style="display: none" onchange="idCardPic3.value=this.value">
+            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
+            <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="idCardPic2.value=this.value">
+            <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="idCardPic3.value=this.value">
             <input type="submit" value="确认"/>
         </div>
     </form>
