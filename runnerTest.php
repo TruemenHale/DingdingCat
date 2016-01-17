@@ -71,9 +71,8 @@ $signPackage = $jsapi->getSignPackage();
             <div class="ui-field-contain">
                 <label>身份证正面：</label>
                 <input type="text" name="idCardPic1" id="idCardPic1" value=""/>
-                <button type="button"  onclick="img_upload.click()">选择图片</button>
-                <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
             </div>
+            <button type="button"  onclick="img_upload.click()">选择图片</button>
             <div class="ui-field-contain">
                 <label>交通工具：</label>
                 <select class="transport" name="transportType" id="">
@@ -92,6 +91,7 @@ $signPackage = $jsapi->getSignPackage();
                 <input class="ConfirmCode" type="text" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
+            <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
             <input type="submit" value="确认"/>
         </div>
     </form>
