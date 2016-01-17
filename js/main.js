@@ -225,6 +225,8 @@ $(function(){
 
 	});
 	$('.cancel').on('tap',function(){
+		var oList = $('.addressList');
+		oList.html("");
 		if(From == '.getAddress' || From == '.endAddress'){
 			$.mobile.changePage('#daisong',{
 				transition:'none'

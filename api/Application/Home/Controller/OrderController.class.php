@@ -827,13 +827,16 @@ class OrderController extends BaseController {
     public function accessMsgSend () {
         $openid = I('post.openid');
         $order  = I('post.order');
+        $runnerInfo = $this->orderToRunner($order);
+        $runnerName = $runnerInfo ['name'];
+        $runnerPhone = $runnerInfo ['phone'];
         $weChat = new WechatAuth();
         $token = $this->tokenJudge();
         $weChat->tokenWrite($token);
         $remark = "点击详情，获取取件二维码";
         $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
         $send['first'] = [
-            "value" => "您好，您的订单已被接单，请耐心等待跑腿哥上门。。。",
+            "value" => "您好，您的订单已被跑腿哥-$runnerName($runnerPhone)接单，请耐心等待跑腿哥上门。。。",
             "color" => "#173177"
         ];
         $send['keyword1'] = [
@@ -852,6 +855,11 @@ class OrderController extends BaseController {
 
         $res = $weChat->sendTemplate($openid,$template_id,$send,$url);
         $this->ajaxReturn($res);
+    }
+
+    private function orderToRunner ($order) {
+        $res = M('orders')->field("runner.name,runner.phone")->where("orders.orderNo = '$order'")->join("runner ON runner.id = orders.runnerId")->find();
+        return $res;
     }
 
     /**
