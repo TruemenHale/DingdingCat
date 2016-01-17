@@ -27,21 +27,10 @@
                 <label>身份证号：</label>
                 <input type="text" name="idCardNo" class="idCard" />
             </div>
-            <div class="ui-field-contain">
-                <label>身份证正面：</label>
-                <input type="text" id="idCardPic1" value="" disabled/>
-            </div>
-            <button type="button" onclick="img_upload1.click()">选择图片</button>
-            <div class="ui-field-contain">
-                <label>身份证背面：</label>
-                <input type="text" id="idCardPic2" value="" disabled/>
-            </div>
-            <button type="button" onclick="img_upload2.click()">选择图片</button>
-            <div class="ui-field-contain">
-                <label>身份证手持：</label>
-                <input type="text" id="idCardPic3" value=""/>
-            </div>
-            <button type="button" onclick="img_upload3.click()">选择图片</button>
+
+            <button type="button" onclick="img_upload1.click()">选择身份证正面照片</button>
+            <button type="button" onclick="img_upload2.click()">选择身份证背面照片</button>
+            <button type="button" onclick="img_upload3.click()">选择手持身份证照片</button>
             <div class="ui-field-contain">
                 <label>交通工具：</label>
                 <select class="transport" name="transportType" id="">
@@ -60,9 +49,9 @@
                 <input class="ConfirmCode" type="text" name="code" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
-            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" onchange="idCardPic1.value=this.value">
-            <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="idCardPic2.value=this.value">
-            <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="idCardPic3.value=this.value">
+            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none">
+            <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none">
+            <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none">
             <input type="submit" value="确认"/>
         </div>
     </form>
