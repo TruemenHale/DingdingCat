@@ -290,6 +290,18 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
+    public function runnerTest () {
+        $post = I('post.');
+        if (!empty($_FILES)) {
+            $config ['savePath'] = 'upload/idCard/';
+            $config ['saveName'] = $post ['phone'];
+            $upload = new \Think\Upload($config);
+            $info = $upload->upload();
+            var_dump($info);
+        }
+        var_dump($post);
+    }
+
     /**
      * suggestion interface
      */
