@@ -70,9 +70,19 @@ $signPackage = $jsapi->getSignPackage();
             </div>
             <div class="ui-field-contain">
                 <label>身份证正面：</label>
-                <input type="text" name="idCardPic1" id="idCardPic1" value=""/>
+                <input type="text" id="idCardPic1" value=""/>
             </div>
-            <button type="button"  onclick="img_upload.click()">选择图片</button>
+            <button type="button" onclick="img_upload1.click()">选择图片</button>
+            <div class="ui-field-contain">
+                <label>身份证背面：</label>
+                <input type="text" id="idCardPic2" value=""/>
+            </div>
+            <button type="button" onclick="img_upload2.click()">选择图片</button>
+            <div class="ui-field-contain">
+                <label>身份证手持：</label>
+                <input type="text" id="idCardPic3" value=""/>
+            </div>
+            <button type="button" onclick="img_upload3.click()">选择图片</button>
             <div class="ui-field-contain">
                 <label>交通工具：</label>
                 <select class="transport" name="transportType" id="">
@@ -91,7 +101,9 @@ $signPackage = $jsapi->getSignPackage();
                 <input class="ConfirmCode" type="text" name="code" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
-            <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
+            <input id="img_upload1" name="idCardPic1" type="file" multiple="true" style="display: none" onchange="idCardPic1.value=this.value">
+            <input id="img_upload2" name="idCardPic2" type="file" multiple="true" style="display: none" onchange="idCardPic2.value=this.value">
+            <input id="img_upload3" name="idCardPic3" type="file" multiple="true" style="display: none" onchange="idCardPic3.value=this.value">
             <input type="submit" value="确认"/>
         </div>
     </form>

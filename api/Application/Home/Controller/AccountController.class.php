@@ -296,7 +296,7 @@ class AccountController extends BaseController {
         if (!empty($_FILES)) {
             $config = C('uploadConfig');
             $config ['savePath'] = 'upload/idCard/';
-            $config ['saveName'] = $post ['phone'];
+            $config ['saveName'] = $post ['phoneNum'].'-'.mt_rand(100000,999999);
             $upload = new \Think\Upload($config);
             $info = $upload->upload();
             var_dump($info);
