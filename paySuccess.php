@@ -33,7 +33,6 @@ $signPackage = $jsapi->getSignPackage();
             'closeWindow'
         ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
-    $.mobile.loading('hide');
     wx.ready(function(){
         wx.hideOptionMenu();
         setTimeout(function(){
