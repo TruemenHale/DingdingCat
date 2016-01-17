@@ -294,12 +294,30 @@ class AccountController extends BaseController {
         $post = I('post.');
         var_dump($post);
         if (!empty($_FILES)) {
-            $config = C('uploadConfig');
-            $config ['savePath'] = 'upload/idCard/';
-            $config ['saveName'] = $post ['phoneNum'].'-'.mt_rand(100000,999999);
-            $upload = new \Think\Upload($config);
-            $info = $upload->upload();
-            var_dump($info);
+            $res = array();
+            for ($i = 0;$i < count($_FILES ['file'] ['name']) ;$i++) {
+                $file = array();
+                $file ['name'] = $_FILES ['file'] ['name'] [$i];
+                $file ['tmp_name'] = $_FILES ['file'] ['tmp_name'] [$i];
+                $file ['type'] = $_FILES['file']['type'] [$i];
+                $file ['error'] = $_FILES ['file'] ['error'] [$i];
+                $file ['size'] = $_FILES ['file'] ['size'] [$i];
+                $res [] = $this->upImg($file,$post ['phoneNum']);
+            }
+            dump($res);
+        }
+    }
+
+    private function upImg ($file , $name) {
+        $config = C('uploadConfig');
+        $config ['savePath'] = 'upload/idCard/';
+        $config ['saveName'] = $name .'-'.mt_rand(100000,999999);
+        $upload = new \Think\Upload($config);
+        $info = $upload->uploadOne($file);
+        if (!$info) {
+            echo $upload->getError();
+        } else {
+            return $info;
         }
     }
 
