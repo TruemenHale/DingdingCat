@@ -83,7 +83,7 @@ $signPackage = $jsapi->getSignPackage();
                 <input type="text" class="idCard" />
             </div>
             <div class="ConfirmCodeBox">
-                <input class="ConfirmCode" type="text" name="add-reportName" id="display" placeholder="请上传身份证正面" value=""/>
+                <input class="ConfirmCode" type="text" name="add-reportName" placeholder="请上传身份证正面" value=""/>
                 <div class="ImgBtn" onclick="img_upload.click()">选择图片</div>
                 <input id="img_upload" name="img_upload" type="file" multiple="true" style="display: none" onchange="display.value=this.value">
 
