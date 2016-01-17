@@ -1,4 +1,6 @@
 <?php
+ini_set('date.timezone','Asia/Shanghai');
+require_once "jssdk/jssdk.php";
 $jsapi = new JSSDK("wxa3363e46c74608f3","52be407940dece37327465c1d211cfb4");
 $signPackage = $jsapi->getSignPackage();
 ?>
