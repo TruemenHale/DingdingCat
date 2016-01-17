@@ -16,4 +16,10 @@ return array(
     'URL_MODEL' => 3,
     'LOG_RECORD' => true, // 开启日志记录
     'SHOW_PAGE_TRACE' =>false,
+    'uploadConfig' => array(
+        'maxSize' => 0,
+        'rootPath' => './Public/',
+        'exts' => '',
+        'autoSub' => false
+    ),
 );

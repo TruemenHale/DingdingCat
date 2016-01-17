@@ -292,14 +292,15 @@ class AccountController extends BaseController {
 
     public function runnerTest () {
         $post = I('post.');
+        var_dump($post);
         if (!empty($_FILES)) {
+            $config = C('uploadConfig');
             $config ['savePath'] = 'upload/idCard/';
             $config ['saveName'] = $post ['phone'];
             $upload = new \Think\Upload($config);
             $info = $upload->upload();
             var_dump($info);
         }
-        var_dump($post);
     }
 
     /**
