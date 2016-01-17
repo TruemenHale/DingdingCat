@@ -296,10 +296,19 @@ class AccountController extends BaseController {
         $name  = I('post.userName');
         $trans = I('post.transportType');
         $idCardNo = I('post.idCardNo');
+        $res = $this->runnerCheck($phone);
+        if (!$res) {
+            $this->error("该手机号已经被注册");
+        }
+
+        $res = $this->codeCheck($phone,$code);
+        if (!$res) {
+            $this->error("验证码错误");
+        }
         if (!empty($_FILES)) {
             $res = array();
             if (count($_FILES ['idCardPic'] ['name']) != 2) {
-                $this->error("请上传");
+                $this->error("请正确上传身份证照片");
             }
             for ($i = 0;$i < count($_FILES ['idCardPic'] ['name']) ;$i++) {
                 $file = array();
@@ -310,8 +319,15 @@ class AccountController extends BaseController {
                 $file ['size'] = $_FILES ['idCardPic'] ['size'] [$i];
                 $res [] = $this->upImg($file,$idCardNo);
             }
+            dump($res);
         }
-
+        $save = [
+            'name' => $name,
+            'phone'=> $phone,
+            'transportType' => $trans,
+            'idCardNo' => $idCardNo,
+            'regTime' => date("Y-m-d H-i-s",time())
+        ];
     }
 
     private function upImg ($file , $name) {
