@@ -291,10 +291,16 @@ class AccountController extends BaseController {
     }
 
     public function runnerTest () {
-        $post = I('post.');
-        var_dump($post);
+        $phone = I("post.phoneNum");
+        $code  = I('post.code');
+        $name  = I('post.userName');
+        $trans = I('post.transportType');
+        $idCardNo = I('post.idCardNo');
         if (!empty($_FILES)) {
             $res = array();
+            if (count($_FILES ['idCardPic'] ['name']) != 2) {
+                $this->error("请上传");
+            }
             for ($i = 0;$i < count($_FILES ['idCardPic'] ['name']) ;$i++) {
                 $file = array();
                 $file ['name'] = $_FILES ['idCardPic'] ['name'] [$i];
@@ -302,10 +308,10 @@ class AccountController extends BaseController {
                 $file ['type'] = $_FILES['file']['type'] [$i];
                 $file ['error'] = $_FILES ['idCardPic'] ['error'] [$i];
                 $file ['size'] = $_FILES ['idCardPic'] ['size'] [$i];
-                $res [] = $this->upImg($file,$post ['phoneNum']);
+                $res [] = $this->upImg($file,$idCardNo);
             }
-            dump($res);
         }
+
     }
 
     private function upImg ($file , $name) {

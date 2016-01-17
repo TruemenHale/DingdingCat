@@ -28,16 +28,19 @@
                 <input type="text" name="idCardNo" class="idCard" />
             </div>
             <div class="ui-field-contain">
-                <label>身份证正面:</label>
-                <button type="button" onclick="img_upload1.click()">选择身份证正面照片</button>
-                <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none">
+                <label>身份证正面：</label>
+                <button type="button" onclick="img_upload1.click()">选择图片</button>
             </div>
-
-
-
-            <button type="button" onclick="img_upload2.click()">选择身份证背面照片</button>
+            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none">
+            <div class="ui-field-contain">
+                <label>身份证背面：</label>
+                <button type="button" onclick="img_upload2.click()">选择图片</button>
+            </div>
             <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none">
-            <button type="button" onclick="img_upload3.click()">选择手持身份证照片</button>
+            <div class="ui-field-contain">
+                <label>身份证手持：</label>
+                <button type="button" onclick="img_upload3.click()">选择图片</button>
+            </div>
             <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none">
             <div class="ui-field-contain">
                 <label>交通工具：</label>
