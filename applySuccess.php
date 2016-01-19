@@ -43,8 +43,8 @@ $signPackage = $jsapi->getSignPackage();
         },3000);
     });
     setTimeout(function(){
-        window.open('', '_self', '');
-        window.close();
+        var customWindow = window.open('', '_blank', '');
+        customWindow.close();
     },3000);
 </script>
 </html>
