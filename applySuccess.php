@@ -40,7 +40,7 @@ $signPackage = $jsapi->getSignPackage();
         wx.hideOptionMenu();
         setTimeout(function(){
             wx.closeWindow();
-        },3000);
+        },2000);
     });
     setTimeout(function(){
         var userAgent = navigator.userAgent;
