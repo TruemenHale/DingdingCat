@@ -7,6 +7,7 @@
  */
 
 namespace Home\Controller;
+use Com\idCard;
 use Think\Controller;
 
 class AccountController extends BaseController {
@@ -305,6 +306,12 @@ class AccountController extends BaseController {
         if (!$res) {
             $this->error("验证码错误");
         }*/
+        $idCardCheck = new \Com\idCard();
+        $res = $idCardCheck->check($idCardNo);
+        if (!$res) {
+            $this->error("请输入正确身份证号码");
+        }
+
         if (!empty($_FILES)) {
             $res = array();
             if (count($_FILES ['idCardPic'] ['name']) != 3) {
@@ -319,15 +326,22 @@ class AccountController extends BaseController {
                 $file ['size'] = $_FILES ['idCardPic'] ['size'] [$i];
                 $res [] = $this->upImg($file,$idCardNo);
             }
-            dump($res);
+            $idCardPic1 = "http://wx.tyll.net.cn/DingdingCat/api/Public/upload/idCard/".$res [0] ['savename'];
+            $idCardPic2 = "http://wx.tyll.net.cn/DingdingCat/api/Public/upload/idCard/".$res [1] ['savename'];
+            $idCardPic3 = "http://wx.tyll.net.cn/DingdingCat/api/Public/upload/idCard/".$res [2] ['savename'];
         }
         $save = [
             'name' => $name,
             'phone'=> $phone,
             'transportType' => $trans,
             'idCardNo' => $idCardNo,
-            'regTime' => date("Y-m-d H-i-s",time())
+            'regTime' => date("Y-m-d H-i-s",time()),
+            'idCardPic1' => $idCardPic1,
+            'idCardPic2' => $idCardPic2,
+            'idCardPic3' => $idCardPic3
         ];
+        M('runner')->save($save);
+        $this->success("申请成功，请等待审核!");
     }
 
     private function upImg ($file , $name) {
@@ -524,4 +538,6 @@ class AccountController extends BaseController {
         }
         return true;
     }
+
+
 }
