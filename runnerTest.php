@@ -66,18 +66,19 @@
 </div>
 </body>
 <script>
+    var button = null;
     function picJudge1 () {
-        var button = $('#button1');
+        button = $('#button1');
         button.html("已选择");
         button.css({'text-shadow':'none','background-color':'#39D7C1','color':'white'});
     }
     function picJudge2 () {
-        var button = $('#button2');
+        button = $('#button2');
         button.html("已选择");
         button.css({'text-shadow':'none','background-color':'#39D7C1','color':'white'});
     }
     function picJudge3 () {
-        var button = $('#button3');
+        button = $('#button3');
         button.html("已选择");
         button.css({'text-shadow':'none','background-color':'#39D7C1','color':'white'});
     }
