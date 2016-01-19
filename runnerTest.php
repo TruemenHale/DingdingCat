@@ -65,4 +65,18 @@
     </form>
 </div>
 </body>
+<script>
+    function picJudge1 () {
+        document.getElementById('button1').value="已选择";
+        document.getElementById('button1').style.color = "green";
+    }
+    function picJudge2 () {
+        document.getElementById('button1').value="已选择";
+        document.getElementById('button1').style.color = "green";
+    }
+    function picJudge3 () {
+        document.getElementById('button1').value="已选择";
+        document.getElementById('button1').style.color = "green";
+    }
+</script>
 </html>
