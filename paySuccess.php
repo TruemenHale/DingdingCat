@@ -40,7 +40,7 @@ $signPackage = $jsapi->getSignPackage();
         wx.hideOptionMenu();
         setTimeout(function(){
             wx.closeWindow();
-        },3000);
+        },100);
     });
 </script>
 </html>
