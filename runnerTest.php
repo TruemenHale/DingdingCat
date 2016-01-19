@@ -68,15 +68,18 @@
 <script>
     function picJudge1 () {
         document.getElementById('button1').innerHTML="已选择";
-        document.getElementById('button1').style.backgroundColor = "green";
+        document.getElementById('button1').style.backgroundColor = "#96FF40";
+        document.getElementById('button1').style.color = "white";
     }
     function picJudge2 () {
-        document.getElementById('button2').value="已选择";
-        document.getElementById('button2').style.backgroundColor = "green";
+        document.getElementById('button2').innerHTML="已选择";
+        document.getElementById('button2').style.backgroundColor = "#96FF40";
+        document.getElementById('button2').style.color = "white";
     }
     function picJudge3 () {
-        document.getElementById('button3').value="已选择";
-        document.getElementById('button3').style.backgroundColor = "green";
+        document.getElementById('button3').innerHTML="已选择";
+        document.getElementById('button3').style.backgroundColor = "#96FF40";
+        document.getElementById('button3').style.color = "white";
     }
 </script>
 </html>
