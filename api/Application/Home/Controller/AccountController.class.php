@@ -335,12 +335,12 @@ class AccountController extends BaseController {
             'phone'=> $phone,
             'transportType' => $trans,
             'idCardNo' => $idCardNo,
-            'regTime' => date("Y-m-d H-i-s",time()),
+            'regTime' => date("Y-m-d H-i-s",time()),add
             'idCardPic1' => $idCardPic1,
             'idCardPic2' => $idCardPic2,
             'idCardPic3' => $idCardPic3
         ];
-        M('runner')->save($save);
+        M('runner')->add($save);
         $this->success("申请成功，请等待审核!");
     }
 
