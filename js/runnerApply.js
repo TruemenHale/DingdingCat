@@ -60,4 +60,8 @@ $(function () {
             document.cookie = "flag = "+500;
         }
     });
+    $('.submit-form').on('tap',function () {
+        $.mobile.loading('show');
+        $('.form').submit();
+    });
 });

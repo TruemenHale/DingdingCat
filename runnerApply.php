@@ -17,7 +17,7 @@
     <div class="header" data-role="header" data-position="fixed" class = "header">
         <h1>跑腿哥报名</h1>
     </div>
-    <form action="./api/index.php?s=/Home/Account/runnerTest" method="post" enctype="multipart/form-data" data-ajax="false">
+    <form action="./api/index.php?s=/Home/Account/runnerTest" method="post" enctype="multipart/form-data" data-ajax="false" class="form">
         <div role="main" class="ui-content">
             <div class="ui-field-contain">
                 <label>姓名：</label>
@@ -60,7 +60,7 @@
                 <input class="ConfirmCode" type="text" name="code" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
                 <div class="ApplyBtn">获取验证码</div>
             </div>
-            <input type="submit" value="确认"/>
+            <input type="button" class="submit-form" value="确认"/>
         </div>
     </form>
 </div>
