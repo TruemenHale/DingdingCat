@@ -43,9 +43,16 @@ $signPackage = $jsapi->getSignPackage();
         },3000);
     });
     setTimeout(function(){
-        top.window.opener = top;
-        top.window.open('','_self','');
-        top.window.close();
+        var userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") !=-1) {
+            window.location.href="about:blank";
+        }else if(userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1){
+            window.opener=null;window.open('about:blank','_self','').close();
+        }else {
+            window.opener = null;
+            window.open("about:blank", "_self");
+            window.close();
+        }
     },3000);
 </script>
 </html>
