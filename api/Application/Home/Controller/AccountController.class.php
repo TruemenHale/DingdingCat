@@ -341,7 +341,6 @@ class AccountController extends BaseController {
             'idCardPic3' => $idCardPic3
         ];
         M('runner')->add($save);
-        Header("HTTP/1.1 303 See Other");
         Header("Location: 'http://wx.tyll.net.cn/DingdingCat/applySuccess.php'");
     }
 
