@@ -297,15 +297,15 @@ class AccountController extends BaseController {
         $name  = I('post.userName');
         $trans = I('post.transportType');
         $idCardNo = I('post.idCardNo');
-        /*$res = $this->runnerCheck($phone);
+        $res = $this->runnerCheck($phone);
         if (!$res) {
             $this->error("该手机号已经被注册");
-        }*/
+        }
 
-        /*$res = $this->codeCheck($phone,$code);
+        $res = $this->codeCheck($phone,$code);
         if (!$res) {
             $this->error("验证码错误");
-        }*/
+        }
         $idCardCheck = new \Com\idCard();
         $res = $idCardCheck->check($idCardNo);
         if (!$res) {
