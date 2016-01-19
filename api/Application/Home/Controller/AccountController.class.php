@@ -335,7 +335,7 @@ class AccountController extends BaseController {
             'phone'=> $phone,
             'transportType' => $trans,
             'idCardNo' => $idCardNo,
-            'regTime' => date("Y-m-d H-i-s",time()),add
+            'regTime' => date("Y-m-d H-i-s",time()),
             'idCardPic1' => $idCardPic1,
             'idCardPic2' => $idCardPic2,
             'idCardPic3' => $idCardPic3
