@@ -67,19 +67,25 @@
 </body>
 <script>
     function picJudge1 () {
-        document.getElementById('button1').innerHTML="已选择";
-        document.getElementById('button1').style.backgroundColor = "#39D7C1";
-        document.getElementById('button1').style.color = "white";
+        var button = $('#button1');
+        button.innerHTML="已选择";
+        button.style.backgroundColor = "#39D7C1";
+        button.style.color = "white";
+        button.css({'text-shadow':'none'});
     }
     function picJudge2 () {
-        document.getElementById('button2').innerHTML="已选择";
-        document.getElementById('button2').style.backgroundColor = "#39D7C1";
-        document.getElementById('button2').style.color = "white";
+        var button = $('#button2');
+        button.innerHTML="已选择";
+        button.style.backgroundColor = "#39D7C1";
+        button.style.color = "white";
+        button.css({'text-shadow':'none'});
     }
     function picJudge3 () {
-        document.getElementById('button3').innerHTML="已选择";
-        document.getElementById('button3').style.backgroundColor = "#39D7C1";
-        document.getElementById('button3').style.color = "white";
+        var button = $('#button3');
+        button.innerHTML="已选择";
+        button.style.backgroundColor = "#39D7C1";
+        button.style.color = "white";
+        button.css({'text-shadow':'none'});
     }
 </script>
 </html>
