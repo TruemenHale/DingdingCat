@@ -19,7 +19,7 @@ $signPackage = $jsapi->getSignPackage();
         <div class="col-sm-12"><h3 style="font-weight: 900">申请提交成功,请等待审核！</h3></div>
     </div>
     <div class="row text-center">
-        <div class="col-sm-12"><h1><span style="color: #5cb85c">页面即将关闭</span></h1></div>
+        <div class="col-sm-12"><h1><span style="color: #5cb85c">请关闭页面!</span></h1></div>
     </div>
 </div>
 </body>
@@ -38,21 +38,7 @@ $signPackage = $jsapi->getSignPackage();
     });
     wx.ready(function(){
         wx.hideOptionMenu();
-        setTimeout(function(){
-            wx.closeWindow();
-        },2000);
     });
-    setTimeout(function(){
-        var userAgent = navigator.userAgent;
-        if (userAgent.indexOf("Firefox") != -1 || userAgent.indexOf("Chrome") !=-1) {
-            window.location.href="about:blank";
-        }else if(userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1){
-            window.opener=null;window.open('about:blank','_self','').close();
-        }else {
-            window.opener = null;
-            window.open("about:blank", "_self");
-            window.close();
-        }
-    },3000);
+
 </script>
 </html>
