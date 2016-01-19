@@ -43,9 +43,9 @@ $signPackage = $jsapi->getSignPackage();
         },3000);
     });
     setTimeout(function(){
-        window.opener = null;
-        window.open('', '_top', '');
-        window.parent.close();
+        top.window.opener = top;
+        top.window.open('','_self','');
+        top.window.close();
     },3000);
 </script>
 </html>
