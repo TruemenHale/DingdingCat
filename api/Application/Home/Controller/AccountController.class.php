@@ -341,7 +341,8 @@ class AccountController extends BaseController {
             'idCardPic3' => $idCardPic3
         ];
         M('runner')->add($save);
-        $this->success("申请成功，请等待审核!");
+        Header("HTTP/1.1 303 See Other");
+        Header("Location: 'http://wx.tyll.net.cn/DingdingCat/applySuccess.php'");
     }
 
     private function upImg ($file , $name) {
