@@ -341,7 +341,7 @@ class AccountController extends BaseController {
             'idCardPic3' => $idCardPic3
         ];
         M('runner')->add($save);
-        Header("Location: 'http://wx.tyll.net.cn/DingdingCat/applySuccess.php'");
+        header("Location: http://wx.tyll.net.cn/DingdingCat/applySuccess.php");
     }
 
     private function upImg ($file , $name) {
