@@ -29,19 +29,19 @@
             </div>
             <div class="ui-field-contain">
                 <label>身份证正面：</label>
-                <button type="button" onclick="img_upload1.click()">选择图片</button>
+                <button type="button" id="button1" onclick="img_upload1.click()">选择图片</button>
             </div>
-            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none">
+            <input id="img_upload1" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="picJudge1()">
             <div class="ui-field-contain">
                 <label>身份证背面：</label>
-                <button type="button" onclick="img_upload2.click()">选择图片</button>
+                <button type="button" id="button2" onclick="img_upload2.click()">选择图片</button>
             </div>
-            <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none">
+            <input id="img_upload2" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="picJudge2()">
             <div class="ui-field-contain">
                 <label>身份证手持：</label>
-                <button type="button" onclick="img_upload3.click()">选择图片</button>
+                <button type="button" id="button3" onclick="img_upload3.click()">选择图片</button>
             </div>
-            <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none">
+            <input id="img_upload3" name="idCardPic[]" type="file" multiple="true" style="display: none" onchange="picJudge3()">
             <div class="ui-field-contain">
                 <label>交通工具：</label>
                 <select class="transport" name="transportType" id="">
