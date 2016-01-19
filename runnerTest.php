@@ -68,17 +68,17 @@
 <script>
     function picJudge1 () {
         var button = $('#button1');
-        button.innerHTML="已选择";
+        button.html("已选择");
         button.css({'text-shadow':'none','background-color':'#39D7C1','color':'white'});
     }
     function picJudge2 () {
         var button = $('#button2');
-        button.innerHTML="已选择";
+        button.html("已选择");
         button.css({'text-shadow':'none','background-color':'#39D7C1','color':'white'});
     }
     function picJudge3 () {
         var button = $('#button3');
-        button.innerHTML="已选择";
+        button.html("已选择");
         button.css({'text-shadow':'none','background-color':'#39D7C1','color':'white'});
     }
 </script>
