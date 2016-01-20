@@ -63,7 +63,7 @@ class ApiController extends Controller {
         $openid = I('post.openid');
         $order  = I('post.order');
         $runnerInfo = $this->orderToRunner($order);
-        $runnerName = $runnerInfo ['name'];
+        $runnerId = $runnerInfo ['id'];
         $runnerPhone = $runnerInfo ['phone'];
         $weChat = new WechatAuth();
         $token = $this->tokenJudge();
@@ -71,7 +71,7 @@ class ApiController extends Controller {
         $remark = "点击详情，获取取件二维码";
         $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
         $send['first'] = [
-            "value" => "您好，您的订单已被跑腿哥-$runnerName($runnerPhone)接单，请耐心等待跑腿哥上门。。。",
+            "value" => "您好，您的订单已被跑腿哥$runnerId"."接单,电话:"."$runnerPhone，请耐心等待跑腿哥上门。。。",
             "color" => "#173177"
         ];
         $send['keyword1'] = [
@@ -93,7 +93,7 @@ class ApiController extends Controller {
     }
 
     private function orderToRunner ($order) {
-        $res = M('orders')->field("runner.name,runner.phone")->where("orders.orderNo = '$order'")->join("runner ON runner.id = orders.runnerId")->find();
+        $res = M('orders')->field("runner.name,runner.id")->where("orders.orderNo = '$order'")->join("runner ON runner.id = orders.runnerId")->find();
         return $res;
     }
 
