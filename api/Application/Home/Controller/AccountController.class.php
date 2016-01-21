@@ -43,7 +43,7 @@ class AccountController extends BaseController {
      * @return bool
      * send sms to register&runner phone
      */
-    public function smsSend ($phone,$code) {
+    private function smsSend ($phone,$code) {
 
         $account = "mt6724";
         $password = "le44n8";
