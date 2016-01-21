@@ -30,7 +30,8 @@ class OrderController extends BaseController {
             $save ['userId'] = session('userId');
         }
 
-        if ($info ['pickupAddr'] == null || $info ['sendAddr'] == null || $info ['pickupTime'] == null || $info ['weight'] == null || $info ['recipientName'] == null || $info ['recipientName'] == null || $info ['goodsDesc'] == null) {
+        if ($info ['pickupAddr'] == null || $info ['sendAddr'] == null || $info ['pickupTime'] == null || $info ['weight'] == null || $info ['recipientName'] == null || $info ['recipientTel
+        '] == null || $info ['goodsDesc'] == null) {
             $return = [
                 'status' => '-100',
                 'info'   => '请完整填写上述内容'

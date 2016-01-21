@@ -17,7 +17,7 @@
     <div class="header" data-role="header" data-position="fixed" class = "header">
         <h1>跑腿哥报名</h1>
     </div>
-    <form action="./api/index.php?s=/Home/Account/runnerTest" method="post" enctype="multipart/form-data" data-ajax="false" class="form">
+    <form action="./api/index.php?s=/Home/Account/runnerApply" method="post" enctype="multipart/form-data" data-ajax="false" class="form">
         <div role="main" class="ui-content">
             <div class="ui-field-contain">
                 <label>姓名：</label>

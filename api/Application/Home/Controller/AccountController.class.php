@@ -245,53 +245,10 @@ class AccountController extends BaseController {
         $this->ajaxReturn($return);
     }
 
-    /**、
-     * runner register
+    /**
+     * 跑腿哥注册
      */
     public function runnerApply () {
-        $phone = I("post.phone");
-        $code  = I('post.code');
-        $name  = I('post.name');
-        $head  = I('post.head');
-        $trans = I('post.transportType');
-        $idCardNo = I('post.idCardNo');
-
-        $res = $this->runnerCheck($phone);
-        if (!$res) {
-            $return = [
-                'status' => '-3',
-                'info'   => '改手机号已经注册！'
-            ];
-            $this->ajaxReturn($return);
-        }
-
-        $res = $this->codeCheck($phone,$code);
-        if (!$res) {
-            $return = [
-                'status' => '-2',
-                'info'   => '验证码错误！'
-            ];
-            $this->ajaxReturn($return);
-        }
-
-        $save = [
-            'name' => $name,
-            'phone'=> $phone,
-            'transportType' => $trans,
-            'idCardNo' => $idCardNo,
-            'regTime' => date("Y-m-d H-i-s",time()),
-            'header' => $head
-        ];
-        M('runner')->add($save);
-
-        $return = [
-            'status' => '0',
-            'info'   => '注册成功！'
-        ];
-        $this->ajaxReturn($return);
-    }
-
-    public function runnerTest () {
         $phone = I("post.phoneNum");
         $code  = I('post.code');
         $name  = I('post.userName');
