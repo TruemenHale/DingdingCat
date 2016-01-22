@@ -71,7 +71,7 @@ class ApiController extends Controller {
         $remark = "点击详情，获取取件二维码";
         $url = "http://wx.tyll.net.cn/DingdingCat/showQrCode.php?order=".$order;
         $send['first'] = [
-            "value" => "您好，您的订单已被跑腿哥$runnerId"."接单,电话:"."$runnerPhone，请耐心等待跑腿哥上门。。。",
+            "value" => "您好，您的订单已被跑腿哥".$runnerId."接单,电话:".$runnerPhone."，请耐心等待跑腿哥上门。。。",
             "color" => "#173177"
         ];
         $send['keyword1'] = [
