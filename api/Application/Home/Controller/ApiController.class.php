@@ -93,7 +93,7 @@ class ApiController extends Controller {
     }
 
     private function orderToRunner ($order) {
-        $res = M('orders')->field("runner.name,runner.id")->where("orders.orderNo = '$order'")->join("runner ON runner.id = orders.runnerId")->find();
+        $res = M('orders')->field("runner.phone,runner.id")->where("orders.orderNo = '$order'")->join("runner ON runner.id = orders.runnerId")->find();
         return $res;
     }
 
