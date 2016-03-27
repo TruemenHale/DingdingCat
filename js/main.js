@@ -310,6 +310,11 @@ $(function(){
 		},1000);
 	});
 	$('.dgApply').on('tap',function(){
+		var yes = parseInt($('.dgPay').val());
+		if(yes < 16){
+			alert('小费金额不得低于16元');
+			return;
+		}
 		$.mobile.loading('show');
 		var _data = {};
 		_data.sendAddr = $('.sendAddress').val();
