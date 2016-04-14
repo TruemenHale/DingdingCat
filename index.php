@@ -177,6 +177,7 @@
             <label>跑腿小费：</label>
             <input class="dgPay moneyInput" type="text" data-role="none"/>
             <span style="font-size: 16px;display: inline-block;line-height: 50px;margin-left: 5px">元</span>
+            <p style="color: #cccccc;text-shadow: none;">温馨提示:小费金额至少16元</p>
         </div>
         <input type="button" style="background-color: #56b0e0" value="提交订单" id="dgApply" class="dgApply"/>
         <div id="daigouPay" style="display:none;">
