@@ -70,4 +70,7 @@ $(function () {
         });
         $('.form').submit();
     });
+    $('.refresh').on('tap',function () {
+        window.location.href = "./zhaopian.php";
+    })
 });

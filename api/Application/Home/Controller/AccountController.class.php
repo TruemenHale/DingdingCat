@@ -256,6 +256,32 @@ class AccountController extends BaseController {
         $idCardNo = I('post.idCardNo');
         $res = $this->runnerCheck($phone);
         if (!$res) {
+            if (!empty($_FILES) && $code == null && $idCardNo == null && $trans == null) {
+                $res = array();
+                if (count($_FILES ['idCardPic'] ['name']) != 3) {
+                    $this->error("请正确上传身份证照片");
+                }
+                for ($i = 0;$i < count($_FILES ['idCardPic'] ['name']) ;$i++) {
+                    $file = array();
+                    $file ['name'] = $_FILES ['idCardPic'] ['name'] [$i];
+                    $file ['tmp_name'] = $_FILES ['idCardPic'] ['tmp_name'] [$i];
+                    $file ['type'] = $_FILES['file']['type'] [$i];
+                    $file ['error'] = $_FILES ['idCardPic'] ['error'] [$i];
+                    $file ['size'] = $_FILES ['idCardPic'] ['size'] [$i];
+                    $res [] = $this->upImg($file,$idCardNo);
+                }
+                $idCardPic1 = "http://wx.tyll.net.cn/DingdingCat/api/Public/upload/idCard/".$res [0] ['savename'];
+                $idCardPic2 = "http://wx.tyll.net.cn/DingdingCat/api/Public/upload/idCard/".$res [1] ['savename'];
+                $idCardPic3 = "http://wx.tyll.net.cn/DingdingCat/api/Public/upload/idCard/".$res [2] ['savename'];
+                $save = [
+                    'idCardPic1' => $idCardPic1,
+                    'idCardPic2' => $idCardPic2,
+                    'idCardPic3' => $idCardPic3
+                ];
+                M('runner')->where("phone = '$phone'")->save($save);
+                header("Location: http://wx.tyll.net.cn/DingdingCat/applySuccess.php"); 
+                
+            }
             $this->error("该手机号已经被注册");
         }
 
