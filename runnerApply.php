@@ -61,7 +61,7 @@
                 <div class="ApplyBtn">获取验证码</div>
             </div>
             <input type="button" class="submit-form" value="确认"/>
-            <input type="button" class="refresh" value="重新上传">
+            <input type="button" class="refresh" value="重新上传照片">
         </div>
     </form>
     
