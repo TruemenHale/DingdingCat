@@ -256,7 +256,11 @@ class AccountController extends BaseController {
         $idCardNo = I('post.idCardNo');
         $res = $this->runnerCheck($phone);
         if (!$res) {
-            if (!empty($_FILES) && $code == null && $idCardNo == null && $trans == null) {
+            if (!empty($_FILES) && $idCardNo == null && $trans == null) {
+                $res = $this->codeCheck($phone,$code);
+                if (!$res) {
+                    $this->error("验证码错误");
+                }
                 $res = array();
                 if (count($_FILES ['idCardPic'] ['name']) != 3) {
                     $this->error("请正确上传身份证照片");

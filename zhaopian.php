@@ -38,6 +38,10 @@
                 <label>手机号：</label>
                 <input type="text" id="phoneNum" name="phoneNum" class="phoneNum" value="" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" />
             </div>
+            <div class="ConfirmCodeBox">
+                <input class="ConfirmCode" type="text" name="code" onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" data-role="none" />
+                <div class="ApplyBtn">获取验证码</div>
+            </div>
             <input type="button" class="submit-form" value="确认"/>
         </div>
     </form>
